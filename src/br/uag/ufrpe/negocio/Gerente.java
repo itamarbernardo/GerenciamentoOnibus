@@ -1,4 +1,4 @@
-package gerenciamentodeviagens;
+package br.uag.ufrpe.negocio;
 
 import java.time.LocalDate;
 /**
