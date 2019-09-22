@@ -10,6 +10,7 @@ import br.uag.ufrpe.negocio.Onibus;
 import br.uag.ufrpe.negocio.Passageiro;
 import br.uag.ufrpe.negocio.Passagem;
 import br.uag.ufrpe.negocio.Viagem;
+import br.uag.ufrpe.repositorios.RepositorioViagem;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,16 +25,18 @@ public class GerenciaOnibus {
      */
     public static void main(String[] args) {
         Onibus o = new Onibus(10, 2, 2, 2);
-        Passageiro p = new Passageiro(true);
+        Passageiro p = new Passageiro(true, "117.982.029-10");
+        Passageiro p2 = new Passageiro(true, "002.982.029-10");
+        
         Passagem passagem = new Passagem("Reclinavel", p, "IdJovem", 1, true);
-        Passagem passagem2 = new Passagem("Reclinavel", p, "IdJovem", 10, true);
+        Passagem passagem2 = new Passagem("Reclinavel", p2, "IdJovem", 10, true);
         Passagem passagem3 = new Passagem("Reclinavel", p, "ParcialIdJovem", 9, true);
         
         
-        List<Passagem> passagens = new ArrayList<>();
-        Viagem v = new Viagem(passagens, o, "Garanhuns", "Recife", "10:00", "13:30", 0.0, "30/09/2019");
-        v.adicionarPassagem(passagem);
-        v.adicionarPassagem(passagem2);
+        Viagem v = new Viagem(o, "Garanhuns", "Recife", "10:00", "13:30", 0.0, "30/09/2019");
+
+        System.out.println("Adicionar: " + v.adicionarPassagem(passagem));
+        System.out.println("Adicionar: " + v.adicionarPassagem(passagem2));
         
         String resposta = v.adicionarPassagem(passagem3);
        
@@ -53,11 +56,20 @@ public class GerenciaOnibus {
         
         System.out.println("Codigo viagem: " + v.getCodigo());
         
-        Viagem v2 = new Viagem(passagens, o, "Garanhuns", "Cabrobo", "01:00", "19:20", 0.0, "30/09/2019");
+        Viagem v2 = new Viagem(o, "Garanhuns", "Cabrobo", "01:00", "19:20", 0.0, "30/09/2019");
+        v2.adicionarPassagem(passagem);
+        v2.adicionarPassagem(passagem2);
         /*Tem que criar um mecanismo para procurar se o onibus que 
         está indo não choca com horarios de outras viagens*/
         System.out.println("Codigo viagem: " + v2.getCodigo());
        
+        RepositorioViagem repositorioViagem = new RepositorioViagem();
+        repositorioViagem.adicionarViagem(v);
+        repositorioViagem.adicionarViagem(v2);
+        
+        //Imprime os ultimos destinos do passageiro P
+        System.out.println(repositorioViagem.procurarViagensDeUmPassagiro(p));
+        
         
     }
     

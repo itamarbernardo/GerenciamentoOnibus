@@ -9,8 +9,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Esta clase representa uma representa uma Viagem e gera algumas informações como o lucro total da viagem, a quantidade de passageiros que querem lanche.
+ * Esta clase representa uma representa uma Viagem e gera algumas informações
+ * como o lucro total da viagem, a quantidade de passageiros que querem lanche.
  * É a classe que une as entidades principais do domínio do projeto.
+ *
  * @author Itamar Jr
  */
 public class Viagem {
@@ -35,8 +37,8 @@ public class Viagem {
     private int quantidadeAssentosTotalmenteReclinaveis;
     private int quantidadeAssentosObeso;
 
-    public Viagem(List<Passagem> passagens, Onibus onibus, String origem, String destino, String horarioSaida, String horarioChegada, double desconto, String data) {
-        this.passagens = passagens;
+    public Viagem(Onibus onibus, String origem, String destino, String horarioSaida, String horarioChegada, double desconto, String data) {
+        this.passagens = new ArrayList<>();
         this.onibus = onibus;
         this.origem = origem;
         this.destino = destino;
@@ -56,55 +58,60 @@ public class Viagem {
         this.quantidadeIdJovemParcial = 0;
         this.quantidadeIdosoParcial = 0;
     }
-    
-    public void aplicarDescontoEmTodasAsPassagens(){
+
+    public void aplicarDescontoEmTodasAsPassagens() {
         int tamanho = passagens.size();
-        for(int i = 0; i < tamanho; i++){
+        for (int i = 0; i < tamanho; i++) {
             double preco = passagens.get(i).getPreco();
             double novoPreco = preco - (preco * desconto);
             passagens.get(i).setPreco(novoPreco);
         }
     }
-    
-    public int calcularQuantidadeDePassageirosNaViagem(){
+
+    public int calcularQuantidadeDePassageirosNaViagem() {
         return passagens.size();
     }
-    
-    public List<Passageiro> listagemPassageirosNaViagem(){
+
+    public List<Passageiro> listagemPassageirosNaViagem() {
         List<Passageiro> passageiros = new ArrayList<>();
-        for(Passagem p : passagens){
+        for (Passagem p : passagens) {
             passageiros.add(p.getPassageiro());
         }
         return passageiros;
     }
-    
-    public void imprimeListaPassageirosNaViagem(List<Passageiro> passageiros){
-        for(Passageiro p : passageiros){
+
+    public void imprimeListaPassageirosNaViagem(List<Passageiro> passageiros) {
+        for (Passageiro p : passageiros) {
             System.out.println(p.toString());
         }
     }
-    
-    public int calculaQuantidadeDePassageirosQueQueremLanche(){
+
+    public int calculaQuantidadeDePassageirosQueQueremLanche() {
         int quantidade = 0;
-        for(Passagem p : passagens){
-            if(p.isLanche()){
+        for (Passagem p : passagens) {
+            if (p.isLanche()) {
                 quantidade++;
             }
         }
         return quantidade;
     }
-    
-    public double calculaLucroTotalDaViagem(){
+
+    public double calculaLucroTotalDaViagem() {
         double lucroTotal = 0.0;
-        for(Passagem p : passagens){
+        for (Passagem p : passagens) {
             lucroTotal = lucroTotal + p.getPreco();
         }
         return lucroTotal;
     }
+
     /**
-     * Método que verifica se essa viagem possui assentos "especiais" que o cliente pode escolher e se ainda estão vagos.
+     * Método que verifica se essa viagem possui assentos "especiais" que o
+     * cliente pode escolher e se ainda estão vagos.
+     *
      * @param p o objeto do tipo Passagem que conterá o tipo de assento.
-     * @return Retorna uma mensagem de erro se houver algum problema com relação a disponibilidade do assento. Se ocorrer tudo bem, retorna uma string vazia. 
+     * @return Retorna uma mensagem de erro se houver algum problema com relação
+     * a disponibilidade do assento. Se ocorrer tudo bem, retorna uma string
+     * vazia.
      */
     public String verificarDisponibilidadeAssento(Passagem p) {
         //Aqui eu tenho que fazer as verificações se a pessoa quis assentos reclináveis e se tem disponível ainda esses assentos
@@ -136,12 +143,16 @@ public class Viagem {
             return "Alguma informação sobre o tipo de assento está incorreta. Reveja os dados da passagem!";
         }
     }
-    
+
     /**
-    * Este método verifica se o código da poltrona informado na passagem é válido. Ele será válido se estiver dentro do intervalo da quantidade de assentos no ônibus e se a poltrona não já estiver ocupada. 
-    * @param p o objeto do tipo Passagem que possui o codigo da poltrona.
-    * @return retorna um true se o cógigo da poltrona for válido e um false se não for.
-    */
+     * Este método verifica se o código da poltrona informado na passagem é
+     * válido. Ele será válido se estiver dentro do intervalo da quantidade de
+     * assentos no ônibus e se a poltrona não já estiver ocupada.
+     *
+     * @param p o objeto do tipo Passagem que possui o codigo da poltrona.
+     * @return retorna um true se o cógigo da poltrona for válido e um false se
+     * não for.
+     */
     public boolean verificarValidadeCodigoPoltrona(Passagem p) {
         if (p.getCodigoPoltrona() > onibus.getQuantidadeAssentos() || p.getCodigoPoltrona() < 0) {
             return false;
@@ -155,75 +166,92 @@ public class Viagem {
         //Se eu não já tiver essa poltrona ocupada e se a poltrona tiver dentro do limite 
         return true;
     }
+
     /**
-    * Este método verifica se ainda há vagas  parciais ou totais para idosos e estudantes que possuirem ID Jovem. 
-    * @param p o objeto do tipo Passagem que conterá o tipo de passagem escolhido. 
-    * @return Retorna uma string com a mensagem de erro. Se ocorrer tudo bem, retorna uma string vazia.
-    */
+     * Este método verifica se ainda há vagas parciais ou totais para idosos e
+     * estudantes que possuirem ID Jovem.
+     *
+     * @param p o objeto do tipo Passagem que conterá o tipo de passagem
+     * escolhido.
+     * @return Retorna uma string com a mensagem de erro. Se ocorrer tudo bem,
+     * retorna uma string vazia.
+     */
     public String verificarDisponibilidadeTipoDePassagem(Passagem p) {
         String mensagemErro = "";
         if (p.getTipoDePassagem().equals("IdJovem") && quantidadeIdJovem < 2) {
             quantidadeIdJovem++;
-        }
-        else if (p.getTipoDePassagem().equals("IdJovem") && quantidadeIdJovem == 2) {
+        } else if (p.getTipoDePassagem().equals("IdJovem") && quantidadeIdJovem == 2) {
             mensagemErro = mensagemErro + "\nNão há mais vagas de GRATUIDADE com ID Jovem ";
-        } 
-        else if (p.getTipoDePassagem().equals("ParcialIdJovem") && quantidadeIdJovemParcial < 2) {
+        } else if (p.getTipoDePassagem().equals("ParcialIdJovem") && quantidadeIdJovemParcial < 2) {
             quantidadeIdJovemParcial++;
-        }
-        else if (p.getTipoDePassagem().equals("ParcialIdJovem") && quantidadeIdJovemParcial == 2) {
+        } else if (p.getTipoDePassagem().equals("ParcialIdJovem") && quantidadeIdJovemParcial == 2) {
             mensagemErro = mensagemErro + "\nNão há mais vagas de GRATUIDADE PARCIAL com ID Jovem ";
-        }
-        else if (p.getTipoDePassagem().equals("Idoso") && quantidadeIdoso < 2) {
+        } else if (p.getTipoDePassagem().equals("Idoso") && quantidadeIdoso < 2) {
             quantidadeIdoso++;
 
-        }
-        else if (p.getTipoDePassagem().equals("Idoso") && quantidadeIdoso == 2) {
+        } else if (p.getTipoDePassagem().equals("Idoso") && quantidadeIdoso == 2) {
             mensagemErro = mensagemErro + "\nNão há mais vagas de GRATUIDADE para Idoso";
 
-        }
-        else if (p.getTipoDePassagem().equals("ParcialIdoso") && quantidadeIdosoParcial < 2) {
+        } else if (p.getTipoDePassagem().equals("ParcialIdoso") && quantidadeIdosoParcial < 2) {
             quantidadeIdosoParcial++;
-        }
-        else if (p.getTipoDePassagem().equals("ParcialIdoso") && quantidadeIdosoParcial == 2) {
+        } else if (p.getTipoDePassagem().equals("ParcialIdoso") && quantidadeIdosoParcial == 2) {
             mensagemErro = mensagemErro + "\nNão há mais vagas de GRATUIDADE PARCIAL para Idoso";
         }
-        
+
         return mensagemErro;
     }
+
+    public boolean verificarSeOPassageiroEstaNaViagem(Passageiro p) {
+        List<Passageiro> passageiros = listagemPassageirosNaViagem();
+
+        for (Passageiro passageiro : passageiros) {
+            if (p.getCpf().equals(passageiro.getCpf())) {
+                return true; //Esse passageiro já está na viagem
+            }
+        }
+        return false; //O passageiro nao esta nessa viagem
+    }
+
     /**
-     * Este método adiciona uma passagem após checar se há disponibilidade de assentos e do tipo de passagem escolhido.
-     * @param p o objeto do tipo Passagem que será adicionado na lista de passagens.
-     * @return Retorna uma string com a mensagem do erro que ocorreu. Se estiver tudo certo, retorna uma string vazia.  
+     * Este método adiciona uma passagem após checar se há disponibilidade de
+     * assentos e do tipo de passagem escolhido.
+     *
+     * @param p o objeto do tipo Passagem que será adicionado na lista de
+     * passagens.
+     * @return Retorna uma string com a mensagem do erro que ocorreu. Se estiver
+     * tudo certo, retorna uma string vazia.
      */
     public String adicionarPassagem(Passagem p) {
         /*Retorna uma String com uma mensagem pois ele tem que saber 
          qual foi o erro dado. Com o exception, pode retornar a exception */
         String mensagemErro = ""; //Se ocorrer tudo bem, retorna uma string vazia
+        if (verificarSeOPassageiroEstaNaViagem(p.getPassageiro()) == false) {
 
-        if (verificarValidadeCodigoPoltrona(p)) {
+            if (verificarValidadeCodigoPoltrona(p)) {
 
-            if (passagens.size() < onibus.getQuantidadeAssentos()) { //Add até o limite da passagem
+                if (passagens.size() < onibus.getQuantidadeAssentos()) { //Add até o limite da passagem
                 /*Verifico a disponibilidade do assento que o cliente quer 
-                 e verifico se há vagas para ID Jovem e Idoso
-                Se mensagemErro.length() for maior que zero é porque algo está errado.
-                */
-                mensagemErro = verificarDisponibilidadeAssento(p) + verificarDisponibilidadeTipoDePassagem(p); 
-      
-                if(mensagemErro.length() == 0){
-                    passagens.add(p);
-                    return mensagemErro;
-                }
-                else{
-                    return mensagemErro;
+                     e verifico se há vagas para ID Jovem e Idoso
+                     Se mensagemErro.length() for maior que zero é porque algo está errado.
+                     */
+                    mensagemErro = verificarDisponibilidadeAssento(p) + verificarDisponibilidadeTipoDePassagem(p);
+
+                    if (mensagemErro.length() == 0) {
+                        passagens.add(p);
+                        return mensagemErro;
+                    } else {
+                        return mensagemErro;
+                    }
+
+                } else {
+                    return "Não há mais assentos disponíveis neste onibus";
                 }
 
             } else {
-                return "Não há mais assentos disponíveis neste onibus";
+                return "Código da poltrona inválido ou poltrona já ocupada";
             }
-
         } else {
-            return "Código da poltrona inválido ou poltrona já ocupada";
+            return "Esse passageiro já está nesta viagem";
         }
 
     }
@@ -239,7 +267,7 @@ public class Viagem {
     public void setData(String data) {
         this.data = data;
     }
-    
+
     public List<Passagem> getPassagens() {
         return passagens;
     }
@@ -308,5 +336,4 @@ public class Viagem {
         this.codigo = codigo;
     }
 
-    
 }

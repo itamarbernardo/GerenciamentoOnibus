@@ -13,11 +13,23 @@ package br.uag.ufrpe.negocio;
 public class Passageiro {
     private String dataNascimento;
     private boolean possuiIdJovem;
+    private String cpf;
 
-    public Passageiro(boolean possuiIdJovem) {
+    public Passageiro(boolean possuiIdJovem, String cpf) {
         this.possuiIdJovem = possuiIdJovem;
+        this.cpf = cpf;
     }
 
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+    
+    
     public int calcularIdade(){
         return 20;
     }
