@@ -7,13 +7,13 @@ import java.time.LocalDate;
  */
 public class Gerente {
     
-    private String nome;
+   private String nome;
     private String cpf;
     private String identificador;
     private String telefone;
     private Endereco endereco;
     private LocalDate dataNasc;
-    
+    private String senha;
     
     public String getNome(){
         return nome;
@@ -61,6 +61,19 @@ public class Gerente {
     
     public void setDatanasc(LocalDate dataNasc){
         this.dataNasc = dataNasc;
+    }
+    
+    public String getSenha(String senha){
+        return senha;
+    }
+    
+    public void setSenha(String senha){
+        if(senha.length() > 3){
+            this.senha = senha;
+        }
+        else{
+            System.out.println("Senha pequena, Tente novamente");
+        }
     }
     
 
