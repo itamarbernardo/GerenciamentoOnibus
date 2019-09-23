@@ -3,155 +3,332 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package br.uag.ufrpe.repositorios;
 
+import br.uag.ufrpe.negocio.Data;
 import br.uag.ufrpe.negocio.Passageiro;
 import br.uag.ufrpe.negocio.Viagem;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
+ * Esta classe é um Repositorio de Viagens e gera os relatórios desejados no
+ * projeto.
  *
  * @author Itamar Jr
  */
 public class RepositorioViagem {
-    
+
     private List<Viagem> viagens;
-    
-    public RepositorioViagem(){
+
+    public RepositorioViagem() {
         viagens = new ArrayList<>();
     }
-    
-    public double calculaMediaQuantidadePassageirosQueremLancheEmCertoIntervaloDeDatas(String horarioSaida, String destino, String dataInicio, String dataFim){
-        //Calcular o intervalo das datas, e procurar em todas as viagens se estão dentro desse intervalo
-        
-        double media = 0.0;
-        double passageiros = 0.0;
-        double passageirosComLanche = 0.0;
+
+    /**
+     * Este método calcula a porcentagem de passageiros que querem lanche em um
+     * intervalo de datas nas viagens de determinado horario e destino.
+     *
+     * @param horarioSaida Horario de saída da viagem.
+     * @param destino Destino da Viagem.
+     * @param dataInicio Data de inicio do intervalo.
+     * @param dataFim Data final do intervalo.
+     * @return Retorna a porcentagem de passageiros que querem lanche
+     */
+    public double calculaPorcentagemQuantidadePassageirosQueremLancheEmCertoIntervaloDeDatasEmCertasViagens(String horarioSaida, String destino, String dataInicio, String dataFim) {
+
+        double porcentagem = 0.0;
+        double totalPassageiros = 0.0;
+        double totalPassageirosQueremLanche = 0.0;
         //Supondo que está nesse intervalo
-        for(Viagem viagem : viagens){
-            if(true){ //Tem que verificar o intervalo das datas, o horario e o destino
-                
-            passageirosComLanche = passageirosComLanche + viagem.calculaQuantidadeDePassageirosQueQueremLanche();
-            passageiros = passageiros + viagem.calcularQuantidadeDePassageirosNaViagem();
-        
+        for (Viagem viagem : viagens) {
+            boolean estaNoIntervalo = Data.verificarSeADataEstaDentroDeUmIntervaloDeDatas(dataInicio, dataFim, viagem.getData());
+
+            if (estaNoIntervalo && viagem.getDestino().equals(destino) && viagem.getHorarioSaida().equals(horarioSaida)) {
+                //Verifico o intervalo das datas, o horario e o destino
+
+                totalPassageirosQueremLanche = totalPassageirosQueremLanche + viagem.calculaQuantidadeDePassageirosQueQueremLanche();
+                totalPassageiros = totalPassageiros + viagem.calcularQuantidadeDePassageirosNaViagem();
+
             }
         }
-        
-        media = passageirosComLanche / passageiros;
-        
-        return media;
+
+        porcentagem = totalPassageirosQueremLanche / totalPassageiros;
+
+        return porcentagem;
     }
-    
-    public double calculaMediaPassageirosPorViagemEmCertoIntervaloDeDatas(String horario, String destino, String dataInicio, String dataFim){
-        //Calcular o intervalo das datas, e procurar em todas as viagens se estão dentro desse intervalo
-        
-        double media = 0.0;
-        double capacidadeOnibus = 0.0;
-        double quantidadePassageiros = 0.0;
-        
-        for(Viagem viagem : viagens){
-           if(true){  //Tem que verificar o intervalo das datas, o horario e o destino
-               capacidadeOnibus = capacidadeOnibus + viagem.getOnibus().getQuantidadeAssentos();
-               quantidadePassageiros = quantidadePassageiros + viagem.calcularQuantidadeDePassageirosNaViagem();
-           }
-        }
-        
-        media  = quantidadePassageiros / capacidadeOnibus;
-        return media;
-    }
-    
-    
-    public double calcularLucroTotalEmCertoIntervaloDeDatas(String dataInicio, String dataFim){
-        double lucroTotal = 0.0;
-        
-        for(Viagem viagem : viagens){
-            if(true){ //Tem que verificar o intervalo dado
-                lucroTotal = lucroTotal + viagem.calculaLucroTotalDaViagem();
+
+    /**
+     * Este método calcula a porcentagem da quantidade de passageiros que querem
+     * lancge num intervalo de datas em certo destino
+     *
+     * @param destino Destino da viagem.
+     * @param dataInicio Data de início do intervalo.
+     * @param dataFim Data final do intervalo.
+     * @return Retorna a porcentagem.
+     */
+    public double calculaPorcentagemQuantidadePassageirosQueremLancheEmCertoIntervaloDeDatasEmCertoDestino(String destino, String dataInicio, String dataFim) {
+
+        double porcentagem = 0.0;
+        double totalPassageiros = 0.0;
+        double totalPassageirosQueremLanche = 0.0;
+
+        for (Viagem viagem : viagens) {
+            boolean estaNoIntervalo = Data.verificarSeADataEstaDentroDeUmIntervaloDeDatas(dataInicio, dataFim, viagem.getData());
+
+            if (estaNoIntervalo && viagem.getDestino().equals(destino)) {
+                //Verifico o intervalo das datas, o horario e o destino
+
+                totalPassageirosQueremLanche = totalPassageirosQueremLanche + viagem.calculaQuantidadeDePassageirosQueQueremLanche();
+                totalPassageiros = totalPassageiros + viagem.calcularQuantidadeDePassageirosNaViagem();
+
             }
         }
-        return lucroTotal;
+
+        porcentagem = totalPassageirosQueremLanche / totalPassageiros;
+
+        return porcentagem;
     }
-    
-    public double calcularLucroTotalPorViagemEmCertoIntervaloDeDatas(String horarioSaida, String destino, String dataInicio, String dataFim){
+
+    /**
+     * Este método calcula a porcentagem de passageiros que querem lanche em
+     * certo intervalo de datas em todas as viagens.
+     *
+     * @param dataInicio Data de início do intervalo.
+     * @param dataFim Data final do intervalo.
+     * @return Retorna a porcentagem da quantidade de passageiros que querem
+     * lanche.
+     */
+    public double calculaPorcentagemQuantidadePassageirosQueremLancheEmCertoIntervaloDeDatas(String dataInicio, String dataFim) {
+
+        double porcentagem = 0.0;
+        double totalPassageiros = 0.0;
+        double totalPassageirosQueremLanche = 0.0;
+
+        for (Viagem viagem : viagens) {
+            boolean estaNoIntervalo = Data.verificarSeADataEstaDentroDeUmIntervaloDeDatas(dataInicio, dataFim, viagem.getData());
+            if (estaNoIntervalo) { //Tem que verificar o intervalo das datas
+
+                totalPassageirosQueremLanche = totalPassageirosQueremLanche + viagem.calculaQuantidadeDePassageirosQueQueremLanche();
+                totalPassageiros = totalPassageiros + viagem.calcularQuantidadeDePassageirosNaViagem();
+
+            }
+        }
+
+        porcentagem = totalPassageirosQueremLanche / totalPassageiros;
+
+        return porcentagem;
+    }
+
+    /**
+     * Este método calcula a porcentagem da quantidade de passageiros em todas
+     * as viagens em um intervalo de datas para determinar a lotação das viagens
+     * nesse intervalo.
+     *
+     * @param dataInicio Data inicial do intervalo.
+     * @param dataFim Data Final do intervalo
+     * @return Retorna a porcentagem de passageiros nesse intervalo
+     */
+    public double calculaPorcentagemPassageirosPorViagemEmCertoIntervaloDeDatas(String dataInicio, String dataFim) {
+
+        double porcentagem = 0.0;
+        double totalCapacidadeOnibus = 0.0;
+        double totalQuantidadePassageiros = 0.0;
+
+        for (Viagem viagem : viagens) {
+            boolean estaNoIntervalo = Data.verificarSeADataEstaDentroDeUmIntervaloDeDatas(dataInicio, dataFim, viagem.getData());
+            if (estaNoIntervalo) {
+                //Tem que verificar o intervalo das datas
+                totalCapacidadeOnibus = totalCapacidadeOnibus + viagem.getOnibus().getQuantidadeAssentos();
+                totalQuantidadePassageiros = totalQuantidadePassageiros + viagem.calcularQuantidadeDePassageirosNaViagem();
+            }
+        }
+
+        porcentagem = totalQuantidadePassageiros / totalCapacidadeOnibus;
+        return porcentagem;
+    }
+
+    /**
+     * Este método calcula a porcentagem de passageiros em um intervalo de datas
+     * nas viagens de determinado horario e destino.
+     *
+     * @param horario Horario da Viagem.
+     * @param destino Destino da Viagem.
+     * @param dataInicio Data de início do intervalo.
+     * @param dataFim Data final do intervalo.
+     * @return Retorna a porcentagem de passageiros por viagem nas viagens de
+     * certo horário e destino.
+     */
+    public double calculaPorcentagemPassageirosPorViagemEmCertoIntervaloDeDatasEmCertasViagens(String horario, String destino, String dataInicio, String dataFim) {
+
+        double porcentagem = 0.0;
+        double totalCapacidadeOnibus = 0.0;
+        double totalQuantidadePassageiros = 0.0;
+
+        for (Viagem viagem : viagens) {
+            boolean estaNoIntervalo = Data.verificarSeADataEstaDentroDeUmIntervaloDeDatas(dataInicio, dataFim, viagem.getData());
+            if (estaNoIntervalo && viagem.getDestino().equals(destino) && viagem.getHorarioSaida().equals(horario)) {
+                //Tem que verificar o intervalo das datas, o horario e o destino
+                totalCapacidadeOnibus = totalCapacidadeOnibus + viagem.getOnibus().getQuantidadeAssentos();
+                totalQuantidadePassageiros = totalQuantidadePassageiros + viagem.calcularQuantidadeDePassageirosNaViagem();
+            }
+        }
+
+        porcentagem = totalQuantidadePassageiros / totalCapacidadeOnibus;
+        return porcentagem;
+    }
+
+    /**
+     * Este método calcula a porcentagem de passageiros nas viagens de certo
+     * destino.
+     *
+     * @param destino Destino da viagem.
+     * @param dataInicio Data de início do intervalo.
+     * @param dataFim Data de fim do intervalo.
+     * @return Retorna a porcentagem.
+     */
+    public double calculaPorcentagemPassageirosPorViagemEmCertoIntervaloDeDatasEmCertoDestino(String destino, String dataInicio, String dataFim) {
+
+        double porcentagem = 0.0;
+        double totalCapacidadeOnibus = 0.0;
+        double totalQuantidadePassageiros = 0.0;
+
+        for (Viagem viagem : viagens) {
+            boolean estaNoIntervalo = Data.verificarSeADataEstaDentroDeUmIntervaloDeDatas(dataInicio, dataFim, viagem.getData());
+            if (estaNoIntervalo && viagem.getDestino().equals(destino)) {
+                //Tem que verificar o intervalo das datas, o horario e o destino
+                totalCapacidadeOnibus = totalCapacidadeOnibus + viagem.getOnibus().getQuantidadeAssentos();
+                totalQuantidadePassageiros = totalQuantidadePassageiros + viagem.calcularQuantidadeDePassageirosNaViagem();
+            }
+        }
+
+        porcentagem = totalQuantidadePassageiros / totalCapacidadeOnibus;
+        return porcentagem;
+    }
+
+    /**
+     * Este método calcula o lucro total obtido em todas as viagens em certo intervalo de datas.
+     * @param dataInicio Data de início do intervalo.
+     * @param dataFim Data final do intervalo.
+     * @return Retorna o lucro total obtido.
+     */
+    public double calcularLucroTotalEmCertoIntervaloDeDatas(String dataInicio, String dataFim) {
         double lucroTotal = 0.0;
-        
-        for(Viagem viagem : viagens){
-            if(true){ //Tem que verificar o intervalo dado e se é essa viagem nesse horario e destino
+
+        for (Viagem viagem : viagens) {
+            if (true) { //Tem que verificar o intervalo dado
                 lucroTotal = lucroTotal + viagem.calculaLucroTotalDaViagem();
             }
         }
         return lucroTotal;
     }
 
-    public String procurarViagensDeUmPassagiro(Passageiro passageiro){
-        String ultimosDestinos = "CPF: " + passageiro.getCpf() + "\n";
-        
-        for(Viagem viagem : viagens){
-            for(Passageiro p : viagem.listagemPassageirosNaViagem()){
-                if(p.getCpf().equals(passageiro.getCpf())){
+    /**
+     * Este método calcula o lucro total nas viagens de certos horários e
+     * destinos em certo intervalo de datas.
+     *
+     * @param horarioSaida Horário de saída da viagem.
+     * @param destino Destino da Viagem.
+     * @param dataInicio Data de início do intervalo.
+     * @param dataFim Data final do intervalo.
+     * @return Retorna o lucro obtido.
+     */
+    public double calcularLucroTotalEmCertoIntervaloDeDatasEmCertasViagens(String horarioSaida, String destino, String dataInicio, String dataFim) {
+        double lucroTotal = 0.0;
+
+        for (Viagem viagem : viagens) {
+            boolean estaNoIntervalo = Data.verificarSeADataEstaDentroDeUmIntervaloDeDatas(dataInicio, dataFim, viagem.getData());
+            
+            if (estaNoIntervalo && viagem.getDestino().equals(destino) && viagem.getHorarioSaida().equals(horarioSaida)) { //Tem que verificar o intervalo dado e se é essa viagem nesse horario e destino
+                lucroTotal = lucroTotal + viagem.calculaLucroTotalDaViagem();
+            }
+        }
+        return lucroTotal;
+    }
+
+    /**
+     * Este método calcula o lucro total das viagens de certo destino em um intervalo de datas.
+     * @param destino Destino da viagem.
+     * @param dataInicio Data de início do intervalo.
+     * @param dataFim Data final do intervalo.
+     * @return Retorna o lucro total obtido.
+     */
+     public double calcularLucroTotalEmCertoIntervaloDeDatasEmCertoDestino(String destino, String dataInicio, String dataFim) {
+        double lucroTotal = 0.0;
+
+        for (Viagem viagem : viagens) {
+            boolean estaNoIntervalo = Data.verificarSeADataEstaDentroDeUmIntervaloDeDatas(dataInicio, dataFim, viagem.getData());
+            
+            if (estaNoIntervalo && viagem.getDestino().equals(destino)) { //Tem que verificar o intervalo dado e se é essa viagem nesse horario e destino
+                lucroTotal = lucroTotal + viagem.calculaLucroTotalDaViagem();
+            }
+        }
+        return lucroTotal;
+    }
+   
+    
+    public String procurarUltimasViagensDeUmPassagiro(Passageiro passageiro) {
+        String ultimosDestinos = "CPF: " + passageiro.getCpf() + "\n"; //Adicionar o nome também
+
+        for (Viagem viagem : viagens) {
+            for (Passageiro p : viagem.listagemPassageirosNaViagem()) {
+                if (p.getCpf().equals(passageiro.getCpf())) {
                     ultimosDestinos = ultimosDestinos + "\nOrigem: " + viagem.getOrigem() + "\nDestino: " + viagem.getDestino() + "\nData: " + viagem.getData() + "\nHorario Saída: " + viagem.getHorarioSaida();
                 }
             }
         }
         return ultimosDestinos;
     }
-    
-    public boolean adicionarViagem(Viagem v){
+
+    public boolean adicionarViagem(Viagem v) {
         Viagem viagem = procurarViagem(v.getCodigo());
-        if(viagem == null){
+        if (viagem == null) {
             viagens.add(v);
             return true;
         }
         return false; //Caso essa viagem já exista no repositorio, o método não adiciona novamente
     }
-    
-    public boolean removerViagem(int codigo){
+
+    public boolean removerViagem(int codigo) {
         Viagem v = procurarViagem(codigo);
-        if(v != null){
+        if (v != null) {
             viagens.remove(v);
             return true; //Se existir a viagem, ele remove
         }
         return false;
-    
+
     }
-    
-    public boolean alterarViagem(Viagem v, int codigo){
+
+    public boolean alterarViagem(Viagem v, int codigo) {
         Viagem viagem = procurarViagem(codigo);
-        if(viagem != null){
+        if (viagem != null) {
             viagens.remove(viagem);
             viagens.add(v);
             return true; //So altera se a viagem existir
         }
         return false;
     }
-    
-    public Viagem procurarViagem(int codigo){
-        for(Viagem viagem : viagens){
-            if(viagem.getCodigo() == codigo){
+
+    public Viagem procurarViagem(int codigo) {
+        for (Viagem viagem : viagens) {
+            if (viagem.getCodigo() == codigo) {
                 return viagem;
             }
         }
         return null; //Não achou a viagem
     }
-    
-    public Viagem procurarViagem(String data, String horaSaida, String destino){
-        for(Viagem viagem : viagens){
-            if(viagem.getData().equals(data) && viagem.getHorarioSaida().equals(horaSaida) && viagem.getDestino().equals(destino)){
+
+    public Viagem procurarViagem(String data, String horaSaida, String destino) {
+        for (Viagem viagem : viagens) {
+            if (viagem.getData().equals(data) && viagem.getHorarioSaida().equals(horaSaida) && viagem.getDestino().equals(destino)) {
                 return viagem;
             }
         }
         return null; //Se não achou a viagem
-    }   
+    }
 
     public List<Viagem> getViagens() {
         return viagens;
     }
 
-    public void setViagens(List<Viagem> viagens) {
-        this.viagens = viagens;
-    }
-    
-    
 }

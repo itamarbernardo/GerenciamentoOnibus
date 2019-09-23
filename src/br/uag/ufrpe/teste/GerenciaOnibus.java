@@ -68,7 +68,7 @@ public class GerenciaOnibus {
         repositorioViagem.adicionarViagem(v2);
         
         //Imprime os ultimos destinos do passageiro P
-        System.out.println(repositorioViagem.procurarViagensDeUmPassagiro(p));
+        System.out.println(repositorioViagem.procurarUltimasViagensDeUmPassagiro(p));
         
         
     }

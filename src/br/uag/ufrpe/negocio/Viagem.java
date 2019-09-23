@@ -72,6 +72,18 @@ public class Viagem {
         return passagens.size();
     }
 
+    public double calcularPorcentagemPassageirosNaViagem(){
+        double porcentagem = passagens.size() / onibus.getQuantidadeAssentos();
+        
+        return porcentagem;
+    }
+    
+    public double calcularPorcentagemPassageirosQueQueremLancheNaViagem(){
+        double porcentagem = calculaQuantidadeDePassageirosQueQueremLanche() / passagens.size();
+       
+        return porcentagem;
+    }
+    
     public List<Passageiro> listagemPassageirosNaViagem() {
         List<Passageiro> passageiros = new ArrayList<>();
         for (Passagem p : passagens) {

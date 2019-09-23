@@ -7,7 +7,7 @@ import java.time.LocalDate;
  */
 public class Gerente {
     
-   private String nome;
+    private String nome;
     private String cpf;
     private String identificador;
     private String telefone;
