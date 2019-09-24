@@ -48,7 +48,7 @@ public class Data {
         return localDateTime;
     }
     
-    public static boolean verificarDataHoraEstaNoIntervalo(String dataHoraInicio, String dataHoraFim, String dataHoraSaida, String dataHoraChegada){
+    public static boolean verificarInterseccaoDatasHoras(String dataHoraInicio, String dataHoraFim, String dataHoraSaida, String dataHoraChegada){
         LocalDateTime dataInicio = converteStringEmDataHora(dataHoraInicio);
         LocalDateTime dataFim = converteStringEmDataHora(dataHoraFim);
         LocalDateTime dataSaida = converteStringEmDataHora(dataHoraSaida);
