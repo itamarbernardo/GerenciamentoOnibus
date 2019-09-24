@@ -18,7 +18,8 @@ import java.util.List;
 public class Viagem {
 
     private static int totalViagens;
-    private String data;
+    private String dataSaida;
+    private String dataChegada;
     private int codigo;
     private List<Passagem> passagens;
     private Onibus onibus;
@@ -37,7 +38,8 @@ public class Viagem {
     private int quantidadeAssentosTotalmenteReclinaveis;
     private int quantidadeAssentosObeso;
 
-    public Viagem(Onibus onibus, String origem, String destino, String horarioSaida, String horarioChegada, double desconto, String data) {
+    public Viagem(Onibus onibus, String origem, String destino, String horarioSaida, String horarioChegada, double desconto, String dataSaida, String dataChegada) {
+
         this.passagens = new ArrayList<>();
         this.onibus = onibus;
         this.origem = origem;
@@ -45,7 +47,8 @@ public class Viagem {
         this.horarioSaida = horarioSaida;
         this.horarioChegada = horarioChegada;
         this.desconto = desconto;
-        this.data = data;
+        this.dataSaida = dataSaida;
+        this.dataChegada = dataChegada;
         this.codigo = totalViagens; //O codigo vai ser o numero de viagens
         totalViagens++;
 
@@ -272,13 +275,22 @@ public class Viagem {
         passagens.remove(p);
     }
 
-    public String getData() {
-        return data;
+    public String getDataSaida() {
+        return dataSaida;
     }
 
-    public void setData(String data) {
-        this.data = data;
+    public void setDataSaida(String dataSaida) {
+        this.dataSaida = dataSaida;
     }
+
+    public String getDataChegada() {
+        return dataChegada;
+    }
+
+    public void setDataChegada(String dataChegada) {
+        this.dataChegada = dataChegada;
+    }
+
 
     public List<Passagem> getPassagens() {
         return passagens;

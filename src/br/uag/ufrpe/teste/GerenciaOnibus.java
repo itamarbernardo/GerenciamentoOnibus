@@ -6,6 +6,7 @@
 
 package br.uag.ufrpe.teste;
 
+import br.uag.ufrpe.negocio.Motorista;
 import br.uag.ufrpe.negocio.Onibus;
 import br.uag.ufrpe.negocio.Passageiro;
 import br.uag.ufrpe.negocio.Passagem;
@@ -24,7 +25,12 @@ public class GerenciaOnibus {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Onibus o = new Onibus(10, 2, 2, 2);
+        Motorista m = new Motorista("117.980.281-12");
+        
+        Onibus o = new Onibus(10, 2, 2, 2, m);
+        Onibus o2 = new Onibus(10, 2, 2, 2, m);
+        
+        
         Passageiro p = new Passageiro(true, "117.982.029-10");
         Passageiro p2 = new Passageiro(true, "002.982.029-10");
         
@@ -33,7 +39,7 @@ public class GerenciaOnibus {
         Passagem passagem3 = new Passagem("Reclinavel", p, "ParcialIdJovem", 9, true);
         
         
-        Viagem v = new Viagem(o, "Garanhuns", "Recife", "10:00", "13:30", 0.0, "30/09/2019");
+        Viagem v = new Viagem(o, "Garanhuns", "Recife", "10:00", "13:30", 0.0, "30/09/2019", "30/09/2019");
 
         System.out.println("Adicionar: " + v.adicionarPassagem(passagem));
         System.out.println("Adicionar: " + v.adicionarPassagem(passagem2));
@@ -56,7 +62,7 @@ public class GerenciaOnibus {
         
         System.out.println("Codigo viagem: " + v.getCodigo());
         
-        Viagem v2 = new Viagem(o, "Garanhuns", "Cabrobo", "01:00", "19:20", 0.0, "30/09/2019");
+        Viagem v2 = new Viagem(o2, "Garanhuns", "Cabrobo", "01:00", "19:20", 0.0, "30/09/2019", "30/09/2019");
         v2.adicionarPassagem(passagem);
         v2.adicionarPassagem(passagem2);
         /*Tem que criar um mecanismo para procurar se o onibus que 
@@ -64,11 +70,12 @@ public class GerenciaOnibus {
         System.out.println("Codigo viagem: " + v2.getCodigo());
        
         RepositorioViagem repositorioViagem = new RepositorioViagem();
+        
         repositorioViagem.adicionarViagem(v);
-        repositorioViagem.adicionarViagem(v2);
+        String resposta2 = repositorioViagem.adicionarViagem(v2);
         
         //Imprime os ultimos destinos do passageiro P
-        System.out.println(repositorioViagem.procurarUltimasViagensDeUmPassagiro(p));
+        System.out.println(resposta2);
         
         
     }

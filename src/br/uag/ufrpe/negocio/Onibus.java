@@ -16,14 +16,33 @@ public class Onibus {
     private int quantidadeAssentosReclinaveis;
     private int quantidadeAssentosTotalmenteReclinaveis;
     private int quantidadeAssentosObeso;
+    private Motorista motorista;
+    private int codigo;
 
-    public Onibus(int quantidadeAssentos, int quantidadeAssentosReclinaveis, int quantidadeAssentosTotalmenteReclinaveis, int quantidadeAssentosObeso) {
+    public Onibus(int quantidadeAssentos, int quantidadeAssentosReclinaveis, int quantidadeAssentosTotalmenteReclinaveis, int quantidadeAssentosObeso, Motorista motorista) {
         this.quantidadeAssentos = quantidadeAssentos;
         this.quantidadeAssentosReclinaveis = quantidadeAssentosReclinaveis;
         this.quantidadeAssentosTotalmenteReclinaveis = quantidadeAssentosTotalmenteReclinaveis;
         this.quantidadeAssentosObeso = quantidadeAssentosObeso;
+        this.motorista = motorista;
     }
 
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+    
+    public Motorista getMotorista() {
+        return motorista;
+    }
+
+    public void setMotorista(Motorista motorista) {
+        this.motorista = motorista;
+    }
+    
     public int getQuantidadeAssentos() {
         return quantidadeAssentos;
     }
