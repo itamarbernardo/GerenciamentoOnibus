@@ -77,6 +77,11 @@ public class GerenciaOnibus {
         //Imprime os ultimos destinos do passageiro P
         System.out.println(resposta2);
         
+        Viagem v3 = new Viagem(o2, "Garanhuns", "Cabrobo", "01:00", "19:20", 0.0, "30/09/2019", "30/09/2019");
+        Viagem v4 = new Viagem(o2, "Garanhuns", "Cabrobo", "01:00", "19:20", 0.0, "30/09/2019", "30/09/2019");
+        System.out.println(v3.equals(v3));
+        
+        
         
     }
     

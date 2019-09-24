@@ -274,7 +274,18 @@ public class Viagem {
     public void cancelarPassagem(Passagem p) {
         passagens.remove(p);
     }
-
+    
+    @Override
+    public boolean equals(Object obj){
+        if(obj instanceof Viagem){
+            Viagem viagem = (Viagem)obj;
+            if(codigo == viagem.getCodigo()){
+                return true;
+            }
+        }
+        return false;
+    }
+    
     public String getDataSaida() {
         return dataSaida;
     }
@@ -360,4 +371,10 @@ public class Viagem {
         this.codigo = codigo;
     }
 
+    @Override
+    public String toString() {
+        return "Viagem{" + "dataSaida=" + dataSaida + ", dataChegada=" + dataChegada + ", codigo=" + codigo + ", passagens=" + passagens + ", onibus=" + onibus + ", origem=" + origem + ", destino=" + destino + ", horarioSaida=" + horarioSaida + ", horarioChegada=" + horarioChegada + ", desconto=" + desconto + '}';
+    }
+
+    
 }
