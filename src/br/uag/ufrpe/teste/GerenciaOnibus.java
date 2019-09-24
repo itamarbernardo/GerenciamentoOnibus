@@ -57,7 +57,7 @@ public class GerenciaOnibus {
         List<Passageiro> passageiros = v.listagemPassageirosNaViagem();
         v.imprimeListaPassageirosNaViagem(passageiros);
         
-        int quantidadeLanche = v.calculaQuantidadeDePassageirosQueQueremLanche();
+        int quantidadeLanche = v.calculaQuantidadeLanche();
         System.out.println(quantidadeLanche);
         
         System.out.println("Codigo viagem: " + v.getCodigo());

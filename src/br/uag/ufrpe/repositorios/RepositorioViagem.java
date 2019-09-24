@@ -35,7 +35,7 @@ public class RepositorioViagem {
      * @param dataFim Data final do intervalo.
      * @return Retorna a porcentagem de passageiros que querem lanche
      */
-    public double calculaPorcentagemQuantidadePassageirosQueremLancheEmCertoIntervaloDeDatasEmCertasViagens(String horarioSaida, String destino, String dataInicio, String dataFim) {
+    public double calculaPorcentagemLanchePorDatasEViagens(String horarioSaida, String destino, String dataInicio, String dataFim) {
 
         double porcentagem = 0.0;
         double totalPassageiros = 0.0;
@@ -47,7 +47,7 @@ public class RepositorioViagem {
             if (estaNoIntervalo && viagem.getDestino().equals(destino) && viagem.getHorarioSaida().equals(horarioSaida)) {
                 //Verifico o intervalo das datas, o horario e o destino
 
-                totalPassageirosQueremLanche = totalPassageirosQueremLanche + viagem.calculaQuantidadeDePassageirosQueQueremLanche();
+                totalPassageirosQueremLanche = totalPassageirosQueremLanche + viagem.calculaQuantidadeLanche();
                 totalPassageiros = totalPassageiros + viagem.calcularQuantidadeDePassageirosNaViagem();
 
             }
@@ -67,7 +67,7 @@ public class RepositorioViagem {
      * @param dataFim Data final do intervalo.
      * @return Retorna a porcentagem.
      */
-    public double calculaPorcentagemQuantidadePassageirosQueremLancheEmCertoIntervaloDeDatasEmCertoDestino(String destino, String dataInicio, String dataFim) {
+    public double calculaPorcentagemLanchePorDatasEDestino(String destino, String dataInicio, String dataFim) {
 
         double porcentagem = 0.0;
         double totalPassageiros = 0.0;
@@ -79,7 +79,7 @@ public class RepositorioViagem {
             if (estaNoIntervalo && viagem.getDestino().equals(destino)) {
                 //Verifico o intervalo das datas, o horario e o destino
 
-                totalPassageirosQueremLanche = totalPassageirosQueremLanche + viagem.calculaQuantidadeDePassageirosQueQueremLanche();
+                totalPassageirosQueremLanche = totalPassageirosQueremLanche + viagem.calculaQuantidadeLanche();
                 totalPassageiros = totalPassageiros + viagem.calcularQuantidadeDePassageirosNaViagem();
 
             }
@@ -99,7 +99,7 @@ public class RepositorioViagem {
      * @return Retorna a porcentagem da quantidade de passageiros que querem
      * lanche.
      */
-    public double calculaPorcentagemQuantidadePassageirosQueremLancheEmCertoIntervaloDeDatas(String dataInicio, String dataFim) {
+    public double calculaPorcentagemLanchePorDatas(String dataInicio, String dataFim) {
 
         double porcentagem = 0.0;
         double totalPassageiros = 0.0;
@@ -109,7 +109,7 @@ public class RepositorioViagem {
             boolean estaNoIntervalo = Data.verificarDataEstaNoIntervalo(dataInicio, dataFim, viagem.getDataSaida());
             if (estaNoIntervalo) { //Tem que verificar o intervalo das datas
 
-                totalPassageirosQueremLanche = totalPassageirosQueremLanche + viagem.calculaQuantidadeDePassageirosQueQueremLanche();
+                totalPassageirosQueremLanche = totalPassageirosQueremLanche + viagem.calculaQuantidadeLanche();
                 totalPassageiros = totalPassageiros + viagem.calcularQuantidadeDePassageirosNaViagem();
 
             }
@@ -129,7 +129,7 @@ public class RepositorioViagem {
      * @param dataFim Data Final do intervalo
      * @return Retorna a porcentagem de passageiros nesse intervalo
      */
-    public double calculaPorcentagemPassageirosPorViagemEmCertoIntervaloDeDatas(String dataInicio, String dataFim) {
+    public double calculaPorcentagemPassageirosPorDatas(String dataInicio, String dataFim) {
 
         double porcentagem = 0.0;
         double totalCapacidadeOnibus = 0.0;
@@ -159,7 +159,7 @@ public class RepositorioViagem {
      * @return Retorna a porcentagem de passageiros por viagem nas viagens de
      * certo horário e destino.
      */
-    public double calculaPorcentagemPassageirosPorViagemEmCertoIntervaloDeDatasEmCertasViagens(String horario, String destino, String dataInicio, String dataFim) {
+    public double calculaPorcentagemPassageirosPorDatasEViagens(String horario, String destino, String dataInicio, String dataFim) {
 
         double porcentagem = 0.0;
         double totalCapacidadeOnibus = 0.0;
@@ -187,7 +187,7 @@ public class RepositorioViagem {
      * @param dataFim Data de fim do intervalo.
      * @return Retorna a porcentagem.
      */
-    public double calculaPorcentagemPassageirosPorViagemEmCertoIntervaloDeDatasEmCertoDestino(String destino, String dataInicio, String dataFim) {
+    public double calculaPorcentagemPassageirosPorDatasEDestino(String destino, String dataInicio, String dataFim) {
 
         double porcentagem = 0.0;
         double totalCapacidadeOnibus = 0.0;
@@ -214,7 +214,7 @@ public class RepositorioViagem {
      * @param dataFim Data final do intervalo.
      * @return Retorna o lucro total obtido.
      */
-    public double calcularLucroTotalEmCertoIntervaloDeDatas(String dataInicio, String dataFim) {
+    public double calcularLucroTotalPorDatas(String dataInicio, String dataFim) {
         double lucroTotal = 0.0;
 
         for (Viagem viagem : viagens) {
@@ -236,7 +236,7 @@ public class RepositorioViagem {
      * @param dataFim Data final do intervalo.
      * @return Retorna o lucro obtido.
      */
-    public double calcularLucroTotalEmCertoIntervaloDeDatasEmCertasViagens(String horarioSaida, String destino, String dataInicio, String dataFim) {
+    public double calcularLucroTotalPorDatasEViagens(String horarioSaida, String destino, String dataInicio, String dataFim) {
         double lucroTotal = 0.0;
 
         for (Viagem viagem : viagens) {
@@ -258,7 +258,7 @@ public class RepositorioViagem {
      * @param dataFim Data final do intervalo.
      * @return Retorna o lucro total obtido.
      */
-    public double calcularLucroTotalEmCertoIntervaloDeDatasEmCertoDestino(String destino, String dataInicio, String dataFim) {
+    public double calcularLucroTotalPorDatasEDestino(String destino, String dataInicio, String dataFim) {
         double lucroTotal = 0.0;
 
         for (Viagem viagem : viagens) {

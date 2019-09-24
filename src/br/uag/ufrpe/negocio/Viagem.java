@@ -81,8 +81,8 @@ public class Viagem {
         return porcentagem;
     }
     
-    public double calcularPorcentagemPassageirosQueQueremLancheNaViagem(){
-        double porcentagem = calculaQuantidadeDePassageirosQueQueremLanche() / passagens.size();
+    public double calcularPorcentagemLancheNaViagem(){
+        double porcentagem = calculaQuantidadeLanche() / passagens.size();
        
         return porcentagem;
     }
@@ -101,7 +101,7 @@ public class Viagem {
         }
     }
 
-    public int calculaQuantidadeDePassageirosQueQueremLanche() {
+    public int calculaQuantidadeLanche() {
         int quantidade = 0;
         for (Passagem p : passagens) {
             if (p.isLanche()) {
@@ -216,7 +216,7 @@ public class Viagem {
         return mensagemErro;
     }
 
-    public boolean verificarSeOPassageiroEstaNaViagem(Passageiro p) {
+    public boolean estaNaViagem(Passageiro p) {
         List<Passageiro> passageiros = listagemPassageirosNaViagem();
 
         for (Passageiro passageiro : passageiros) {
@@ -240,7 +240,7 @@ public class Viagem {
         /*Retorna uma String com uma mensagem pois ele tem que saber 
          qual foi o erro dado. Com o exception, pode retornar a exception */
         String mensagemErro = ""; //Se ocorrer tudo bem, retorna uma string vazia
-        if (verificarSeOPassageiroEstaNaViagem(p.getPassageiro()) == false) {
+        if (estaNaViagem(p.getPassageiro()) == false) {
 
             if (verificarValidadeCodigoPoltrona(p)) {
 
