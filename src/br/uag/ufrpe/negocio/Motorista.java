@@ -1,31 +1,20 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package br.uag.ufrpe.negocio;
 
-/**
- *
- * @author Itamar Jr
- */
-public class Motorista {
-    
-    private String cpf;
 
-    public Motorista(String cpf) {
-        this.cpf = cpf;
-    }
+public class Motorista extends Pessoa{
+    private int numeroCarteiraMotorista; 
 
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
+    public Motorista(int numeroCarteiraMotorista, String nomeCompleto, String cpf, String rg, String email, Endereco endereco) {
+        super(nomeCompleto, cpf, rg, email, endereco);
+        this.numeroCarteiraMotorista = numeroCarteiraMotorista;
     }
     
+    public int getNumeroCarteiraMotorista() {
+        return numeroCarteiraMotorista;
+    }
     
+    public void setNumeroCarteiraMotorista(int numeroCarteiraMotorista) {
+        this.numeroCarteiraMotorista = numeroCarteiraMotorista;
+    }
     
 }

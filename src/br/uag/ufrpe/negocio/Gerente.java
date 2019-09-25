@@ -14,6 +14,19 @@ public class Gerente {
     private Endereco endereco;
     private LocalDate dataNasc;
     private String senha;
+
+    public Gerente(String nome, String cpf, String identificador, String telefone, 
+            Endereco endereco, LocalDate dataNasc, String senha) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.identificador = identificador;
+        this.telefone = telefone;
+        this.endereco = endereco;
+        this.dataNasc = dataNasc;
+        this.senha = senha;
+    }
+    
+    
     
     public String getNome(){
         return nome;
@@ -72,9 +85,11 @@ public class Gerente {
             this.senha = senha;
         }
         else{
-            System.out.println("Senha pequena, Tente novamente");
+            System.out.println("Senha muito curta, Tente novamente");
         }
     }
+    
+   // Fazer Gerador de Identificador
     
 
 }

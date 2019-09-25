@@ -6,6 +6,7 @@
 
 package br.uag.ufrpe.teste;
 
+import br.uag.ufrpe.negocio.Endereco;
 import br.uag.ufrpe.negocio.Motorista;
 import br.uag.ufrpe.negocio.Onibus;
 import br.uag.ufrpe.negocio.Passageiro;
@@ -25,14 +26,15 @@ public class GerenciaOnibus {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        Motorista m = new Motorista("117.980.281-12");
+        Endereco endereco = new Endereco("55293-000", "Rua 10", "Centro", "121-A", "Casa", "Garanhuns", "PE");
+        Motorista m = new Motorista(1234443, "Joao", "117.980.281-12", "981722", "joao@gmail.com", endereco);
         
         Onibus o = new Onibus(10, 2, 2, 2, m);
         Onibus o2 = new Onibus(10, 2, 2, 2, m);
         
         
-        Passageiro p = new Passageiro(true, "117.982.029-10");
-        Passageiro p2 = new Passageiro(true, "002.982.029-10");
+        Passageiro p = new Passageiro("Rodrigo Santos", "30/12/1998", true, "117.982.029-10", "9829812");
+        Passageiro p2 = new Passageiro("Maraia Silva", "19/12/1992", true, "002.982.029-10", "1099922");
         
         Passagem passagem = new Passagem("Reclinavel", p, "IdJovem", 1, true);
         Passagem passagem2 = new Passagem("Reclinavel", p2, "IdJovem", 10, true);
