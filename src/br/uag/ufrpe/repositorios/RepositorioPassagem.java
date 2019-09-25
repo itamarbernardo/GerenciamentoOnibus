@@ -3,14 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.uag.ufrpe;
+package br.uag.ufrpe.repositorios;
 
+import br.uag.ufrpe.negocio.Passagem;
 import java.util.ArrayList;
 import java.util.List;
 
 /**
  *
- * @author EmilySantos
+ * @author Emily Santos
  */
 public class RepositorioPassagem {
     private List<Passagem> passagens;
