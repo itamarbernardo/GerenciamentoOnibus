@@ -7,7 +7,7 @@ package br.uag.ufrpe.negocio;
 
 /**
  *
- * @author EmilySantos
+ * @author Emily Santos
  */
 public class Passagem {
     
