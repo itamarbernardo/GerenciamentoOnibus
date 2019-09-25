@@ -2,19 +2,24 @@ package br.uag.ufrpe.negocio;
 
 
 public class Motorista extends Pessoa{
-    private int numeroCarteiraMotorista; 
+    private String numeroCarteiraMotorista; 
 
-    public Motorista(int numeroCarteiraMotorista, String nomeCompleto, String cpf, String rg, String email, Endereco endereco) {
-        super(nomeCompleto, cpf, rg, email, endereco);
+    public Motorista(String numeroCarteiraMotorista, String nomeCompleto, String cpf, String rg, String email, Endereco endereco, String telefone) {
+        super(nomeCompleto, cpf, rg, email, endereco, telefone);
         this.numeroCarteiraMotorista = numeroCarteiraMotorista;
     }
-    
-    public int getNumeroCarteiraMotorista() {
+
+    public String getNumeroCarteiraMotorista() {
         return numeroCarteiraMotorista;
     }
-    
-    public void setNumeroCarteiraMotorista(int numeroCarteiraMotorista) {
-        this.numeroCarteiraMotorista = numeroCarteiraMotorista;
+
+    public void setNumeroCarteiraMotorista(String numeroCarteiraMotorista) {
+        if(numeroCarteiraMotorista.length() == 11){
+            this.numeroCarteiraMotorista = numeroCarteiraMotorista;
+        }
+        else{
+            System.out.println("Carteira invalida");
+        }
     }
     
 }
