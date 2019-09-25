@@ -1,29 +1,26 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.uag.ufrpe.negocio;
 
 /**
  *
  * @author Gabriel
  */
+
 public class Pessoa {
     private String nomeCompleto;
     private String cpf;
     private String rg;
     private String email; 
+    private String telefone;
     private Endereco endereco;
 
-    public Pessoa(String nomeCompleto, String cpf, String rg, String email,Endereco endereco) {
+    public Pessoa(String nomeCompleto, String cpf, String rg, String email,Endereco endereco,String telefone) {
         this.nomeCompleto = nomeCompleto;
         this.cpf = cpf;
         this.rg = rg;
         this.email = email;
         this.endereco = endereco;
+        this.telefone = telefone;
     }
-
     
     public String getNomeCompleto() {
         return nomeCompleto;
@@ -72,9 +69,13 @@ public class Pessoa {
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }
-    
-    
-    
 
-   
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
+    }
+    
 }
