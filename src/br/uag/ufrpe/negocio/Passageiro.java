@@ -16,33 +16,19 @@ import java.util.GregorianCalendar;
  *
  * @author Jackson / Itamar Jr
  */
-public class Passageiro {
-    private String nomeCompleto;
+public class Passageiro extends Pessoa {
+    
     private String dataNascimento;
     private boolean possuiIdJovem;
-    private String cpf;
-    private String rg;
     
-    public Passageiro(String nomeCompleto, String dataNascimento, boolean possuiIdJovem, String cpf, String rg) {
-        this.nomeCompleto = nomeCompleto;
+    public Passageiro(String nomeCompleto, String dataNascimento, boolean possuiIdJovem, String cpf, String rg, String email, Endereco endereco, String telefone) {
+        super(nomeCompleto, cpf, rg, email, endereco, telefone);
+        
         this.dataNascimento = dataNascimento;
         this.possuiIdJovem = possuiIdJovem;
-        this.cpf = cpf;
-        this.rg = rg;
+        
     }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    }
-    
-    public int calcularIdade(){
-        return 20;
-    }
-    
+       
     public String getDataNascimento() {
         return dataNascimento;
     }
@@ -58,24 +44,8 @@ public class Passageiro {
     public void setPossuiIdJovem(boolean possuiIdJovem) {
         this.possuiIdJovem = possuiIdJovem;
     }
-
-    public String getNomeCompleto() {
-        return nomeCompleto;
-    }
-
-    public void setNomeCompleto(String nomeCompleto) {
-        this.nomeCompleto = nomeCompleto;
-    }
-
-    public String getRg() {
-        return rg;
-    }
-
-    public void setRg(String rg) {
-        this.rg = rg;
-    }
     
-    public static int calculaIdade(String dataNascimento, String pattern){
+    public int calcularIdade(String dataNascimento, String pattern){
         //Calcula a Idade baseado em String. Exemplo: calculaIdade("20/08/1977","dd/MM/yyyy");
         DateFormat sdf = new SimpleDateFormat(pattern);
         Date dataNascInput = null;
