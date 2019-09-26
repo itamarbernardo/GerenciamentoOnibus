@@ -323,12 +323,13 @@ public class RepositorioViagem {
 
     }
 
-    public boolean alterarViagem(Viagem v, int codigo) {
-        Viagem viagem = procurarViagem(codigo);
-        if (viagem != null) {
-            viagens.remove(viagem);
-            viagens.add(v);
-            return true; //So altera se a viagem existir
+    public boolean alterarViagem(Viagem v) {
+        for (int i = 0; i < viagens.size(); i++) {
+            if (viagens.get(i).getCodigo() == v.getCodigo()) {
+                viagens.set(i, v);
+                return true; //So altera se a viagem existir
+            }
+
         }
         return false;
     }
@@ -342,9 +343,9 @@ public class RepositorioViagem {
         return null; //Não achou a viagem
     }
 
-    public Viagem procurarViagem(String dataSaida, String horaSaida, String destino) {
+    public Viagem procurarViagem(String dataSaida, String horaSaida, String origem, String destino) {
         for (Viagem viagem : viagens) {
-            if (viagem.getDataSaida().equals(dataSaida) && viagem.getHorarioSaida().equals(horaSaida) && viagem.getDestino().equals(destino)) {
+            if (viagem.getDataSaida().equals(dataSaida) && viagem.getHorarioSaida().equals(horaSaida) && viagem.getOrigem().equals(origem) && viagem.getDestino().equals(destino)) {
                 return viagem;
             }
         }
