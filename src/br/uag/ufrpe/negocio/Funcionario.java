@@ -7,14 +7,14 @@ package br.uag.ufrpe.negocio;
 
 /**
  *
- * @author USUARIO
+ * @author Gabriel
  */
 public class Funcionario extends Pessoa{
     
     private String senha; 
 
-    public Funcionario(String senha, String nomeCompleto, String cpf, String rg, String email, Endereco endereco) {
-        super(nomeCompleto, cpf, rg, email, endereco);
+    public Funcionario(String senha, String nomeCompleto, String cpf, String rg, String email, Endereco endereco, String telefone) {
+        super(nomeCompleto, cpf, rg, email, endereco, telefone);
         this.senha = senha;
     }
 
@@ -22,11 +22,12 @@ public class Funcionario extends Pessoa{
         return senha;
     }
 
-
     public void setSenha(String senha) {
-        this.senha = senha;
-    }
-    
-    
-    
+        if(senha.length() > 3){
+            this.senha = senha;
+        }
+        else{ 
+            System.out.println("Senha incorreta");
+        }
+    }   
 }

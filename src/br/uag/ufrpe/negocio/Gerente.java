@@ -5,77 +5,17 @@ import java.time.LocalDate;
  *
  * @author Jackson
  */
-public class Gerente {
-    
-    private String nome;
-    private String cpf;
-    private String identificador;
-    private String telefone;
-    private Endereco endereco;
-    private LocalDate dataNasc;
+public class Gerente extends Pessoa{
+       
     private String senha;
 
-    public Gerente(String nome, String cpf, String identificador, String telefone, 
+    public Gerente(String nomeCompleto, String cpf,String rg, String email, String identificador, String telefone, 
             Endereco endereco, LocalDate dataNasc, String senha) {
-        this.nome = nome;
-        this.cpf = cpf;
-        this.identificador = identificador;
-        this.telefone = telefone;
-        this.endereco = endereco;
-        this.dataNasc = dataNasc;
+        super(nomeCompleto, cpf, rg, email, endereco, telefone);
+        
         this.senha = senha;
     }
-    
-    
-    
-    public String getNome(){
-        return nome;
-    }
-    
-    public void setNome(String nome){
-        this.nome = nome;
-    }
-    
-    public String getCpf(){
-        return cpf;
-    }
-    
-    public void setCpf(String cpf){
-        this.cpf = cpf;
-    }
-    
-    public String getIdentificador(){
-        return identificador;
-    }
-    
-    public void setIdentificador(String identificador){
-        this.identificador = identificador;
-    }
-    
-    public String getTelefone(){
-        return telefone;
-    }
-    
-    public void setTelefone(String telefone){
-        this.telefone = telefone;
-    }
-    
-    public Endereco getEndereco(){
-        return endereco;
-    }
-    
-    public void setEndereco(Endereco endereco){
-        this.endereco = endereco;
-    }
-    
-    public LocalDate getDataNasc(){
-        return dataNasc;
-    }
-    
-    public void setDatanasc(LocalDate dataNasc){
-        this.dataNasc = dataNasc;
-    }
-    
+               
     public String getSenha(String senha){
         return senha;
     }
@@ -88,8 +28,4 @@ public class Gerente {
             System.out.println("Senha muito curta, Tente novamente");
         }
     }
-    
-   // Fazer Gerador de Identificador
-    
-
 }
