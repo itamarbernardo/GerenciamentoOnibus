@@ -25,11 +25,11 @@ public class Pessoa {
     public String getNomeCompleto() {
         return nomeCompleto;
     }
-
-  
-    public void setNomeCompleto(String nomeCompleto) {
-        this.nomeCompleto = nomeCompleto;
+    
+    public void setNomeCompleto(String nomeCompleto) {    
+            this.nomeCompleto = nomeCompleto;
     }
+    
 
     public String getCpf() {
         return cpf;
@@ -37,7 +37,12 @@ public class Pessoa {
 
     
     public void setCpf(String cpf) {
-        this.cpf = cpf;
+        if(cpf.length() == 11){
+            this.cpf = cpf;
+        }
+        else{
+            System.out.println("CPF invalido !!");
+        }
     }
 
     
@@ -55,16 +60,13 @@ public class Pessoa {
         return email;
     }
 
-   
     public void setEmail(String email) {
         this.email = email;
     }
-
    
     public Endereco getEndereco() {
         return endereco;
     }
-
     
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
@@ -75,7 +77,12 @@ public class Pessoa {
     }
 
     public void setTelefone(String telefone) {
-        this.telefone = telefone;
+        if(telefone.length() == 11){
+            this.telefone = telefone;
+        }
+        else{
+            System.out.println("Telefone invalido !");
+        }
     }
     
 }
