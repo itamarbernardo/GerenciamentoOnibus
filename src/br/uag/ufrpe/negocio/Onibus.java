@@ -89,6 +89,7 @@ public class Onibus {
                 poltronas.add(normal);
             }
         }
+       
         /*
         for(int i = 0; i < totalPoltronas.length; i++){
             for(int j = 0; j < assentosObeso.size();j++){
