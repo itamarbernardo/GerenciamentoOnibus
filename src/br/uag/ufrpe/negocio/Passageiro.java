@@ -8,21 +8,28 @@ package br.uag.ufrpe.negocio;
 
 import static br.uag.ufrpe.negocio.Data.converterDataParaLocalDate;
 import java.time.LocalDate;
-
 /**
  *
  * @author Jackson / Itamar Jr
  */
-public class Passageiro extends Pessoa {
+public class Passageiro {
     
+    private String nomeCompleto;    
     private String dataNascimento;
+    private String rg;
+    private String cpf;
+    private String telefone;
     private boolean possuiIdJovem;
-    
-    public Passageiro(String nomeCompleto, String dataNascimento, boolean possuiIdJovem, String cpf, String rg, String email, Endereco endereco, String telefone) {
-        super(nomeCompleto, cpf, rg, email, endereco, telefone);
-        
-        this.possuiIdJovem = possuiIdJovem;    
+
+    public Passageiro(String nomeCompleto, String dataNascimento, String rg, String cpf, String telefone, boolean possuiIdJovem) {
+        this.nomeCompleto = nomeCompleto;
+        this.dataNascimento = dataNascimento;
+        this.rg = rg;
+        this.cpf = cpf;
+        this.telefone = telefone;
+        this.possuiIdJovem = possuiIdJovem;
     }
+    
        
     public boolean isPossuiIdJovem() {
         return possuiIdJovem;
@@ -30,6 +37,46 @@ public class Passageiro extends Pessoa {
 
     public void setPossuiIdJovem(boolean possuiIdJovem) {
         this.possuiIdJovem = possuiIdJovem;
+    }
+
+    public String getNomeCompleto() {
+        return nomeCompleto;
+    }
+
+    public void setNomeCompleto(String nomeCompleto) {
+        this.nomeCompleto = nomeCompleto;
+    }
+
+    public String getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(String dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public String getRg() {
+        return rg;
+    }
+
+    public void setRg(String rg) {
+        this.rg = rg;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    } 
+
+    public String getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(String telefone) {
+        this.telefone = telefone;
     }
     
     public int calcularIdade(){
