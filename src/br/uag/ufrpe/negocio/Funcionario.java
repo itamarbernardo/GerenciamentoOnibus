@@ -7,19 +7,31 @@ package br.uag.ufrpe.negocio;
 
 /**
  *
- * @author Gabriel
+ * @author Gabriel / Jackson
  */
 public class Funcionario extends Pessoa{
     
     private String senha; 
+    private String email;
+    private final Endereco endereco;
 
-    public Funcionario(String senha, String nomeCompleto, String cpf, String rg, String email, Endereco endereco, String telefone) {
-        super(nomeCompleto, cpf, rg, email, endereco, telefone);
+    public Funcionario(String senha, String email, String nomeCompleto, String cpf, String rg, String telefone, Endereco endereco) {
+        super(nomeCompleto, cpf, rg, telefone, endereco);
         this.senha = senha;
+        this.email = email;
+        this.endereco = endereco;
     }
 
     public String getSenha() {
         return senha;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setSenha(String senha) {
