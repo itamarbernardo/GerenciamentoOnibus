@@ -21,18 +21,9 @@ public class Passageiro extends Pessoa {
     public Passageiro(String nomeCompleto, String dataNascimento, boolean possuiIdJovem, String cpf, String rg, String email, Endereco endereco, String telefone) {
         super(nomeCompleto, cpf, rg, email, endereco, telefone);
         
-        this.dataNascimento = dataNascimento;
         this.possuiIdJovem = possuiIdJovem;    
     }
        
-    public String getDataNascimento() {
-        return dataNascimento;
-    }
-
-    public void setDataNascimento(String dataNascimento) {
-        this.dataNascimento = dataNascimento;
-    }
-
     public boolean isPossuiIdJovem() {
         return possuiIdJovem;
     }
@@ -44,14 +35,15 @@ public class Passageiro extends Pessoa {
     public int calcularIdade(){
         LocalDate data = converterDataParaLocalDate(this.dataNascimento);
         LocalDate localDate = LocalDate.now();
-        return localDate.getYear() - data.getYear();
+        
+        if(localDate.getMonthValue() < data.getMonthValue() || (localDate.getMonthValue() == data.getMonthValue() && localDate.getDayOfMonth() < data.getDayOfMonth())  ){        
+            return(localDate.getYear() - data.getYear()) - 1;  
+        }     
+        return localDate.getYear() - data.getYear();       
     }
         
     @Override
     public String toString() {
         return "Passageiro{" + "dataNascimento=" + dataNascimento + ", possuiIdJovem=" + possuiIdJovem + '}';
-    }
-    
-    
-    
+    }  
 }

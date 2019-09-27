@@ -36,10 +36,10 @@ public class RepositorioPassageiro {
     public Passageiro procurarPassageiro(String cpf){
         Passageiro encontrado = null;
         
-        Passageiro[] lista = passageiros.toArray(new Passageiro[passageiros.size()]);
-        for(int i = 0; i < passageiros.size(); i++){
-            if(lista[i].getCpf().equals(cpf)){
-                encontrado = lista[i];
+        for (Passageiro passageiro : passageiros) {
+            if(passageiro.getCpf().equals(cpf)){
+                encontrado = passageiro;
+                return encontrado;
             }
         }
         return encontrado;
