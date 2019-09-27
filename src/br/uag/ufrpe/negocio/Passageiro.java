@@ -44,14 +44,15 @@ public class Passageiro extends Pessoa {
     public int calcularIdade(){
         LocalDate data = converterDataParaLocalDate(this.dataNascimento);
         LocalDate localDate = LocalDate.now();
-        return localDate.getYear() - data.getYear();
+        
+        if(localDate.getMonthValue() < data.getMonthValue() || (localDate.getMonthValue() == data.getMonthValue() && localDate.getDayOfMonth() < data.getDayOfMonth())  ){        
+            return(localDate.getYear() - data.getYear()) - 1;  
+        }     
+        return localDate.getYear() - data.getYear();       
     }
         
     @Override
     public String toString() {
         return "Passageiro{" + "dataNascimento=" + dataNascimento + ", possuiIdJovem=" + possuiIdJovem + '}';
-    }
-    
-    
-    
+    }  
 }
