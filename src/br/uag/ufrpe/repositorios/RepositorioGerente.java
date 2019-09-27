@@ -35,10 +35,10 @@ public class RepositorioGerente {
     public Gerente procurarGerente(String cpf){
         Gerente encontrado = null;
         
-        Gerente[] lista = gerentes.toArray(new Gerente[gerentes.size()]);
-        for(int i = 0; i < gerentes.size(); i++){
-            if(lista[i].getCpf().equals(cpf)){
-            encontrado = lista[i];
+        for (Gerente gerente : gerentes) {
+            if(gerente.getCpf().equals(cpf)){
+                encontrado = gerente;
+                return encontrado;
             }
         }
         return encontrado;
