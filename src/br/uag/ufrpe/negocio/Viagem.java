@@ -7,6 +7,7 @@ package br.uag.ufrpe.negocio;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Esta clase representa uma representa uma Viagem e gera algumas informações
@@ -34,9 +35,10 @@ public class Viagem {
     private int quantidadeIdoso;
     private int quantidadeIdosoParcial;
 
-    private int quantidadeAssentosReclinaveis;
-    private int quantidadeAssentosTotalmenteReclinaveis;
-    private int quantidadeAssentosObeso;
+    //private int quantidadeAssentosReclinaveis;
+    //private int quantidadeAssentosTotalmenteReclinaveis;
+    //private int quantidadeAssentosObeso;
+    private Map<Integer, String> poltronas;
 
     public Viagem(Onibus onibus, String origem, String destino, String horarioSaida, String horarioChegada, double desconto, String dataSaida, String dataChegada) {
 
@@ -52,9 +54,7 @@ public class Viagem {
         this.codigo = totalViagens; //O codigo vai ser o numero de viagens
         totalViagens++;
 
-        this.quantidadeAssentosObeso = onibus.getQuantidadeAssentosObeso();
-        this.quantidadeAssentosReclinaveis = onibus.getQuantidadeAssentosReclinaveis();
-        this.quantidadeAssentosTotalmenteReclinaveis = onibus.getQuantidadeAssentosTotalmenteReclinaveis();
+        this.poltronas = onibus.getPoltronas();
 
         this.quantidadeIdJovem = 0;
         this.quantidadeIdoso = 0;
@@ -75,18 +75,18 @@ public class Viagem {
         return passagens.size();
     }
 
-    public double calcularPorcentagemPassageirosNaViagem(){
-        double porcentagem = passagens.size() / onibus.getQuantidadeAssentos();
-        
+    public double calcularPorcentagemPassageirosNaViagem() {
+        double porcentagem = passagens.size() / onibus.getTotalPoltronas();
+
         return porcentagem;
     }
-    
-    public double calcularPorcentagemLancheNaViagem(){
+
+    public double calcularPorcentagemLancheNaViagem() {
         double porcentagem = calculaQuantidadeLanche() / passagens.size();
-       
+
         return porcentagem;
     }
-    
+
     public List<Passageiro> listagemPassageirosNaViagem() {
         List<Passageiro> passageiros = new ArrayList<>();
         for (Passagem p : passagens) {
@@ -114,7 +114,7 @@ public class Viagem {
     public double calculaLucroTotalDaViagem() {
         double lucroTotal = 0.0;
         for (Passagem p : passagens) {
-            lucroTotal = lucroTotal + p.getPreco();
+            lucroTotal = lucroTotal + p.getPrecoTotal();
         }
         return lucroTotal;
     }
@@ -133,30 +133,16 @@ public class Viagem {
 
         String mensagemErro = "";
 
-        if (p.getTipoDeAssento().equals("Normal")) {
-            return mensagemErro;
-        } else if (p.getTipoDeAssento().equals("Reclinavel") && quantidadeAssentosReclinaveis > 0) {
-            quantidadeAssentosReclinaveis--;
-            return mensagemErro;
-        } else if (p.getTipoDeAssento().equals("Reclinavel") && quantidadeAssentosReclinaveis == 0) {
-            mensagemErro = "Erro. Não há assentos reclináveis disponíveis";
-            return mensagemErro;
-        } else if (p.getTipoDeAssento().equals("Totalmente Reclinavel") && quantidadeAssentosTotalmenteReclinaveis > 0) {
-            quantidadeAssentosTotalmenteReclinaveis--;
-            return mensagemErro;
-        } else if (p.getTipoDeAssento().equals("Totalmente Reclinavel") && quantidadeAssentosTotalmenteReclinaveis == 0) {
-            mensagemErro = "Erro. Não há assentos Totalmente reclináveis disponíveis";
+        if (poltronas.get(p.getCodigo()).equals(p.getTipoDeAssento())) {
+            poltronas.put(p.getCodigo(), "Ocupado");
 
-            return mensagemErro;
-        } else if (p.getTipoDeAssento().equals("Obeso") && quantidadeAssentosObeso > 0) {
-            quantidadeAssentosObeso--;
-            return mensagemErro;
-        } else if (p.getTipoDeAssento().equals("Obeso") && quantidadeAssentosObeso == 0) {
-            mensagemErro = "Erro. Não há assentos para Obeso disponíveis";
-            return mensagemErro;
+        } else if (poltronas.get(p.getCodigo()).equals("Ocupado")) {
+            mensagemErro = "Erro. A poltrona já está ocupada.";
         } else {
-            return "Alguma informação sobre o tipo de assento está incorreta. Reveja os dados da passagem!";
+            mensagemErro = "Erro. O tipo de Assento não está disponível nesta poltrona.";
         }
+
+        return mensagemErro;
     }
 
     /**
@@ -168,18 +154,15 @@ public class Viagem {
      * @return retorna um true se o cógigo da poltrona for válido e um false se
      * não for.
      */
-    public boolean verificarValidadeCodigoPoltrona(Passagem p) {
-        if (p.getCodigoPoltrona() > onibus.getQuantidadeAssentos() || p.getCodigoPoltrona() < 0) {
-            return false;
-        } else {
-            for (Passagem pass : passagens) {
-                if (pass.getCodigoPoltrona() == p.getCodigoPoltrona()) {
-                    return false;
-                }
+    public int calculaPoltronasVazias() {
+        int quantidadePoltronasVazias = 0;
+
+        for (int i = 1; i <= poltronas.size(); i++) {
+            if (!(poltronas.get(i).equals("Ocupado"))) {
+                quantidadePoltronasVazias++;
             }
         }
-        //Se eu não já tiver essa poltrona ocupada e se a poltrona tiver dentro do limite 
-        return true;
+        return quantidadePoltronasVazias;
     }
 
     /**
@@ -242,28 +225,23 @@ public class Viagem {
         String mensagemErro = ""; //Se ocorrer tudo bem, retorna uma string vazia
         if (estaNaViagem(p.getPassageiro()) == false) {
 
-            if (verificarValidadeCodigoPoltrona(p)) {
+            if (calculaPoltronasVazias() != 0) {
 
-                if (passagens.size() < onibus.getQuantidadeAssentos()) { //Add até o limite da passagem
                 /*Verifico a disponibilidade do assento que o cliente quer 
-                     e verifico se há vagas para ID Jovem e Idoso
-                     Se mensagemErro.length() for maior que zero é porque algo está errado.
-                     */
-                    mensagemErro = verificarDisponibilidadeAssento(p) + verificarDisponibilidadeTipoDePassagem(p);
+                 e verifico se há vagas para ID Jovem e Idoso
+                 Se mensagemErro.length() for maior que zero é porque algo está errado.
+                 */
+                mensagemErro = verificarDisponibilidadeAssento(p) + verificarDisponibilidadeTipoDePassagem(p);
 
-                    if (mensagemErro.length() == 0) {
-                        passagens.add(p);
-                        return mensagemErro;
-                    } else {
-                        return mensagemErro;
-                    }
-
+                if (mensagemErro.length() == 0) {
+                    passagens.add(p);
+                    return mensagemErro;
                 } else {
-                    return "Não há mais assentos disponíveis neste onibus";
+                    return mensagemErro;
                 }
 
             } else {
-                return "Código da poltrona inválido ou poltrona já ocupada";
+                return "Não há mais assentos disponíveis neste onibus.";
             }
         } else {
             return "Esse passageiro já está nesta viagem";
@@ -274,18 +252,18 @@ public class Viagem {
     public void cancelarPassagem(Passagem p) {
         passagens.remove(p);
     }
-    
+
     @Override
-    public boolean equals(Object obj){
-        if(obj instanceof Viagem){
-            Viagem viagem = (Viagem)obj;
-            if(codigo == viagem.getCodigo()){
+    public boolean equals(Object obj) {
+        if (obj instanceof Viagem) {
+            Viagem viagem = (Viagem) obj;
+            if (codigo == viagem.getCodigo()) {
                 return true;
             }
         }
         return false;
     }
-    
+
     public String getDataSaida() {
         return dataSaida;
     }
@@ -301,7 +279,6 @@ public class Viagem {
     public void setDataChegada(String dataChegada) {
         this.dataChegada = dataChegada;
     }
-
 
     public List<Passagem> getPassagens() {
         return passagens;
@@ -371,10 +348,31 @@ public class Viagem {
         this.codigo = codigo;
     }
 
+    public int getQuantidadeIdJovem() {
+        return quantidadeIdJovem;
+    }
+
+    public int getQuantidadeIdJovemParcial() {
+        return quantidadeIdJovemParcial;
+    }
+
+    public int getQuantidadeIdoso() {
+        return quantidadeIdoso;
+    }
+
+    public int getQuantidadeIdosoParcial() {
+        return quantidadeIdosoParcial;
+    }
+
+    public Map<Integer, String> getPoltronas() {
+        return poltronas;
+    }
+    
+    
+
     @Override
     public String toString() {
         return "Viagem{" + "dataSaida=" + dataSaida + ", dataChegada=" + dataChegada + ", codigo=" + codigo + ", passagens=" + passagens + ", onibus=" + onibus + ", origem=" + origem + ", destino=" + destino + ", horarioSaida=" + horarioSaida + ", horarioChegada=" + horarioChegada + ", desconto=" + desconto + '}';
     }
 
-    
 }

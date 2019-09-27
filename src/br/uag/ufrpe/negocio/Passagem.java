@@ -37,7 +37,7 @@ public class Passagem {
         this.criancaColo = criancaColo;
         this.codigo = totalPassagens;
         totalPassagens++;
-        
+        this.precoTotal = calcularPrecoTotal();
     }
             
     // -------------------------- GETTERS AND SETTERS ----------------------------------
@@ -63,6 +63,7 @@ public class Passagem {
     
     public void setPreco(double preco) {
         this.preco = preco;
+        calcularPrecoTotal(); //Se mudar o preco, muda o preco total.
     }
 
     public double getPrecoTotal() {
@@ -126,7 +127,29 @@ public class Passagem {
             this.criancaColo = criancaColo;
     }
 
+    public static double getPrecoLanche() {
+        return precoLanche;
+    }
 
+    public static int getTotalPassagens() {
+        return totalPassagens;
+    }
+
+    public static double getTarifaInterestadual() {
+        return tarifaInterestadual;
+    }
+
+    public static double getTarifaIntermunicipal() {
+        return tarifaIntermunicipal;
+    }
+
+    public void seteDentroDoEstado(boolean eDentroDoEstado) {
+        this.eDentroDoEstado = eDentroDoEstado;
+    }
+
+
+    
+    
     // ----------------------------- METODOS -----------------------------------
   
         
@@ -189,6 +212,7 @@ public class Passagem {
         }
         return 0;
     }
+  
     public double calcularPrecoTotal(){
         
     if(this.tipoDePassagem != null){switch (this.tipoDePassagem) {
@@ -200,12 +224,12 @@ public class Passagem {
             case "ParcialIdoso":
             case "ParcialIdJovem":
                 double precoMeia;                
-                precoMeia = getPreco() / 2;
+                precoMeia = preco / 2;
                 this.precoTotal = (precoMeia + calcularPrecoTipoDeTarifa() + calcularPrecoTipoDeAssento() + calcularPrecoLanche());
                 break;
                 
             default:                
-                this.precoTotal = (getPreco() + calcularPrecoTipoDeTarifa() + calcularPrecoTipoDeAssento() + calcularPrecoLanche());
+                this.precoTotal = (preco + calcularPrecoTipoDeTarifa() + calcularPrecoTipoDeAssento() + calcularPrecoLanche());
                 break;
         }
         return precoTotal;

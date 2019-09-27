@@ -23,15 +23,16 @@ public class RepositorioPassageiro {
     }
     
     public boolean alterarPassageiro(Passageiro passageiro){
-        Passageiro novoPassageiro = procurarPassageiro(passageiro.getCpf());
-        
-        if(novoPassageiro != null){
-            passageiros.remove(novoPassageiro);
-            passageiros.add(passageiro);
-            return true;            
+        for (int i = 0; i < passageiros.size(); i++) {
+            if (passageiros.get(i).getCpf().equals(passageiro.getCpf())) {
+                passageiros.set(i, passageiro);
+                return true; //So altera se a viagem existir
+            }
+
         }
         return false;
-    }
+        
+   }
     
     public Passageiro procurarPassageiro(String cpf){
         Passageiro encontrado = null;

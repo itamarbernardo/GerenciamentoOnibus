@@ -31,14 +31,16 @@ public class RepositorioPassagem {
         return false;
     }
     
-    public boolean alterarPassagem(Passagem passagem, int codigo){
-        Passagem p = procurarPassagem(codigo);
-        if(p != null){
-            passagens.remove(p);
-            adicionarPassagem(passagem);
-            return true;
+    public boolean alterarPassagem(Passagem passagem){
+        for (int i = 0; i < passagens.size(); i++) {
+            if (passagens.get(i).getCodigo() == passagem.getCodigo()) {
+                passagens.set(i, passagem);
+                return true; 
+            }
+
         }
         return false;
+        
     }
     
     public Passagem procurarPassagem(int codigo){

@@ -139,7 +139,7 @@ public class RepositorioViagem {
             boolean estaNoIntervalo = Data.verificarDataEstaNoIntervalo(dataInicio, dataFim, viagem.getDataSaida());
             if (estaNoIntervalo) {
                 //Tem que verificar o intervalo das datas
-                totalCapacidadeOnibus = totalCapacidadeOnibus + viagem.getOnibus().getQuantidadeAssentos();
+                totalCapacidadeOnibus = totalCapacidadeOnibus + viagem.getOnibus().getTotalPoltronas();
                 totalQuantidadePassageiros = totalQuantidadePassageiros + viagem.calcularQuantidadeDePassageirosNaViagem();
             }
         }
@@ -169,7 +169,7 @@ public class RepositorioViagem {
             boolean estaNoIntervalo = Data.verificarDataEstaNoIntervalo(dataInicio, dataFim, viagem.getDataSaida());
             if (estaNoIntervalo && viagem.getDestino().equals(destino) && viagem.getHorarioSaida().equals(horario)) {
                 //Tem que verificar o intervalo das datas, o horario e o destino
-                totalCapacidadeOnibus = totalCapacidadeOnibus + viagem.getOnibus().getQuantidadeAssentos();
+                totalCapacidadeOnibus = totalCapacidadeOnibus + viagem.getOnibus().getTotalPoltronas();
                 totalQuantidadePassageiros = totalQuantidadePassageiros + viagem.calcularQuantidadeDePassageirosNaViagem();
             }
         }
@@ -197,7 +197,7 @@ public class RepositorioViagem {
             boolean estaNoIntervalo = Data.verificarDataEstaNoIntervalo(dataInicio, dataFim, viagem.getDataSaida());
             if (estaNoIntervalo && viagem.getDestino().equals(destino)) {
                 //Tem que verificar o intervalo das datas, o horario e o destino
-                totalCapacidadeOnibus = totalCapacidadeOnibus + viagem.getOnibus().getQuantidadeAssentos();
+                totalCapacidadeOnibus = totalCapacidadeOnibus + viagem.getOnibus().getTotalPoltronas();
                 totalQuantidadePassageiros = totalQuantidadePassageiros + viagem.calcularQuantidadeDePassageirosNaViagem();
             }
         }

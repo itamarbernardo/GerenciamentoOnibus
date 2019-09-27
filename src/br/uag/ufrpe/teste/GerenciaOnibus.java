@@ -31,14 +31,14 @@ public class GerenciaOnibus {
         
         Onibus o = new Onibus(10, 2, 2, 2, m);
         Onibus o2 = new Onibus(10, 2, 2, 2, m);
-        
-        
-        Passageiro p = new Passageiro("Rodrigo Santos", "30/12/1998", true, "117.982.029-10", "9829812");
+
+        Passageiro p = new Passageiro("Rodrigo Santos", "30/12/1998", true, "117.982.029-10", "9829812", "rodrigo@gmail.com", endereco, "9901");
         Passageiro p2 = new Passageiro("Maraia Silva", "19/12/1992", true, "002.982.029-10", "1099922");
-        
-        Passagem passagem = new Passagem("Reclinavel", p, "IdJovem", 1, true);
-        Passagem passagem2 = new Passagem("Reclinavel", p2, "IdJovem", 10, true);
-        Passagem passagem3 = new Passagem("Reclinavel", p, "ParcialIdJovem", 9, true);
+
+
+        Passagem passagem = new Passagem(p, 10.0, true, 1, "Reclinavel", "IdJovem", false, true);
+        Passagem passagem2 = new Passagem(p2, 20.0, true, 2, "Reclinavel", "IdJovem", false, true);
+        Passagem passagem3 = new Passagem(p, 10.0, true, 3, "Reclinavel", "ParcialIdJovem", true, true);
         
         
         Viagem v = new Viagem(o, "Garanhuns", "Recife", "10:00", "13:30", 0.0, "30/09/2019", "30/09/2019");
