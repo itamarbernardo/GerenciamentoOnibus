@@ -14,12 +14,14 @@ public class Funcionario extends Pessoa{
     private String senha; 
     private String email;
     private final Endereco endereco;
+    private boolean eGerente;
 
-    public Funcionario(String senha, String email, String nomeCompleto, String cpf, String rg, String telefone, Endereco endereco) {
+    public Funcionario(String senha, String email, String nomeCompleto, String cpf, String rg, String telefone, Endereco endereco, boolean eGerente) {
         super(nomeCompleto, cpf, rg, telefone, endereco);
         this.senha = senha;
         this.email = email;
         this.endereco = endereco;
+        this.eGerente = eGerente;
     }
 
     public String getSenha() {
@@ -34,12 +36,18 @@ public class Funcionario extends Pessoa{
         this.email = email;
     }
 
-    public void setSenha(String senha) {
+    public String setSenha(String senha) {
         if(senha.length() > 3){
             this.senha = senha;
         }
-        else{ 
-            System.out.println("Senha incorreta");
-        }
-    }   
+        return "Senha incorreta";      
+    }
+
+    public void seteGerente(boolean eGerente) {
+        this.eGerente = eGerente;
+    }
+    
+    public boolean eGerente(){
+        return eGerente;
+    }
 }
