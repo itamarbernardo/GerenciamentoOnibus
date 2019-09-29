@@ -27,18 +27,30 @@ public class GerenciaOnibus {
      */
     public static void main(String[] args) {
         Endereco endereco = new Endereco("55293-000", "Rua 10", "Centro", "121-A", "Casa", "Garanhuns", "PE");
-        Motorista m = new Motorista(1234443, "Joao", "117.980.281-12", "981722", "joao@gmail.com", endereco);
+        Motorista m = new Motorista("João Silva", "123.456.789-58", "12.456.158-5", "4547-5280", endereco, "12345678982");
         
-        Onibus o = new Onibus(10, 2, 2, 2, m);
-        Onibus o2 = new Onibus(10, 2, 2, 2, m);
+        List<Integer> poltronasObeso = new ArrayList<>();
+        poltronasObeso.add(1);
+        poltronasObeso.add(15);
+
+        List<Integer> poltronasReclinavel = new ArrayList<>();
+        poltronasReclinavel.add(5);
+        poltronasReclinavel.add(13);
+
+        List<Integer> poltronasTotalReclinavel = new ArrayList<>();
+        poltronasTotalReclinavel.add(2);
+        poltronasTotalReclinavel.add(4);
+        poltronasTotalReclinavel.add(21);
+        
+        Onibus o = new Onibus(m, "ABC - 4080", 45, poltronasObeso, poltronasTotalReclinavel, poltronasReclinavel);
+        Onibus o2 = new Onibus(m, "IJK - 1020", 42, poltronasObeso, poltronasTotalReclinavel,poltronasReclinavel);
         
         
-        Passageiro p = new Passageiro("Rodrigo Santos", "30/12/1998", true, "117.982.029-10", "9829812");
-        Passageiro p2 = new Passageiro("Maraia Silva", "19/12/1992", true, "002.982.029-10", "1099922");
+        Passageiro p = new Passageiro("Rodrigo Santos", "30/12/1998","9829812", "117.982.029-10",  "45443110", true);
+        Passageiro p2 = new Passageiro("Maraia Silva", "19/12/1992","1099922" , "002.982.029-10", "12345678", true);
         
-        Passagem passagem = new Passagem("Reclinavel", p, "IdJovem", 1, true);
-        Passagem passagem2 = new Passagem("Reclinavel", p2, "IdJovem", 10, true);
-        Passagem passagem3 = new Passagem("Reclinavel", p, "ParcialIdJovem", 9, true);
+        Passagem passagem = new Passagem(p, 10.00, true, 8, "Convencional", "IdJovem", true, false);
+        Passagem passagem2 = new Passagem(p2, 20.00, false, 5, "Parcialmente Reclinada", "Normal", true, false);
         
         
         Viagem v = new Viagem(o, "Garanhuns", "Recife", "10:00", "13:30", 0.0, "30/09/2019", "30/09/2019");
@@ -46,7 +58,7 @@ public class GerenciaOnibus {
         System.out.println("Adicionar: " + v.adicionarPassagem(passagem));
         System.out.println("Adicionar: " + v.adicionarPassagem(passagem2));
         
-        String resposta = v.adicionarPassagem(passagem3);
+        String resposta = v.adicionarPassagem(passagem2);
        
         System.out.println(resposta);
         
