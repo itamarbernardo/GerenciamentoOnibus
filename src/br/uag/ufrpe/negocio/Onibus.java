@@ -129,6 +129,17 @@ public class Onibus {
         }
         return cont; 
     }
+   
+    @Override
+    public boolean equals(Object obj){
+        if(obj instanceof Passagem){
+            Passagem passagem = (Passagem)obj;
+            if(codigo == passagem.getCodigo()){
+                return true;
+            }
+        }
+        return false;
+    }
     
     @Override
     public String toString() {
