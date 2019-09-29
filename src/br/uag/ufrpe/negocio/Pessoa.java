@@ -7,9 +7,9 @@ package br.uag.ufrpe.negocio;
 
 public abstract class Pessoa {
     protected String nomeCompleto;
-    private String cpf;
-    private String rg;
-    private String telefone;
+    protected String cpf;
+    protected String rg;
+    protected String telefone;
     private Endereco endereco;
 
     public Pessoa(String nomeCompleto, String cpf, String rg, String telefone, Endereco endereco) {
@@ -59,4 +59,9 @@ public abstract class Pessoa {
     public void setEndereco(Endereco endereco) {
         this.endereco = endereco;
     }  
+    
+    @Override
+    public String toString(){
+        return "Pessoa{" + "Nome Completo = " + nomeCompleto + "Cpf = " + cpf + "Rg = " + rg + "Telefone = " + telefone + "Endereco = " + endereco + "}"; 
+    }
 }

@@ -50,4 +50,18 @@ public class Funcionario extends Pessoa{
     public boolean eGerente(){
         return eGerente;
     }
+   
+    @Override
+    public boolean equals(Object obj){
+        if(obj instanceof Funcionario){
+            Funcionario funcionario = (Funcionario)obj;
+            return this.cpf.equals(funcionario.getCpf());
+        }
+        return false;
+    }
+    
+    @Override
+    public String toString(){
+        return "Funcionario{ " + "Nome Completo = " + nomeCompleto + "Cpf = " + cpf + "Rg = " + rg + "Telefone = " + telefone + "Endereco = " + endereco + "}";
+    }
 }
