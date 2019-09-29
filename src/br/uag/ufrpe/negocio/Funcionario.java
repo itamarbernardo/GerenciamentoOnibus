@@ -62,6 +62,6 @@ public class Funcionario extends Pessoa{
     
     @Override
     public String toString(){
-        return "Funcionario{ " + "Nome Completo = " + nomeCompleto + "Cpf = " + cpf + "Rg = " + rg + "Telefone = " + telefone + "Endereco = " + endereco + "}";
+        return "Funcionario{ " + "Nome Completo = " + nomeCompleto + "Cpf = " + cpf + "Rg = " + rg + "Telefone = " + telefone + "Endereco = " + endereco + "Gerente = " + eGerente+ "}";
     }
 }
