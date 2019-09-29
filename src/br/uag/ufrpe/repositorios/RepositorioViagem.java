@@ -297,7 +297,7 @@ public class RepositorioViagem {
                 String dataHoraSaida = via.getDataSaida() + " " + via.getHorarioSaida();
                 String dataHoraChegada = via.getDataChegada() + " " + via.getHorarioChegada();
                 boolean bateHorario = Data.verificarInterseccaoDatasHoras(dataHoraSaida, dataHoraChegada, dataSaidaViagem, dataChegadaViagem);
-                if ((bateHorario && v.getOnibus().getCodigo() == via.getOnibus().getCodigo())) {
+                if ((bateHorario && v.getOnibus().getPlaca() == via.getOnibus().getPlaca())) {
 
                     if (cpf.equals(cpfMotorista) && bateHorario) { //Usar a sobrescrita do metodo equals para Motorista
                         //Achei uma outra viagem do motorista
