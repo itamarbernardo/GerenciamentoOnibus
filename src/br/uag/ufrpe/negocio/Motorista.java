@@ -4,8 +4,8 @@ package br.uag.ufrpe.negocio;
 public class Motorista extends Pessoa{
     private String numeroCarteiraMotorista; 
 
-    public Motorista(String numeroCarteiraMotorista, String nomeCompleto, String cpf, String rg, String email, Endereco endereco, String telefone) {
-        super(nomeCompleto, cpf, rg, email, endereco, telefone);
+    public Motorista(String nomeCompleto, String cpf, String rg, String telefone, Endereco endereco, String numeroCarteiraMotoristaString) {
+        super(nomeCompleto, cpf, rg,  telefone, endereco);
         this.numeroCarteiraMotorista = numeroCarteiraMotorista;
     }
 
