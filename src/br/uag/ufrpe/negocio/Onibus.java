@@ -132,9 +132,9 @@ public class Onibus {
    
     @Override
     public boolean equals(Object obj){
-        if(obj instanceof Passagem){
-            Passagem passagem = (Passagem)obj;
-            if(codigo == passagem.getCodigo()){
+        if(obj instanceof Onibus){
+            Onibus onibus = (Onibus)obj;
+            if(placa == onibus.getPlaca()){
                 return true;
             }
         }
