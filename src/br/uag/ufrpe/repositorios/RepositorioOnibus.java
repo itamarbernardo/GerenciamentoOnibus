@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class RepositorioOnibus {
 
-    private List<Onibus> onibus;
+    private final List<Onibus> onibus;
 
     public RepositorioOnibus() {
         onibus = new ArrayList<>();

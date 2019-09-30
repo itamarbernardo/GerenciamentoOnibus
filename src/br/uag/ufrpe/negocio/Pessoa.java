@@ -6,11 +6,11 @@ package br.uag.ufrpe.negocio;
  * @author Gabriel / Jackson
  */
 
-public abstract class Pessoa {
-    protected String nomeCompleto;
-    protected String cpf;
-    protected String rg;
-    protected String telefone;
+public class Pessoa {
+    private String nomeCompleto;
+    private String cpf;
+    private String rg;
+    private String telefone;
     private Endereco endereco;
 
     public Pessoa(String nomeCompleto, String cpf, String rg, String telefone, Endereco endereco) {

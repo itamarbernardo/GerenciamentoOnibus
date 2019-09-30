@@ -61,7 +61,7 @@ public class Viagem {
         this.quantidadeIdosoParcial = 0;
     }
 
-    public void copiarValoresPoltronas() {
+    private void copiarValoresPoltronas() {
         for (int i = 1; i <= onibus.getPoltronas().size(); i++) {
             poltronas.put(i, onibus.getPoltronas().get(i));
         }
@@ -76,17 +76,17 @@ public class Viagem {
         }
     }
 
-    public int calcularQuantidadeDePassageirosNaViagem() {
+    public int calcularQuantidadeDePassageiros() {
         return passagens.size();
     }
 
-    public double calcularPorcentagemPassageirosNaViagem() {
+    public double calcularPorcentagemPassageiros() {
         double porcentagem = passagens.size() / onibus.getTotalPoltronas();
 
         return porcentagem;
     }
 
-    public double calcularPorcentagemLancheNaViagem() {
+    public double calcularPorcentagemLanche() {
         double porcentagem = calculaQuantidadeLanche() / passagens.size();
 
         return porcentagem;
@@ -116,7 +116,7 @@ public class Viagem {
         return quantidade;
     }
 
-    public double calculaLucroTotalDaViagem() {
+    public double calculaLucro() {
         double lucroTotal = 0.0;
         for (Passagem p : passagens) {
             lucroTotal = lucroTotal + p.getPrecoTotal();

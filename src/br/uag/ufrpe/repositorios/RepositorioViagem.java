@@ -19,7 +19,7 @@ import java.util.List;
  */
 public class RepositorioViagem {
 
-    private List<Viagem> viagens;
+    private final List<Viagem> viagens;
 
     public RepositorioViagem() {
         viagens = new ArrayList<>();
@@ -48,7 +48,7 @@ public class RepositorioViagem {
                 //Verifico o intervalo das datas, o horario e o destino
 
                 totalPassageirosQueremLanche = totalPassageirosQueremLanche + viagem.calculaQuantidadeLanche();
-                totalPassageiros = totalPassageiros + viagem.calcularQuantidadeDePassageirosNaViagem();
+                totalPassageiros = totalPassageiros + viagem.calcularQuantidadeDePassageiros();
 
             }
         }
@@ -80,7 +80,7 @@ public class RepositorioViagem {
                 //Verifico o intervalo das datas, o horario e o destino
 
                 totalPassageirosQueremLanche = totalPassageirosQueremLanche + viagem.calculaQuantidadeLanche();
-                totalPassageiros = totalPassageiros + viagem.calcularQuantidadeDePassageirosNaViagem();
+                totalPassageiros = totalPassageiros + viagem.calcularQuantidadeDePassageiros();
                 
             }
         }
@@ -110,7 +110,7 @@ public class RepositorioViagem {
             if (estaNoIntervalo) { //Tem que verificar o intervalo das datas
 
                 totalPassageirosQueremLanche = totalPassageirosQueremLanche + viagem.calculaQuantidadeLanche();
-                totalPassageiros = totalPassageiros + viagem.calcularQuantidadeDePassageirosNaViagem();
+                totalPassageiros = totalPassageiros + viagem.calcularQuantidadeDePassageiros();
 
             }
         }
@@ -140,7 +140,7 @@ public class RepositorioViagem {
             if (estaNoIntervalo) {
                 //Tem que verificar o intervalo das datas
                 totalCapacidadeOnibus = totalCapacidadeOnibus + viagem.getOnibus().getTotalPoltronas();
-                totalQuantidadePassageiros = totalQuantidadePassageiros + viagem.calcularQuantidadeDePassageirosNaViagem();
+                totalQuantidadePassageiros = totalQuantidadePassageiros + viagem.calcularQuantidadeDePassageiros();
             
             }
         }
@@ -172,7 +172,7 @@ public class RepositorioViagem {
             if (estaNoIntervalo && viagem.getDestino().equals(destino) && viagem.getOrigem().equals(origem) && viagem.getHorarioSaida().equals(horario)) {
                 //Tem que verificar o intervalo das datas, o horario e o destino
                 totalCapacidadeOnibus = totalCapacidadeOnibus + viagem.getOnibus().getTotalPoltronas();
-                totalQuantidadePassageiros = totalQuantidadePassageiros + viagem.calcularQuantidadeDePassageirosNaViagem();
+                totalQuantidadePassageiros = totalQuantidadePassageiros + viagem.calcularQuantidadeDePassageiros();
             }
         }
 
@@ -200,7 +200,7 @@ public class RepositorioViagem {
             if (estaNoIntervalo && viagem.getDestino().equals(destino) && viagem.getOrigem().equals(origem)) {
                 //Tem que verificar o intervalo das datas, o horario e o destino
                 totalCapacidadeOnibus = totalCapacidadeOnibus + viagem.getOnibus().getTotalPoltronas();
-                totalQuantidadePassageiros = totalQuantidadePassageiros + viagem.calcularQuantidadeDePassageirosNaViagem();
+                totalQuantidadePassageiros = totalQuantidadePassageiros + viagem.calcularQuantidadeDePassageiros();
             }
         }
 
@@ -222,7 +222,7 @@ public class RepositorioViagem {
         for (Viagem viagem : viagens) {
             boolean estaNoIntervalo = Data.verificarDataEstaNoIntervalo(dataInicio, dataFim, viagem.getDataSaida());
             if (estaNoIntervalo) { //Tem que verificar o intervalo dado
-                lucroTotal = lucroTotal + viagem.calculaLucroTotalDaViagem();
+                lucroTotal = lucroTotal + viagem.calculaLucro();
             }
         }
         return lucroTotal;
@@ -245,7 +245,7 @@ public class RepositorioViagem {
             boolean estaNoIntervalo = Data.verificarDataEstaNoIntervalo(dataInicio, dataFim, viagem.getDataSaida());
 
             if (estaNoIntervalo && viagem.getDestino().equals(destino) && viagem.getOrigem().equals(origem) && viagem.getHorarioSaida().equals(horarioSaida)) { //Tem que verificar o intervalo dado e se é essa viagem nesse horario e destino
-                lucroTotal = lucroTotal + viagem.calculaLucroTotalDaViagem();
+                lucroTotal = lucroTotal + viagem.calculaLucro();
             }
         }
         return lucroTotal;
@@ -267,7 +267,7 @@ public class RepositorioViagem {
             boolean estaNoIntervalo = Data.verificarDataEstaNoIntervalo(dataInicio, dataFim, viagem.getDataSaida());
 
             if (estaNoIntervalo && viagem.getDestino().equals(destino) && viagem.getOrigem().equals(origem)) { //Tem que verificar o intervalo dado e se é essa viagem nesse horario e destino
-                lucroTotal = lucroTotal + viagem.calculaLucroTotalDaViagem();
+                lucroTotal = lucroTotal + viagem.calculaLucro();
             }
         }
         return lucroTotal;

@@ -14,14 +14,12 @@ public class Funcionario extends Pessoa{
     
     private String senha; 
     private String email;
-    private final Endereco endereco;
     private boolean eGerente;
 
     public Funcionario(String senha, String email, String nomeCompleto, String cpf, String rg, String telefone, Endereco endereco, boolean eGerente) {
         super(nomeCompleto, cpf, rg, telefone, endereco);
         this.senha = senha;
         this.email = email;
-        this.endereco = endereco;
         this.eGerente = eGerente;
     }
 
@@ -57,13 +55,15 @@ public class Funcionario extends Pessoa{
     public boolean equals(Object obj){
         if(obj instanceof Funcionario){
             Funcionario funcionario = (Funcionario)obj;
-            return this.cpf.equals(funcionario.getCpf());
+            return getCpf().equals(funcionario.getCpf());
         }
         return false;
     }
-    
+
     @Override
-    public String toString(){
-        return "Funcionario{ " + "Nome Completo = " + nomeCompleto + "Cpf = " + cpf + "Rg = " + rg + "Telefone = " + telefone + "Endereco = " + endereco + "Gerente = " + eGerente+ "}";
+    public String toString() {
+        return "Funcionario{" + super.toString() + "senha=" + senha + ", email=" + email + ", eGerente=" + eGerente + '}';
     }
+    
+
 }

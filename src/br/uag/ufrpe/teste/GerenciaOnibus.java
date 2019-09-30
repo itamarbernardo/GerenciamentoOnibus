@@ -14,6 +14,7 @@ import br.uag.ufrpe.negocio.Passageiro;
 import br.uag.ufrpe.negocio.Passagem;
 import br.uag.ufrpe.negocio.Viagem;
 import br.uag.ufrpe.repositorios.RepositorioFuncionario;
+import br.uag.ufrpe.repositorios.RepositorioMotorista;
 import br.uag.ufrpe.repositorios.RepositorioOnibus;
 import br.uag.ufrpe.repositorios.RepositorioPassageiro;
 import br.uag.ufrpe.repositorios.RepositorioPassagem;
@@ -38,12 +39,14 @@ public class GerenciaOnibus {
         RepositorioPassagem repositorioPassagem = new RepositorioPassagem();
         RepositorioPassageiro repositorioPassageiro = new RepositorioPassageiro();
         RepositorioFuncionario repositorioFuncionario  = new RepositorioFuncionario();
+        RepositorioMotorista repositorioMotorista = new RepositorioMotorista();
         
         
         Endereco endereco = new Endereco("55293-000", "Rua 10", "Centro", "121-A", "Casa", "Garanhuns", "PE");
         Motorista m = new Motorista("João Silva", "123.456.789-58", "1209139", "(87)99454-5280", endereco, "12345678982");
         Motorista m2 = new Motorista("Marcelo Paes", "992.456.789-58", "9909101", "(82)99107-5280", endereco, "12345678982");
-        
+        repositorioMotorista.adicionarMotorista(m);
+        repositorioMotorista.adicionarMotorista(m2);
         
         List<Integer> poltronasObeso = new ArrayList<>();
         poltronasObeso.add(1);
@@ -87,7 +90,7 @@ public class GerenciaOnibus {
         System.out.println("Adicionar Passagem 3: " + v.adicionarPassagem(passagem3));
        
         
-        double lucro = v.calculaLucroTotalDaViagem();
+        double lucro = v.calculaLucro();
         System.out.println("Lucro da viagem: " + lucro);
         
         
@@ -129,6 +132,8 @@ public class GerenciaOnibus {
         System.out.println("\nUltimas viagens do passageiro: \n" + ultimasViagens);
         
         Funcionario f = new Funcionario("1283", "joao@gmail.com", "Joao Filho Silva", "119.288.399-19", "0981983", "(98)99002-9218", endereco, true);
+        
+
     }
     
 }

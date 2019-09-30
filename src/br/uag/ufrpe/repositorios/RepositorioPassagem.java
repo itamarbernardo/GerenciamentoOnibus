@@ -15,7 +15,7 @@ import java.util.List;
  * @author Emily Santos
  */
 public class RepositorioPassagem {
-    private List<Passagem> passagens;
+    private final List<Passagem> passagens;
     
     
     public RepositorioPassagem(){
