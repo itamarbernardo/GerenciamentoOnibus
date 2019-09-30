@@ -131,7 +131,7 @@ public class GerenciaOnibus {
         String ultimasViagens = repositorioViagem.procurarUltimasViagensDeUmPassagiro(passageiro);
         System.out.println("\nUltimas viagens do passageiro: \n" + ultimasViagens);
         
-        Funcionario f = new Funcionario("1283", "joao@gmail.com", "Joao Filho Silva", "119.288.399-19", "0981983", "(98)99002-9218", endereco, true);
+        Funcionario f = new Funcionario("Joao Filho Silva", "119.288.399-19", "0981983", "(98)99002-9218", endereco,  "1283", "joao@gmail.com",true);
         
 
     }
