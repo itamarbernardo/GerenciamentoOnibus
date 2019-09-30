@@ -1,11 +1,7 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package br.uag.ufrpe.negocio;
 
 /**
+ * Essa clase tem como objetivo criar uma passagem para uma determinada viagem.
  *
  * @author Emily Santos
  */
@@ -25,6 +21,20 @@ public class Passagem {
     private static int totalPassagens;
     private static final double tarifaInterestadual = 3.00;
     private static final double tarifaIntermunicipal = 1.50;
+    
+    /**
+     * Construtor da Classe Passagem
+     *
+     * @param passageiro mostra os dados do passageiro que irá na viagem;
+     * @param preco informa o preco da passagem sem incluir taxas;
+     * @param eDentroDoEstado informa se a viagem será dentro do Estado ou fora, gerando assim
+     * uma tarifa disefenciada para cada caso;
+     * @param codigoPoltrona informa o numero da poltrona em que o passageiro irá na viagem;
+     * @param tipoDeAssento mostra qual o assento o passageiro deseja ir;
+     * @param tipoDePassagem informa em qual categoria o passageiro se adequa;
+     * @param lanche informa se o passageiro deseja ou não os lanches ofertados pela empresa;
+     * @param criancaColo mostra se o passageiro possui crianca no colo;
+     */
 
     public Passagem(Passageiro passageiro, double preco, boolean eDentroDoEstado, int codigoPoltrona, String tipoDeAssento, String tipoDePassagem,  boolean lanche, boolean criancaColo) {
         this.passageiro = passageiro;
@@ -40,8 +50,7 @@ public class Passagem {
         this.precoTotal = calcularPrecoTotal();
     }
             
-    // -------------------------- GETTERS AND SETTERS ----------------------------------
-
+   
     public int getCodigo() {
         
         return codigo;
@@ -56,7 +65,6 @@ public class Passagem {
         this.passageiro = passageiro;
     }
 
-    // ------------------------------ PREÇO --------------------------------------------
     public double getPreco() {
         return preco;
     }
@@ -69,14 +77,13 @@ public class Passagem {
     public double getPrecoTotal() {
         return precoTotal;
     }
-     
-    // ------------------------------ TARIFA -------------------------------
+ 
 
     public boolean iseDentroDoEstado() {
         return eDentroDoEstado;
     }
 
-    // ------------------------------- POLTRONA -------------------------------
+
     public int getCodigoPoltrona() {
         return codigoPoltrona;
     }
@@ -85,7 +92,6 @@ public class Passagem {
         this.codigoPoltrona = codigoPoltrona;
     }
 
-    // ------------------------------ ASSENTO -----------------------------------
     
     public String getTipoDeAssento(){
         return  tipoDeAssento;
@@ -95,8 +101,7 @@ public class Passagem {
     public void setTipoDeAssento(String tipoDeAssento) {
         this.tipoDeAssento = tipoDeAssento;
     }
-    
-    // --------------------------------- TIPO DE PASSAGEM ----------------------------
+
     
     public String getTipoDePassagem() {
         return tipoDePassagem;
@@ -105,9 +110,7 @@ public class Passagem {
     public void setTipoDePassagem(String tipoDePassagem){
         this.tipoDePassagem = adequarTipoPassagem(tipoDePassagem);
     }
-    
 
-    // ------------------------------------ LANCHES ---------------------------------
 
     public boolean isLanche() {
         return lanche;
@@ -116,9 +119,7 @@ public class Passagem {
     public void setLanche(boolean lanche) {
         this.lanche = lanche;
     }
-    
 
-    // ---------------------------- CRIANCA NO COLO ---------------------------------
     public boolean isCriancaColo() {
         return criancaColo;
     }
@@ -152,7 +153,14 @@ public class Passagem {
     
     // ----------------------------- METODOS -----------------------------------
   
-        
+    /**
+     * Esse método serve para adequar a passagem de acordo com o que a escolha de poltrona do
+     * passageiro, de acordo com a idade certa e os meios para se conseguir a poltrona certa;
+     *
+     * @param tipoDePassagem informa em qual categoria o passageiro informou querer se adequar;
+     * @return Retorna o nome do tipo de categoria;
+     */  
+    
     private String adequarTipoPassagem(String tipoDePassagem){
         String novoTipoPassagem;
 
@@ -195,13 +203,13 @@ public class Passagem {
     }
     private double calcularPrecoTipoDeAssento() {
         if(null != tipoDeAssento)switch (tipoDeAssento) {
-            case "Totalmente Reclinada":
+            case "TotalReclinavel":
                 return 20.00;
                         
-            case "Parcialmente Reclinada":
+            case "Reclinavel":
                 return 10.00;
                 
-            case "Assento para Obeso":
+            case "Obeso":
                 return 15.00;
                 
             case "Convencional":
@@ -215,7 +223,7 @@ public class Passagem {
   
     public double calcularPrecoTotal(){
         
-    if(this.tipoDePassagem != null){switch (this.tipoDePassagem) {
+    switch (this.tipoDePassagem) {
             case "Idoso":
             case "IdJovem":
                 this.precoTotal = (calcularPrecoTipoDeTarifa() + calcularPrecoTipoDeAssento() + calcularPrecoLanche());
@@ -234,7 +242,21 @@ public class Passagem {
         }
         return precoTotal;
     }
-    return precoTotal;
+    
+    @Override
+    public boolean equals(Object obj){
+        if(obj instanceof Passagem){
+            Passagem passagem = (Passagem)obj;
+            if(codigo == passagem.getCodigo()){
+                return true;
+            }
+        }
+        return false;
+    }
+    
+@Override
+    public String toString(){
+        return "PASSAGEM { Passageiro: " + passageiro + " | Preço total da passagem: " + precoTotal + " | Preco da passagem: "+ preco + " | Possui lanche: " + lanche + " | Dentro do estado: " + eDentroDoEstado + " | Possui criança no colo: " + criancaColo + " | Tipo de passagem: " + tipoDePassagem + " | Tipo de assento: " + tipoDeAssento + " }";
     }
 
 }

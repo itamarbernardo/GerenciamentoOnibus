@@ -1,11 +1,15 @@
 package br.uag.ufrpe.negocio;
 
-
+/**
+ * Esta classe representa um Motorista do Onibus
+ * 
+ * @author Gabriel
+ */
 public class Motorista extends Pessoa{
     private String numeroCarteiraMotorista; 
 
-    public Motorista(String numeroCarteiraMotorista, String nomeCompleto, String cpf, String rg, String email, Endereco endereco, String telefone) {
-        super(nomeCompleto, cpf, rg, email, endereco, telefone);
+    public Motorista(String nomeCompleto, String cpf, String rg, String telefone, Endereco endereco, String numeroCarteiraMotorista) {
+        super(nomeCompleto, cpf, rg,  telefone, endereco);
         this.numeroCarteiraMotorista = numeroCarteiraMotorista;
     }
 
@@ -13,13 +17,29 @@ public class Motorista extends Pessoa{
         return numeroCarteiraMotorista;
     }
 
-    public void setNumeroCarteiraMotorista(String numeroCarteiraMotorista) {
+    public boolean setNumeroCarteiraMotorista(String numeroCarteiraMotorista) {
         if(numeroCarteiraMotorista.length() == 11){
             this.numeroCarteiraMotorista = numeroCarteiraMotorista;
+            return true;
         }
-        else{
-            System.out.println("Carteira invalida");
-        }
+        return false;
     }
+    
+    @Override
+    public boolean equals(Object obj) {
+        if (obj instanceof Motorista) {
+            Motorista motorista = (Motorista) obj;
+            if (numeroCarteiraMotorista.equals(motorista.getNumeroCarteiraMotorista())) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Motorista{" + super.toString() + "numeroCarteiraMotorista=" + numeroCarteiraMotorista + '}';
+    }
+    
     
 }

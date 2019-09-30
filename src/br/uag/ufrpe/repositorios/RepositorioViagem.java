@@ -35,7 +35,7 @@ public class RepositorioViagem {
      * @param dataFim Data final do intervalo.
      * @return Retorna a porcentagem de passageiros que querem lanche
      */
-    public double calculaPorcentagemLanchePorDatasEViagens(String horarioSaida, String destino, String dataInicio, String dataFim) {
+    public double calculaPorcentagemLanchePorDatasEViagens(String horarioSaida, String origem, String destino, String dataInicio, String dataFim) {
 
         double porcentagem = 0.0;
         double totalPassageiros = 0.0;
@@ -44,7 +44,7 @@ public class RepositorioViagem {
         for (Viagem viagem : viagens) {
             boolean estaNoIntervalo = Data.verificarDataEstaNoIntervalo(dataInicio, dataFim, viagem.getDataSaida());
 
-            if (estaNoIntervalo && viagem.getDestino().equals(destino) && viagem.getHorarioSaida().equals(horarioSaida)) {
+            if (estaNoIntervalo && viagem.getDestino().equals(destino) && viagem.getHorarioSaida().equals(horarioSaida) && viagem.getOrigem().equals(origem)) {
                 //Verifico o intervalo das datas, o horario e o destino
 
                 totalPassageirosQueremLanche = totalPassageirosQueremLanche + viagem.calculaQuantidadeLanche();
@@ -67,7 +67,7 @@ public class RepositorioViagem {
      * @param dataFim Data final do intervalo.
      * @return Retorna a porcentagem.
      */
-    public double calculaPorcentagemLanchePorDatasEDestino(String destino, String dataInicio, String dataFim) {
+    public double calculaPorcentagemLanchePorDatasEDestino(String origem, String destino, String dataInicio, String dataFim) {
 
         double porcentagem = 0.0;
         double totalPassageiros = 0.0;
@@ -76,12 +76,12 @@ public class RepositorioViagem {
         for (Viagem viagem : viagens) {
             boolean estaNoIntervalo = Data.verificarDataEstaNoIntervalo(dataInicio, dataFim, viagem.getDataSaida());
 
-            if (estaNoIntervalo && viagem.getDestino().equals(destino)) {
+            if (estaNoIntervalo && viagem.getDestino().equals(destino) && viagem.getOrigem().equals(origem)) {
                 //Verifico o intervalo das datas, o horario e o destino
 
                 totalPassageirosQueremLanche = totalPassageirosQueremLanche + viagem.calculaQuantidadeLanche();
                 totalPassageiros = totalPassageiros + viagem.calcularQuantidadeDePassageirosNaViagem();
-
+                
             }
         }
 
@@ -141,10 +141,12 @@ public class RepositorioViagem {
                 //Tem que verificar o intervalo das datas
                 totalCapacidadeOnibus = totalCapacidadeOnibus + viagem.getOnibus().getTotalPoltronas();
                 totalQuantidadePassageiros = totalQuantidadePassageiros + viagem.calcularQuantidadeDePassageirosNaViagem();
+            
             }
         }
 
         porcentagem = totalQuantidadePassageiros / totalCapacidadeOnibus;
+        
         return porcentagem;
     }
 
@@ -159,7 +161,7 @@ public class RepositorioViagem {
      * @return Retorna a porcentagem de passageiros por viagem nas viagens de
      * certo horário e destino.
      */
-    public double calculaPorcentagemPassageirosPorDatasEViagens(String horario, String destino, String dataInicio, String dataFim) {
+    public double calculaPorcentagemPassageirosPorDatasEViagens(String horario, String origem, String destino, String dataInicio, String dataFim) {
 
         double porcentagem = 0.0;
         double totalCapacidadeOnibus = 0.0;
@@ -167,7 +169,7 @@ public class RepositorioViagem {
 
         for (Viagem viagem : viagens) {
             boolean estaNoIntervalo = Data.verificarDataEstaNoIntervalo(dataInicio, dataFim, viagem.getDataSaida());
-            if (estaNoIntervalo && viagem.getDestino().equals(destino) && viagem.getHorarioSaida().equals(horario)) {
+            if (estaNoIntervalo && viagem.getDestino().equals(destino) && viagem.getOrigem().equals(origem) && viagem.getHorarioSaida().equals(horario)) {
                 //Tem que verificar o intervalo das datas, o horario e o destino
                 totalCapacidadeOnibus = totalCapacidadeOnibus + viagem.getOnibus().getTotalPoltronas();
                 totalQuantidadePassageiros = totalQuantidadePassageiros + viagem.calcularQuantidadeDePassageirosNaViagem();
@@ -187,7 +189,7 @@ public class RepositorioViagem {
      * @param dataFim Data de fim do intervalo.
      * @return Retorna a porcentagem.
      */
-    public double calculaPorcentagemPassageirosPorDatasEDestino(String destino, String dataInicio, String dataFim) {
+    public double calculaPorcentagemPassageirosPorDatasEDestino(String origem, String destino, String dataInicio, String dataFim) {
 
         double porcentagem = 0.0;
         double totalCapacidadeOnibus = 0.0;
@@ -195,7 +197,7 @@ public class RepositorioViagem {
 
         for (Viagem viagem : viagens) {
             boolean estaNoIntervalo = Data.verificarDataEstaNoIntervalo(dataInicio, dataFim, viagem.getDataSaida());
-            if (estaNoIntervalo && viagem.getDestino().equals(destino)) {
+            if (estaNoIntervalo && viagem.getDestino().equals(destino) && viagem.getOrigem().equals(origem)) {
                 //Tem que verificar o intervalo das datas, o horario e o destino
                 totalCapacidadeOnibus = totalCapacidadeOnibus + viagem.getOnibus().getTotalPoltronas();
                 totalQuantidadePassageiros = totalQuantidadePassageiros + viagem.calcularQuantidadeDePassageirosNaViagem();
@@ -236,13 +238,13 @@ public class RepositorioViagem {
      * @param dataFim Data final do intervalo.
      * @return Retorna o lucro obtido.
      */
-    public double calcularLucroTotalPorDatasEViagens(String horarioSaida, String destino, String dataInicio, String dataFim) {
+    public double calcularLucroTotalPorDatasEViagens(String horarioSaida, String origem, String destino, String dataInicio, String dataFim) {
         double lucroTotal = 0.0;
 
         for (Viagem viagem : viagens) {
             boolean estaNoIntervalo = Data.verificarDataEstaNoIntervalo(dataInicio, dataFim, viagem.getDataSaida());
 
-            if (estaNoIntervalo && viagem.getDestino().equals(destino) && viagem.getHorarioSaida().equals(horarioSaida)) { //Tem que verificar o intervalo dado e se é essa viagem nesse horario e destino
+            if (estaNoIntervalo && viagem.getDestino().equals(destino) && viagem.getOrigem().equals(origem) && viagem.getHorarioSaida().equals(horarioSaida)) { //Tem que verificar o intervalo dado e se é essa viagem nesse horario e destino
                 lucroTotal = lucroTotal + viagem.calculaLucroTotalDaViagem();
             }
         }
@@ -258,13 +260,13 @@ public class RepositorioViagem {
      * @param dataFim Data final do intervalo.
      * @return Retorna o lucro total obtido.
      */
-    public double calcularLucroTotalPorDatasEDestino(String destino, String dataInicio, String dataFim) {
+    public double calcularLucroTotalPorDatasEDestino(String origem, String destino, String dataInicio, String dataFim) {
         double lucroTotal = 0.0;
 
         for (Viagem viagem : viagens) {
             boolean estaNoIntervalo = Data.verificarDataEstaNoIntervalo(dataInicio, dataFim, viagem.getDataSaida());
 
-            if (estaNoIntervalo && viagem.getDestino().equals(destino)) { //Tem que verificar o intervalo dado e se é essa viagem nesse horario e destino
+            if (estaNoIntervalo && viagem.getDestino().equals(destino) && viagem.getOrigem().equals(origem)) { //Tem que verificar o intervalo dado e se é essa viagem nesse horario e destino
                 lucroTotal = lucroTotal + viagem.calculaLucroTotalDaViagem();
             }
         }
@@ -272,12 +274,12 @@ public class RepositorioViagem {
     }
 
     public String procurarUltimasViagensDeUmPassagiro(Passageiro passageiro) {
-        String ultimosDestinos = "CPF: " + passageiro.getCpf() + "\n"; //Adicionar o nome também
+        String ultimosDestinos = "CPF: " + passageiro.getCpf() + "\nNome: " + passageiro.getNomeCompleto() + "\n"; //Adicionar o nome também
 
         for (Viagem viagem : viagens) {
             for (Passageiro p : viagem.listagemPassageirosNaViagem()) {
                 if (p.getCpf().equals(passageiro.getCpf())) {
-                    ultimosDestinos = ultimosDestinos + "\nOrigem: " + viagem.getOrigem() + "\nDestino: " + viagem.getDestino() + "\nData de saída: " + viagem.getDataSaida() + "\nHorario Saída: " + viagem.getHorarioSaida() + "\nData de chegada: " + viagem.getDataChegada() + "\nHora de chegada: " + viagem.getHorarioChegada();
+                    ultimosDestinos = ultimosDestinos + "\nOrigem: " + viagem.getOrigem() + "\nDestino: " + viagem.getDestino() + "\nData de saída: " + viagem.getDataSaida() + "\nHorario Saída: " + viagem.getHorarioSaida() + "\nData de chegada: " + viagem.getDataChegada() + "\nHora de chegada: " + viagem.getHorarioChegada() + "\n";
                 }
             }
         }
@@ -297,14 +299,15 @@ public class RepositorioViagem {
                 String dataHoraSaida = via.getDataSaida() + " " + via.getHorarioSaida();
                 String dataHoraChegada = via.getDataChegada() + " " + via.getHorarioChegada();
                 boolean bateHorario = Data.verificarInterseccaoDatasHoras(dataHoraSaida, dataHoraChegada, dataSaidaViagem, dataChegadaViagem);
-                if ((bateHorario && v.getOnibus().getCodigo() == via.getOnibus().getCodigo())) {
+                if ((bateHorario && v.getOnibus().getPlaca().equals(via.getOnibus().getPlaca()))) {
 
                     if (cpf.equals(cpfMotorista) && bateHorario) { //Usar a sobrescrita do metodo equals para Motorista
                         //Achei uma outra viagem do motorista
                         return "O motorista já está em outra viagem neste mesmo horário";
                     }
+
+                    return "Este onibus já está escalado em outra viagem neste mesmo horario";
                 }
-                return "Este onibus já está escalado em outra viagem neste mesmo horario";
 
             }
             viagens.add(v);
@@ -323,10 +326,10 @@ public class RepositorioViagem {
 
     }
 
-    public boolean alterarViagem(Viagem v) {
+    public boolean alterarViagem(Viagem viagem) {
         for (int i = 0; i < viagens.size(); i++) {
-            if (viagens.get(i).getCodigo() == v.getCodigo()) {
-                viagens.set(i, v);
+            if (viagem.equals(viagens.get(i))) {
+                viagens.set(i, viagem);
                 return true; //So altera se a viagem existir
             }
 

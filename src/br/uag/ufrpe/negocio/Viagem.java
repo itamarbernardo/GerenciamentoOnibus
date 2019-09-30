@@ -6,6 +6,7 @@
 package br.uag.ufrpe.negocio;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,9 +36,6 @@ public class Viagem {
     private int quantidadeIdoso;
     private int quantidadeIdosoParcial;
 
-    //private int quantidadeAssentosReclinaveis;
-    //private int quantidadeAssentosTotalmenteReclinaveis;
-    //private int quantidadeAssentosObeso;
     private Map<Integer, String> poltronas;
 
     public Viagem(Onibus onibus, String origem, String destino, String horarioSaida, String horarioChegada, double desconto, String dataSaida, String dataChegada) {
@@ -54,12 +52,19 @@ public class Viagem {
         this.codigo = totalViagens; //O codigo vai ser o numero de viagens
         totalViagens++;
 
-        this.poltronas = onibus.getPoltronas();
-
+        this.poltronas = new HashMap<>();
+        copiarValoresPoltronas();
+        
         this.quantidadeIdJovem = 0;
         this.quantidadeIdoso = 0;
         this.quantidadeIdJovemParcial = 0;
         this.quantidadeIdosoParcial = 0;
+    }
+
+    public void copiarValoresPoltronas() {
+        for (int i = 1; i <= onibus.getPoltronas().size(); i++) {
+            poltronas.put(i, onibus.getPoltronas().get(i));
+        }
     }
 
     public void aplicarDescontoEmTodasAsPassagens() {
@@ -133,10 +138,10 @@ public class Viagem {
 
         String mensagemErro = "";
 
-        if (poltronas.get(p.getCodigo()).equals(p.getTipoDeAssento())) {
-            poltronas.put(p.getCodigo(), "Ocupado");
+        if ((poltronas.get(p.getCodigoPoltrona())).equals(p.getTipoDeAssento())) {
+            poltronas.put(p.getCodigoPoltrona(), "Ocupado");
 
-        } else if (poltronas.get(p.getCodigo()).equals("Ocupado")) {
+        } else if (poltronas.get(p.getCodigoPoltrona()).equals("Ocupado")) {
             mensagemErro = "Erro. A poltrona já está ocupada.";
         } else {
             mensagemErro = "Erro. O tipo de Assento não está disponível nesta poltrona.";
@@ -367,8 +372,6 @@ public class Viagem {
     public Map<Integer, String> getPoltronas() {
         return poltronas;
     }
-    
-    
 
     @Override
     public String toString() {

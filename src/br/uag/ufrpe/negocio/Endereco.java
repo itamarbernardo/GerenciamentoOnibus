@@ -2,6 +2,7 @@ package br.uag.ufrpe.negocio;
 
 /**
  * Esta classe representa o endereco de uma pessoa.
+ *  
  * @author Itamar Jr
  */
 public class Endereco {

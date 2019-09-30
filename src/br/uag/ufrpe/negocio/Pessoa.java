@@ -1,75 +1,48 @@
 package br.uag.ufrpe.negocio;
 
 /**
- *
- * @author Gabriel
+ * Esta classe junta os atributos comuns de um objeto Pessoa.
+ * 
+ * @author Gabriel / Jackson
  */
 
-public class Pessoa {
-    private String nomeCompleto;
-    private String cpf;
-    private String rg;
-    private String email; 
-    private String telefone;
+public abstract class Pessoa {
+    protected String nomeCompleto;
+    protected String cpf;
+    protected String rg;
+    protected String telefone;
     private Endereco endereco;
 
-    public Pessoa(String nomeCompleto, String cpf, String rg, String email,Endereco endereco,String telefone) {
+    public Pessoa(String nomeCompleto, String cpf, String rg, String telefone, Endereco endereco) {
         this.nomeCompleto = nomeCompleto;
         this.cpf = cpf;
         this.rg = rg;
-        this.email = email;
-        this.endereco = endereco;
         this.telefone = telefone;
-    }
+        this.endereco = endereco;
+    } 
     
     public String getNomeCompleto() {
         return nomeCompleto;
     }
-    
-    public void setNomeCompleto(String nomeCompleto) {    
-            this.nomeCompleto = nomeCompleto;
+  
+    public void setNomeCompleto(String nomeCompleto) {
+        this.nomeCompleto = nomeCompleto;
     }
-    
 
     public String getCpf() {
         return cpf;
     }
-
-    
+  
     public void setCpf(String cpf) {
-        if(cpf.length() == 11){
-            this.cpf = cpf;
-        }
-        else{
-            System.out.println("CPF invalido !!");
-        }
+        this.cpf = cpf;
     }
-
     
     public String getRg() {
         return rg;
     }
 
-  
     public void setRg(String rg) {
         this.rg = rg;
-    }
-
-   
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-   
-    public Endereco getEndereco() {
-        return endereco;
-    }
-    
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
     }
 
     public String getTelefone() {
@@ -77,12 +50,19 @@ public class Pessoa {
     }
 
     public void setTelefone(String telefone) {
-        if(telefone.length() == 11){
-            this.telefone = telefone;
-        }
-        else{
-            System.out.println("Telefone invalido !");
-        }
+        this.telefone = telefone;
     }
+
+    public Endereco getEndereco() {
+        return endereco;
+    }
+
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }  
     
+    @Override
+    public String toString(){
+        return "Pessoa{" + "Nome Completo = " + nomeCompleto + "Cpf = " + cpf + "Rg = " + rg + "Telefone = " + telefone + "Endereco = " + endereco + "}"; 
+    }
 }

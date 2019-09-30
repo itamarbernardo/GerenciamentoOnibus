@@ -10,7 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
+ * Esta classe representa um repositório de Passagens
+ * 
  * @author Emily Santos
  */
 public class RepositorioPassagem {
@@ -33,7 +34,7 @@ public class RepositorioPassagem {
     
     public boolean alterarPassagem(Passagem passagem){
         for (int i = 0; i < passagens.size(); i++) {
-            if (passagens.get(i).getCodigo() == passagem.getCodigo()) {
+            if (passagem.equals(passagens.get(i))) {
                 passagens.set(i, passagem);
                 return true; 
             }

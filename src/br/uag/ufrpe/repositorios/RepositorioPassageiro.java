@@ -4,7 +4,8 @@ import br.uag.ufrpe.negocio.Passageiro;
 import java.util.ArrayList;
 import java.util.List;
 /**
- *
+ *Esta classe representa um repositório de Passageiros
+ * 
  * @author Jackson
  */
 public class RepositorioPassageiro {
@@ -24,7 +25,7 @@ public class RepositorioPassageiro {
     
     public boolean alterarPassageiro(Passageiro passageiro){
         for (int i = 0; i < passageiros.size(); i++) {
-            if (passageiros.get(i).getCpf().equals(passageiro.getCpf())) {
+            if (passageiro.equals(passageiros.get(i))) {
                 passageiros.set(i, passageiro);
                 return true; //So altera se a viagem existir
             }
