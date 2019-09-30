@@ -325,6 +325,16 @@ public class RepositorioViagem {
         return false;
 
     }
+    
+    public boolean removerViagem(Viagem viagem) {
+        Viagem v = procurarViagem(viagem.getCodigo());
+        if (v != null) {
+            viagens.remove(v);
+            return true; //Se existir a viagem, ele remove
+        }
+        return false;
+
+    }
 
     public boolean alterarViagem(Viagem viagem) {
         for (int i = 0; i < viagens.size(); i++) {

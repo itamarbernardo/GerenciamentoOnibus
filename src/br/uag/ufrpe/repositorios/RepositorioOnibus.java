@@ -10,8 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *Esta classe representa um repositório de Onibus
- * 
+ * Esta classe representa um repositório de Onibus
+ *
  * @author Emily Santos;
  */
 public class RepositorioOnibus {
@@ -62,8 +62,13 @@ public class RepositorioOnibus {
     }
 
     public boolean removerOnibus(Onibus o) {
-        onibus.remove(o);
-        return true;
+        Onibus oni = procurarOnibus(o.getPlaca());
+
+        if (oni != null) {
+            onibus.remove(o);
+            return true;
+        }
+        return false;
     }
 
 }
