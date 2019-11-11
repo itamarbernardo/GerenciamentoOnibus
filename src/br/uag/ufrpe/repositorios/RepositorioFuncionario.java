@@ -53,5 +53,14 @@ public class RepositorioFuncionario {
             funcionarios.remove(encontrado);
         }
     }
+    
+     public List<Funcionario> listagemFuncionarios() {
+        List<Funcionario> funcionariosCopia = new ArrayList<>();
+        for(Funcionario f : funcionarios){
+            funcionariosCopia.add(f);
+        }
+        
+        return funcionariosCopia;
+    }
 
 }

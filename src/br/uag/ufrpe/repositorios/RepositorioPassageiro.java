@@ -54,4 +54,13 @@ public class RepositorioPassageiro {
             passageiros.remove(encontrado);           
         }     
     }
+    
+     public List<Passageiro> listagemPassageiros() {
+        List<Passageiro> passageirosCopia = new ArrayList<>();
+        for(Passageiro p : passageiros){
+            passageirosCopia.add(p);
+        }
+        
+        return passageirosCopia;
+    }
 }
