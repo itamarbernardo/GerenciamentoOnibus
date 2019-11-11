@@ -22,7 +22,7 @@ public class Viagem {
     private static int totalViagens;
     private String dataSaida;
     private String dataChegada;
-    private int codigo;
+    private final int codigo;
     private List<Passagem> passagens;
     private Onibus onibus;
     private String origem;
@@ -100,12 +100,6 @@ public class Viagem {
         return passageiros;
     }
 
-    public void imprimeListaPassageirosNaViagem(List<Passageiro> passageiros) {
-        for (Passageiro p : passageiros) {
-            System.out.println(p.toString());
-        }
-    }
-
     public int calculaQuantidadeLanche() {
         int quantidade = 0;
         for (Passagem p : passagens) {
@@ -151,13 +145,9 @@ public class Viagem {
     }
 
     /**
-     * Este método verifica se o código da poltrona informado na passagem é
-     * válido. Ele será válido se estiver dentro do intervalo da quantidade de
-     * assentos no ônibus e se a poltrona não já estiver ocupada.
+     * Este método verifica a quantidade de poltronas vazias na Viagem.
      *
-     * @param p o objeto do tipo Passagem que possui o codigo da poltrona.
-     * @return retorna um true se o cógigo da poltrona for válido e um false se
-     * não for.
+     * @return retorna a quantidade de poltronas vazias
      */
     public int calculaPoltronasVazias() {
         int quantidadePoltronasVazias = 0;
@@ -208,7 +198,7 @@ public class Viagem {
         List<Passageiro> passageiros = listagemPassageirosNaViagem();
 
         for (Passageiro passageiro : passageiros) {
-            if (p.getCpf().equals(passageiro.getCpf())) {
+            if (p.equals(passageiro)) {
                 return true; //Esse passageiro já está na viagem
             }
         }
@@ -347,10 +337,6 @@ public class Viagem {
 
     public int getCodigo() {
         return codigo;
-    }
-
-    public void setCodigo(int codigo) {
-        this.codigo = codigo;
     }
 
     public int getQuantidadeIdJovem() {

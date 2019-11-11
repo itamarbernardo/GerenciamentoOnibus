@@ -3,21 +3,7 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/teste/GerenciaOnibus.java</file>
-            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/negocio/Funcionario.java</file>
-            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/negocio/Data.java</file>
-            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/negocio/Passagem.java</file>
-            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/repositorios/RepositorioPassagem.java</file>
-            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/negocio/Viagem.java</file>
-            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/repositorios/RepositorioOnibus.java</file>
-            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/negocio/Onibus.java</file>
-            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/negocio/Pessoa.java</file>
-            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/negocio/Motorista.java</file>
             <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/repositorios/RepositorioFuncionario.java</file>
-            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/repositorios/RepositorioPassageiro.java</file>
-            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/repositorios/RepositorioViagem.java</file>
-            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/negocio/Passageiro.java</file>
-            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/negocio/Endereco.java</file>
         </group>
     </open-files>
 </project-private>

@@ -301,7 +301,7 @@ public class RepositorioViagem {
                 boolean bateHorario = Data.verificarInterseccaoDatasHoras(dataHoraSaida, dataHoraChegada, dataSaidaViagem, dataChegadaViagem);
                 if ((bateHorario && v.getOnibus().getPlaca().equals(via.getOnibus().getPlaca()))) {
 
-                    if (cpf.equals(cpfMotorista) && bateHorario) { //Usar a sobrescrita do metodo equals para Motorista
+                    if (cpf.equals(cpfMotorista)) { //Usar a sobrescrita do metodo equals para Motorista
                         //Achei uma outra viagem do motorista
                         return "O motorista já está em outra viagem neste mesmo horário";
                     }
@@ -365,8 +365,13 @@ public class RepositorioViagem {
         return null; //Se não achou a viagem
     }
 
-    public List<Viagem> getViagens() {
-        return viagens;
+    public List<Viagem> listagemViagens() {
+        List<Viagem> viagensCopia = new ArrayList<>();
+        for(Viagem v : viagens){
+            viagensCopia.add(v);
+        }
+        
+        return viagensCopia;
     }
 
 }

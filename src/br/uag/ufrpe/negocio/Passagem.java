@@ -8,7 +8,7 @@ package br.uag.ufrpe.negocio;
 public class Passagem {
     
     private Passageiro passageiro;
-    private int codigo;
+    private final int codigo;
     private double preco;
     private double precoTotal;
     private boolean eDentroDoEstado;
@@ -186,9 +186,7 @@ public class Passagem {
         if(this.lanche == true){
             return precoLanche;
         }
-        else if(this.lanche == false){
-            return 0;
-        }
+        
         return 0;
     }
     
