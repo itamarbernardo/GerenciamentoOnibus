@@ -16,7 +16,7 @@ public class Funcionario extends Pessoa{
     private String email;
     private boolean eGerente;
 
-    public Funcionario(String senha, String email, String nomeCompleto, String cpf, String rg, String telefone, Endereco endereco, boolean eGerente) {
+    public Funcionario(String nomeCompleto, String cpf, String rg, String telefone, Endereco endereco, String senha, String email, boolean eGerente) {
         super(nomeCompleto, cpf, rg, telefone, endereco);
         this.senha = senha;
         this.email = email;
