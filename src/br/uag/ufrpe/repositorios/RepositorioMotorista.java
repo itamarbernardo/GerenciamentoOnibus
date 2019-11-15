@@ -58,12 +58,12 @@ public class RepositorioMotorista {
         }
        
       public List<Motorista> listagemMotorista() {
-        List<Motorista> MotoristaCopia = new ArrayList<>();
+        List<Motorista> motoristaCopia = new ArrayList<>();
             for(Motorista m : motoristas){
-             MotoristaCopia.add(m);
+             motoristaCopia.add(m);
          }
 
-        return MotoristaCopia;
+        return motoristaCopia;
       }
                
     }
