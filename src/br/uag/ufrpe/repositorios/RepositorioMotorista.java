@@ -49,14 +49,23 @@ public class RepositorioMotorista {
         return null;
     }
      
-       public void removerMotorista(Motorista motorista){
+     public void removerMotorista(Motorista motorista){
         Motorista encontrado = procurarMotorista(motorista.getNumeroCarteiraMotorista());
         
          if (encontrado != null) {
             motoristas.remove(encontrado);
         }
         }
-        
+       
+      public List<Motorista> listagemMotorista() {
+        List<Motorista> MotoristaCopia = new ArrayList<>();
+            for(Motorista m : motoristas){
+             MotoristaCopia.add(m);
+         }
+
+        return MotoristaCopia;
+      }
+               
     }
   
         
