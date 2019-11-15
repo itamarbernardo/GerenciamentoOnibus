@@ -71,13 +71,13 @@ public class RepositorioPassagem {
         return false;
     }
        
-   public List<Passagem> listagemPassagem() {
-        List<Passagem> PassagemCopia = new ArrayList<>();
+    public List<Passagem> listagemPassagem() {
+        List<Passagem> passagemCopia = new ArrayList<>();
             for(Passagem p : passagens){
-             PassagemCopia.add(p);
+             passagemCopia.add(p);
          }
-        return PassagemCopia;
-   }                 
+        return passagemCopia;
+   }                   
       
    }
     
