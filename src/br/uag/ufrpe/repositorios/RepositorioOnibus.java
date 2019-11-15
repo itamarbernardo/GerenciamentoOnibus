@@ -70,5 +70,14 @@ public class RepositorioOnibus {
         }
         return false;
     }
+    
+      public List<Onibus> listagemOnibus() {
+        List<Onibus> onibusCopia = new ArrayList<>();
+            for(Onibus o : onibus){
+             onibusCopia.add(o);
+         }
+        return onibusCopia;
+   }                 
+      
 
 }
