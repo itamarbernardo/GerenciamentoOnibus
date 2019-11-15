@@ -70,6 +70,16 @@ public class RepositorioPassagem {
         }
         return false;
     }
+       
+   public List<Passagem> listagemPassagem() {
+        List<Passagem> PassagemCopia = new ArrayList<>();
+            for(Passagem p : passagens){
+             PassagemCopia.add(p);
+         }
+        return PassagemCopia;
+   }                 
+      
+   }
     
     
-}
+
