@@ -8,7 +8,7 @@ import java.util.List;
  * 
  * @author Jackson
  */
-public class RepositorioPassageiro {
+public class RepositorioPassageiro implements iRepositorioPassageiro {
     
     private final List<Passageiro> passageiros;
     
@@ -16,6 +16,7 @@ public class RepositorioPassageiro {
         passageiros = new ArrayList<>();
     }
     
+    @Override
     public void adicionarPassageiro(Passageiro passageiro){
         
         if(procurarPassageiro(passageiro.getCpf()) == null){
@@ -23,6 +24,7 @@ public class RepositorioPassageiro {
         }     
     }
     
+    @Override
     public boolean alterarPassageiro(Passageiro passageiro){
         for (int i = 0; i < passageiros.size(); i++) {
             if (passageiro.equals(passageiros.get(i))) {
@@ -35,6 +37,7 @@ public class RepositorioPassageiro {
         
    }
     
+    @Override
     public Passageiro procurarPassageiro(String cpf){
         Passageiro encontrado = null;
         
@@ -47,6 +50,7 @@ public class RepositorioPassageiro {
         return encontrado;
     }
     
+    @Override
     public void removerPassageiro(Passageiro passageiro){
         Passageiro encontrado = procurarPassageiro(passageiro.getCpf());
         
@@ -55,6 +59,7 @@ public class RepositorioPassageiro {
         }     
     }
     
+    @Override
      public List<Passageiro> listagemPassageiros() {
         List<Passageiro> passageirosCopia = new ArrayList<>();
         for(Passageiro p : passageiros){

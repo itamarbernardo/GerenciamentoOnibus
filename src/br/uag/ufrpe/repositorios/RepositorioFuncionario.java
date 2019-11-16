@@ -9,7 +9,7 @@ import java.util.List;
  * 
  * @author Jackson
  */
-public class RepositorioFuncionario {
+public class RepositorioFuncionario implements iRepositorioFuncionario {
 
     private final List<Funcionario> funcionarios;
 
@@ -17,12 +17,14 @@ public class RepositorioFuncionario {
         funcionarios = new ArrayList<>();
     }
 
+    @Override
     public void adicionarFuncionario(Funcionario funcionario) {
         if (procurarFuncionario(funcionario.getCpf()) == null) {
             funcionarios.add(funcionario);
         }
     }
 
+    @Override
     public boolean alterarFuncionario(Funcionario funcionario) {
         for (int i = 0; i < funcionarios.size(); i++) {
             if (funcionario.equals(funcionarios.get(i))) {
@@ -34,6 +36,7 @@ public class RepositorioFuncionario {
         return false;
     }
 
+    @Override
     public Funcionario procurarFuncionario(String cpf) {
         Funcionario encontrado = null;
 
@@ -46,6 +49,7 @@ public class RepositorioFuncionario {
         return encontrado;
     }
 
+    @Override
     public void removerFuncionario(Funcionario funcionario) {
         Funcionario encontrado = procurarFuncionario(funcionario.getCpf());
 
@@ -54,6 +58,7 @@ public class RepositorioFuncionario {
         }
     }
     
+    @Override
      public List<Funcionario> listagemFuncionarios() {
         List<Funcionario> funcionariosCopia = new ArrayList<>();
         for(Funcionario f : funcionarios){
