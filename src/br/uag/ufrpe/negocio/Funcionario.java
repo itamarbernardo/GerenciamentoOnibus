@@ -15,12 +15,14 @@ public class Funcionario extends Pessoa{
     private String senha; 
     private String email;
     private boolean eGerente;
+    private Endereco endereco;
 
-    public Funcionario(String nomeCompleto, String cpf, String rg, String telefone, Endereco endereco, String senha, String email, boolean eGerente) {
-        super(nomeCompleto, cpf, rg, telefone, endereco);
+    public Funcionario(String nomeCompleto, String cpf, String rg, String telefone, String senha, String email, boolean eGerente, Endereco endereco) {
+        super(nomeCompleto, cpf, rg, telefone);
         this.senha = senha;
         this.email = email;
         this.eGerente = eGerente;
+        this.endereco = endereco;
     }
 
     public String getSenha() {
@@ -50,6 +52,13 @@ public class Funcionario extends Pessoa{
     public boolean eGerente(){
         return eGerente;
     }
+     public Endereco getEndereco() {
+        return endereco;
+    }
+    
+     public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }  
    
     @Override
     public boolean equals(Object obj){
@@ -62,7 +71,7 @@ public class Funcionario extends Pessoa{
 
     @Override
     public String toString() {
-        return "Funcionario{" + super.toString() + "senha=" + senha + ", email=" + email + ", eGerente=" + eGerente + '}';
+        return "Funcionario{" + super.toString() + "senha=" + senha + ", email=" + email + ", eGerente=" + eGerente + "Endereço" + endereco +'}';
     }
     
 
