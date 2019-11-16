@@ -11,23 +11,16 @@ import java.time.LocalDate;
 /**
  * Esta classe tem a função de representar um Passageiro da Viagem.
  * 
- * @author Jackson
+ * @author Jackson / Gabriel
  */
-public class Passageiro {
-    
-    private String nomeCompleto;    
+public class Passageiro extends Pessoa {
+     
     private String dataNascimento;
-    private String rg;
-    private String cpf;
-    private String telefone;
     private boolean possuiIdJovem;
 
-    public Passageiro(String nomeCompleto, String dataNascimento, String rg, String cpf, String telefone, boolean possuiIdJovem) {
-        this.nomeCompleto = nomeCompleto;
-        this.dataNascimento = dataNascimento;
-        this.rg = rg;
-        this.cpf = cpf;
-        this.telefone = telefone;
+     public Passageiro(String nomeCompleto, String cpf, String rg, String telefone, String dataNascimento, boolean possuiIdJovem ) {
+        super(nomeCompleto, cpf, rg,  telefone);
+        this.dataNascimento = dataNascimento; 
         this.possuiIdJovem = possuiIdJovem;
     }
     
@@ -40,13 +33,6 @@ public class Passageiro {
         this.possuiIdJovem = possuiIdJovem;
     }
 
-    public String getNomeCompleto() {
-        return nomeCompleto;
-    }
-
-    public void setNomeCompleto(String nomeCompleto) {
-        this.nomeCompleto = nomeCompleto;
-    }
 
     public String getDataNascimento() {
         return dataNascimento;
@@ -55,32 +41,6 @@ public class Passageiro {
     public void setDataNascimento(String dataNascimento) {
         this.dataNascimento = dataNascimento;
     }
-
-    public String getRg() {
-        return rg;
-    }
-
-    public void setRg(String rg) {
-        this.rg = rg;
-    }
-
-    public String getCpf() {
-        return cpf;
-    }
-
-    public void setCpf(String cpf) {
-        this.cpf = cpf;
-    } 
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-    
-
     
     public int calcularIdade(){
         LocalDate data = converterDataParaLocalDate(this.dataNascimento);
@@ -96,16 +56,14 @@ public class Passageiro {
     public boolean equals(Object obj){
         if(obj instanceof Passageiro){
             Passageiro passageiro = (Passageiro)obj;
-            if(cpf.equals(passageiro.getCpf())){
-                return true;
-            }
+            return getCpf().equals(passageiro.getCpf());
         }
         return false;
     }
     
     @Override
     public String toString() {
-        return "Passageiro{" + "nomeCompleto=" + nomeCompleto + ", dataNascimento=" + dataNascimento + ", rg=" + rg + ", cpf=" + cpf + ", telefone=" + telefone + ", possuiIdJovem=" + possuiIdJovem + '}';
+        return "Passageiro{" + super.toString() + "Data de Nascimento=" +dataNascimento+ ", possuiIdJovem=" + possuiIdJovem + '}';
     }
 
 }
