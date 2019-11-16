@@ -6,22 +6,21 @@ package br.uag.ufrpe.negocio;
  * @author Gabriel / Jackson
  */
 
-public class Pessoa {
+public abstract class Pessoa {
     private String nomeCompleto;
     private String cpf;
     private String rg;
     private String telefone;
-    private Endereco endereco;
 
-    public Pessoa(String nomeCompleto, String cpf, String rg, String telefone, Endereco endereco) {
+    public Pessoa(String nomeCompleto, String cpf, String rg, String telefone) {
         this.nomeCompleto = nomeCompleto;
         this.cpf = cpf;
         this.rg = rg;
         this.telefone = telefone;
-        this.endereco = endereco;
+
     } 
     
-    public String getNomeCompleto() {
+    public  String getNomeCompleto() {
         return nomeCompleto;
     }
   
@@ -52,17 +51,9 @@ public class Pessoa {
     public void setTelefone(String telefone) {
         this.telefone = telefone;
     }
-
-    public Endereco getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(Endereco endereco) {
-        this.endereco = endereco;
-    }  
     
     @Override
     public String toString(){
-        return "Pessoa{" + "Nome Completo = " + nomeCompleto + "Cpf = " + cpf + "Rg = " + rg + "Telefone = " + telefone + "Endereco = " + endereco + "}"; 
+        return "Pessoa{" + "Nome Completo = " + nomeCompleto + "Cpf = " + cpf + "Rg = " + rg + "Telefone = " + telefone + "}"; 
     }
 }
