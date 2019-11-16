@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author Emily Santos;
  */
-public class RepositorioOnibus {
+public class RepositorioOnibus implements IRepositorioOnibus {
 
     private final List<Onibus> onibus;
 
@@ -23,6 +23,7 @@ public class RepositorioOnibus {
     }
 
     // ----------------------------- METODOS ---------------------------------------
+    @Override
     public boolean adicionarOnibus(Onibus oni) {
         if (procurarOnibus(oni.getPlaca()) != null) {
             onibus.add(oni);
@@ -31,6 +32,7 @@ public class RepositorioOnibus {
         return false;
     }
 
+    @Override
     public boolean alterarOnibus(Onibus oni) {
         for (int i = 0; i < onibus.size(); i++) {
             if (oni.equals(onibus.get(i))) {
@@ -42,6 +44,7 @@ public class RepositorioOnibus {
         return false;
     }
 
+    @Override
     public Onibus procurarOnibus(String placa) {
         for (Onibus o : onibus) {
             if (o.getPlaca().equals(placa)) {
@@ -51,6 +54,7 @@ public class RepositorioOnibus {
         return null;
     }
 
+    @Override
     public boolean removerOnibus(String placa) {
         Onibus o = procurarOnibus(placa);
 
@@ -61,6 +65,7 @@ public class RepositorioOnibus {
         return false;
     }
 
+    @Override
     public boolean removerOnibus(Onibus o) {
         Onibus oni = procurarOnibus(o.getPlaca());
 
@@ -71,6 +76,7 @@ public class RepositorioOnibus {
         return false;
     }
     
+    @Override
       public List<Onibus> listagemOnibus() {
         List<Onibus> onibusCopia = new ArrayList<>();
             for(Onibus o : onibus){

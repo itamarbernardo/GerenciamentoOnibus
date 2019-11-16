@@ -14,7 +14,7 @@ import java.util.List;
  *
  * @author Emily Santos
  */
-public class RepositorioPassagem {
+public class RepositorioPassagem implements IRepositorioPassagem {
 
     private final List<Passagem> passagens;
 
@@ -23,6 +23,7 @@ public class RepositorioPassagem {
     }
 
     // ----------------------------- METODOS ---------------------------------------
+    @Override
     public boolean adicionarPassagem(Passagem passagem) {
         if (procurarPassagem(passagem.getCodigo()) != null) {
             this.passagens.add(passagem);
@@ -31,6 +32,7 @@ public class RepositorioPassagem {
         return false;
     }
 
+    @Override
     public boolean alterarPassagem(Passagem passagem) {
         for (int i = 0; i < passagens.size(); i++) {
             if (passagem.equals(passagens.get(i))) {
@@ -43,6 +45,7 @@ public class RepositorioPassagem {
 
     }
 
+    @Override
     public Passagem procurarPassagem(int codigo) {
         for (Passagem passagem : passagens) {
             if (passagem.getCodigo() == codigo) {
@@ -52,6 +55,7 @@ public class RepositorioPassagem {
         return null;
     }
 
+    @Override
     public boolean removerPassagem(int codigo) {
         Passagem p = procurarPassagem(codigo);
 
@@ -62,6 +66,7 @@ public class RepositorioPassagem {
         return false;
     }
 
+    @Override
     public boolean removerPassagem(Passagem passagem) {
         Passagem p = procurarPassagem(passagem.getCodigo());
         if (p != null) {
@@ -71,6 +76,7 @@ public class RepositorioPassagem {
         return false;
     }
        
+    @Override
     public List<Passagem> listagemPassagem() {
         List<Passagem> passagemCopia = new ArrayList<>();
             for(Passagem p : passagens){

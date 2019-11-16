@@ -8,7 +8,7 @@ import java.util.List;
  * 
  * @author Jackson
  */
-public class RepositorioPassageiro implements iRepositorioPassageiro {
+public class RepositorioPassageiro implements IRepositorioPassageiro {
     
     private final List<Passageiro> passageiros;
     

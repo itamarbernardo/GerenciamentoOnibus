@@ -9,7 +9,7 @@ import java.util.List;
  * 
  * @author Jackson
  */
-public class RepositorioFuncionario implements iRepositorioFuncionario {
+public class RepositorioFuncionario implements IRepositorioFuncionario {
 
     private final List<Funcionario> funcionarios;
 

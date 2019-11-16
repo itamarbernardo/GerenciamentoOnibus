@@ -17,7 +17,7 @@ import java.util.List;
  *
  * @author Itamar Jr
  */
-public class RepositorioViagem {
+public class RepositorioViagem implements IRepositorioViagem {
 
     private final List<Viagem> viagens;
 
@@ -67,6 +67,7 @@ public class RepositorioViagem {
      * @param dataFim Data final do intervalo.
      * @return Retorna a porcentagem.
      */
+    @Override
     public double calculaPorcentagemLanchePorDatasEDestino(String origem, String destino, String dataInicio, String dataFim) {
 
         double porcentagem = 0.0;
@@ -99,6 +100,7 @@ public class RepositorioViagem {
      * @return Retorna a porcentagem da quantidade de passageiros que querem
      * lanche.
      */
+    @Override
     public double calculaPorcentagemLanchePorDatas(String dataInicio, String dataFim) {
 
         double porcentagem = 0.0;
@@ -129,6 +131,7 @@ public class RepositorioViagem {
      * @param dataFim Data Final do intervalo
      * @return Retorna a porcentagem de passageiros nesse intervalo
      */
+    @Override
     public double calculaPorcentagemPassageirosPorDatas(String dataInicio, String dataFim) {
 
         double porcentagem = 0.0;
@@ -161,6 +164,7 @@ public class RepositorioViagem {
      * @return Retorna a porcentagem de passageiros por viagem nas viagens de
      * certo horário e destino.
      */
+    @Override
     public double calculaPorcentagemPassageirosPorDatasEViagens(String horario, String origem, String destino, String dataInicio, String dataFim) {
 
         double porcentagem = 0.0;
@@ -189,6 +193,7 @@ public class RepositorioViagem {
      * @param dataFim Data de fim do intervalo.
      * @return Retorna a porcentagem.
      */
+    @Override
     public double calculaPorcentagemPassageirosPorDatasEDestino(String origem, String destino, String dataInicio, String dataFim) {
 
         double porcentagem = 0.0;
@@ -216,6 +221,7 @@ public class RepositorioViagem {
      * @param dataFim Data final do intervalo.
      * @return Retorna o lucro total obtido.
      */
+    @Override
     public double calcularLucroTotalPorDatas(String dataInicio, String dataFim) {
         double lucroTotal = 0.0;
 
@@ -238,6 +244,7 @@ public class RepositorioViagem {
      * @param dataFim Data final do intervalo.
      * @return Retorna o lucro obtido.
      */
+    @Override
     public double calcularLucroTotalPorDatasEViagens(String horarioSaida, String origem, String destino, String dataInicio, String dataFim) {
         double lucroTotal = 0.0;
 
@@ -260,6 +267,7 @@ public class RepositorioViagem {
      * @param dataFim Data final do intervalo.
      * @return Retorna o lucro total obtido.
      */
+    @Override
     public double calcularLucroTotalPorDatasEDestino(String origem, String destino, String dataInicio, String dataFim) {
         double lucroTotal = 0.0;
 
@@ -273,6 +281,7 @@ public class RepositorioViagem {
         return lucroTotal;
     }
 
+    @Override
     public String procurarUltimasViagensDeUmPassagiro(Passageiro passageiro) {
         String ultimosDestinos = "CPF: " + passageiro.getCpf() + "\nNome: " + passageiro.getNomeCompleto() + "\n"; //Adicionar o nome também
 
@@ -286,6 +295,7 @@ public class RepositorioViagem {
         return ultimosDestinos;
     }
 
+    @Override
     public String adicionarViagem(Viagem v) {
         Viagem viagem = procurarViagem(v.getCodigo());
         String cpfMotorista = v.getOnibus().getMotorista().getCpf();
@@ -316,6 +326,7 @@ public class RepositorioViagem {
         return "A viagem já existe no repositorio"; //Caso essa viagem já exista no repositorio, o método não adiciona novamente
     }
 
+    @Override
     public boolean removerViagem(int codigo) {
         Viagem v = procurarViagem(codigo);
         if (v != null) {
@@ -326,6 +337,7 @@ public class RepositorioViagem {
 
     }
     
+    @Override
     public boolean removerViagem(Viagem viagem) {
         Viagem v = procurarViagem(viagem.getCodigo());
         if (v != null) {
@@ -336,6 +348,7 @@ public class RepositorioViagem {
 
     }
 
+    @Override
     public boolean alterarViagem(Viagem viagem) {
         for (int i = 0; i < viagens.size(); i++) {
             if (viagem.equals(viagens.get(i))) {
@@ -347,6 +360,7 @@ public class RepositorioViagem {
         return false;
     }
 
+    @Override
     public Viagem procurarViagem(int codigo) {
         for (Viagem viagem : viagens) {
             if (viagem.getCodigo() == codigo) {
@@ -356,6 +370,7 @@ public class RepositorioViagem {
         return null; //Não achou a viagem
     }
 
+    @Override
     public Viagem procurarViagem(String dataSaida, String horaSaida, String origem, String destino) {
         for (Viagem viagem : viagens) {
             if (viagem.getDataSaida().equals(dataSaida) && viagem.getHorarioSaida().equals(horaSaida) && viagem.getOrigem().equals(origem) && viagem.getDestino().equals(destino)) {
@@ -364,7 +379,9 @@ public class RepositorioViagem {
         }
         return null; //Se não achou a viagem
     }
-
+    
+    
+    @Override
     public List<Viagem> listagemViagens() {
         List<Viagem> viagensCopia = new ArrayList<>();
         for(Viagem v : viagens){

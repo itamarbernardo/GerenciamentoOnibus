@@ -15,7 +15,7 @@ import java.util.List;
  * 
  * @author GABRIEL
  */
-public class RepositorioMotorista {
+public class RepositorioMotorista implements IRepositorioMotorista {
     
     private final List<Motorista> motoristas;
 
@@ -23,12 +23,14 @@ public class RepositorioMotorista {
         motoristas = new ArrayList<>();
     }
     
+    @Override
     public void adicionarMotorista(Motorista motorista){
         if(procurarMotorista(motorista.getNumeroCarteiraMotorista()) == null){
             motoristas.add(motorista);
         }
     }
    
+    @Override
    public boolean alterarMotorista(Motorista motorista){
         for (int i = 0; i < motoristas.size(); i++) {
             if (motorista.equals(motoristas.get(i))) {
@@ -49,6 +51,7 @@ public class RepositorioMotorista {
         return null;
     }
      
+    @Override
      public void removerMotorista(Motorista motorista){
         Motorista encontrado = procurarMotorista(motorista.getNumeroCarteiraMotorista());
         
@@ -57,6 +60,7 @@ public class RepositorioMotorista {
         }
         }
        
+    @Override
       public List<Motorista> listagemMotorista() {
         List<Motorista> motoristaCopia = new ArrayList<>();
             for(Motorista m : motoristas){
