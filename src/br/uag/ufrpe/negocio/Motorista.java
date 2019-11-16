@@ -7,16 +7,19 @@ package br.uag.ufrpe.negocio;
  */
 public class Motorista extends Pessoa{
     private String numeroCarteiraMotorista; 
-
-    public Motorista(String nomeCompleto, String cpf, String rg, String telefone, Endereco endereco, String numeroCarteiraMotorista) {
-        super(nomeCompleto, cpf, rg,  telefone, endereco);
+    private Endereco endereco;
+    
+    public Motorista(String nomeCompleto, String cpf, String rg, String telefone, String numeroCarteiraMotorista, Endereco endereco) {
+        super(nomeCompleto, cpf, rg,  telefone);
         this.numeroCarteiraMotorista = numeroCarteiraMotorista;
+        this.endereco = endereco;
     }
 
     public String getNumeroCarteiraMotorista() {
         return numeroCarteiraMotorista;
     }
-
+    
+    
     public boolean setNumeroCarteiraMotorista(String numeroCarteiraMotorista) {
         if(numeroCarteiraMotorista.length() == 11){
             this.numeroCarteiraMotorista = numeroCarteiraMotorista;
@@ -24,6 +27,14 @@ public class Motorista extends Pessoa{
         }
         return false;
     }
+    
+    public Endereco getEndereco() {
+        return endereco;
+    }
+    
+     public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }  
     
     @Override
     public boolean equals(Object obj) {
@@ -38,8 +49,7 @@ public class Motorista extends Pessoa{
 
     @Override
     public String toString() {
-        return "Motorista{" + super.toString() + "numeroCarteiraMotorista=" + numeroCarteiraMotorista + '}';
+        return "Motorista{" + super.toString() + "numeroCarteiraMotorista=" + numeroCarteiraMotorista + "Endereço=" + endereco +'}';
     }
-    
-    
+        
 }
