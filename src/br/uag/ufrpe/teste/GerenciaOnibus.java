@@ -43,8 +43,8 @@ public class GerenciaOnibus {
         
         
         Endereco endereco = new Endereco("55293-000", "Rua 10", "Centro", "121-A", "Casa", "Garanhuns", "PE");
-        Motorista m = new Motorista("João Silva", "123.456.789-58", "1209139", "(87)99454-5280", endereco, "12345678982");
-        Motorista m2 = new Motorista("Marcelo Paes", "992.456.789-58", "9909101", "(82)99107-5280", endereco, "12345678982");
+        Motorista m = new Motorista("João Silva", "123.456.789-58", "1209139", "(87)99454-5280","12345678982", endereco);
+        Motorista m2 = new Motorista("Marcelo Paes", "992.456.789-58", "9909101", "(82)99107-5280", "12345678982", endereco);
         repositorioMotorista.adicionarMotorista(m);
         repositorioMotorista.adicionarMotorista(m2);
         
@@ -66,9 +66,9 @@ public class GerenciaOnibus {
         repositorioOnibus.adicionarOnibus(o);
         repositorioOnibus.adicionarOnibus(o2);
 
-        Passageiro p = new Passageiro("Rodrigo Santos", "30/12/1998","9829812", "117.982.029-10",  "(82)9454-4311", true);
-        Passageiro p2 = new Passageiro("Maraia Silva", "19/12/1992","1099922" , "002.982.029-10", "(81)9123-4567", true);
-        Passageiro p3 = new Passageiro("Jose Silva", "20/10/1997", "910291", "991.201.192.20", "(87)99291-1020", false);
+        Passageiro p = new Passageiro("Rodrigo Santos","117.982.029-10","9829812","(82)9454-4311","30/12/1998" , true);
+        Passageiro p2 = new Passageiro("Maraia Silva", "002.982.029-10","1099922","(81)9123-4567","19/12/1992", true);
+        Passageiro p3 = new Passageiro("Jose Silva","991.201.192.20", "910291", "(87)99291-1020" ,"20/10/1997", false);
         repositorioPassageiro.adicionarPassageiro(p);
         repositorioPassageiro.adicionarPassageiro(p2);
         repositorioPassageiro.adicionarPassageiro(p3);
@@ -131,7 +131,7 @@ public class GerenciaOnibus {
         String ultimasViagens = repositorioViagem.procurarUltimasViagensDeUmPassagiro(passageiro);
         System.out.println("\nUltimas viagens do passageiro: \n" + ultimasViagens);
         
-        Funcionario f = new Funcionario("Joao Filho Silva", "119.288.399-19", "0981983", "(98)99002-9218", endereco,  "1283", "joao@gmail.com",true);
+        Funcionario f = new Funcionario("Joao Filho Silva", "119.288.399-19", "0981983", "(98)99002-9218",  "1283", "joao@gmail.com",true,endereco);
         
 
     }
