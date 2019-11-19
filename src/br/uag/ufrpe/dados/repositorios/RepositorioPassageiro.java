@@ -43,7 +43,6 @@ public class RepositorioPassageiro implements IRepositorioPassageiro {
     
     @Override
     public void removerPassageiro(Passageiro passageiro){
-        
         passageiros.remove(passageiro);                
     }
     
