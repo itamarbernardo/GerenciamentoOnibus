@@ -30,11 +30,13 @@ public class RepositorioViagem implements IRepositorioViagem {
      * intervalo de datas nas viagens de determinado horario e destino.
      *
      * @param horarioSaida Horario de saída da viagem.
+     * @param origem Cidade onde a viagem inicia.
      * @param destino Destino da Viagem.
      * @param dataInicio Data de inicio do intervalo.
      * @param dataFim Data final do intervalo.
      * @return Retorna a porcentagem de passageiros que querem lanche
      */
+    @Override
     public double calculaPorcentagemLanchePorDatasEViagens(String horarioSaida, String origem, String destino, String dataInicio, String dataFim) {
 
         double porcentagem = 0.0;
@@ -62,6 +64,7 @@ public class RepositorioViagem implements IRepositorioViagem {
      * Este método calcula a porcentagem da quantidade de passageiros que querem
      * lancge num intervalo de datas em certo destino
      *
+     * @param origem Cidade onde a viagem inicia.
      * @param destino Destino da viagem.
      * @param dataInicio Data de início do intervalo.
      * @param dataFim Data final do intervalo.
@@ -158,6 +161,7 @@ public class RepositorioViagem implements IRepositorioViagem {
      * nas viagens de determinado horario e destino.
      *
      * @param horario Horario da Viagem.
+     * @param origem Cidade onde a viagem inicia.
      * @param destino Destino da Viagem.
      * @param dataInicio Data de início do intervalo.
      * @param dataFim Data final do intervalo.
@@ -239,6 +243,7 @@ public class RepositorioViagem implements IRepositorioViagem {
      * destinos em certo intervalo de datas.
      *
      * @param horarioSaida Horário de saída da viagem.
+     * @param origem Cidade onde a viagem inicia.
      * @param destino Destino da Viagem.
      * @param dataInicio Data de início do intervalo.
      * @param dataFim Data final do intervalo.
@@ -262,6 +267,7 @@ public class RepositorioViagem implements IRepositorioViagem {
      * Este método calcula o lucro total das viagens de certo destino em um
      * intervalo de datas.
      *
+     * @param origem Cidade onde a viagem inicia.
      * @param destino Destino da viagem.
      * @param dataInicio Data de início do intervalo.
      * @param dataFim Data final do intervalo.
