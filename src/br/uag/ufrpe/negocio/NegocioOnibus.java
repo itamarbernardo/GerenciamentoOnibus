@@ -1,8 +1,8 @@
        
 package br.uag.ufrpe.negocio;
 
-import br.uag.ufrpe.negocio.excessoes.OnibusNaoExisteException;
-import br.uag.ufrpe.negocio.excessoes.OnibusJaExisteException;
+import br.uag.ufrpe.negocio.excecoes.OnibusNaoExisteException;
+import br.uag.ufrpe.negocio.excecoes.OnibusJaExisteException;
 import br.uag.ufrpe.dados.interfaces.IRepositorioOnibus;
 import br.uag.ufrpe.negocio.Onibus;
 

@@ -5,7 +5,8 @@
  */
 package br.uag.ufrpe.negocio;
 
-import br.uag.ufrpe.negocio.excessoes.PassagemJaExisteException;
+import br.uag.ufrpe.negocio.excecoes.PassagemJaExisteException;
+import br.uag.ufrpe.negocio.excecoes.PassagemNaoExisteException;
 import br.uag.ufrpe.dados.interfaces.IRepositorioPassagem;
 
 /**
@@ -26,7 +27,7 @@ public class NegocioPassagem {
         
     }
     
-    public void alterarPassagem(Passagem passagem) throws passagemNaoExisteException{
+    public void alterarPassagem(Passagem passagem) throws PassagemNaoExisteException{
         
     }
     
@@ -34,11 +35,11 @@ public class NegocioPassagem {
         return null;
     }
     
-    public void removerPassagem(Passagem passagem) throws passagemNaoExisteException{
+    public void removerPassagem(Passagem passagem) throws PassagemNaoExisteException{
         
     }
     
-    public void removerPassagem(int codigo) throws passagemNaoExisteException{
+    public void removerPassagem(int codigo) throws PassagemNaoExisteException{
         
     }   
     

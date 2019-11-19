@@ -3,15 +3,15 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.uag.ufrpe.negocio;
+package br.uag.ufrpe.negocio.excecoes;
 
 /**
  *
  * @author miyyu
  */
-class passagemNaoExisteException extends Exception {
+public class PassagemNaoExisteException extends Exception {
     
-    public passagemNaoExisteException(){
+    public PassagemNaoExisteException(){
         super("Passagem não existe no repositório.");
     }
     
