@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import br.uag.ufrpe.negocio.Motorista;
 
+
 /**
  * Essa classe representa os onibus que serão ofertados pela empresa de acordo
  * com motorita, a placa do carro, os tipos de poltronas e seus repectivos
@@ -14,7 +15,7 @@ import br.uag.ufrpe.negocio.Motorista;
  *
  * @author Emily Santos;
  */
-public class Onibus {
+public class Onibus{
 
     private static int totalOnibus = 0;
     private Map<Integer, String> poltronas;

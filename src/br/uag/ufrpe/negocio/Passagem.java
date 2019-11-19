@@ -195,9 +195,8 @@ public class Passagem {
         if(eDentroDoEstado == false){
             return tarifaInterestadual;
         }
-        else{
-            return tarifaIntermunicipal;
-        }
+        return tarifaIntermunicipal;
+
     }
     private double calcularPrecoTipoDeAssento() {
         if(null != tipoDeAssento)switch (tipoDeAssento) {
