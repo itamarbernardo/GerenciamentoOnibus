@@ -10,33 +10,23 @@ import java.util.List;
  * @author Jackson
  */
 public class RepositorioPassageiro implements IRepositorioPassageiro {
-    
     private final List<Passageiro> passageiros;
     
     public RepositorioPassageiro(){
         passageiros = new ArrayList<>();
     }
     
+    
     @Override
     public void adicionarPassageiro(Passageiro passageiro){
-        
-        if(procurarPassageiro(passageiro.getCpf()) == null){
-            passageiros.add(passageiro);
-        }     
+        passageiros.add(passageiro);    
     }
     
     @Override
-    public boolean alterarPassageiro(Passageiro passageiro){
-        for (int i = 0; i < passageiros.size(); i++) {
-            if (passageiro.equals(passageiros.get(i))) {
-                passageiros.set(i, passageiro);
-                return true; //So altera se a viagem existir
-            }
-
-        }
-        return false;
-        
-   }
+    public void alterarPassageiro(Passageiro passageiro){
+        int i = passageiros.indexOf(passageiro);
+        passageiros.set(i, passageiro);
+    }
     
     @Override
     public Passageiro procurarPassageiro(String cpf){
@@ -53,11 +43,8 @@ public class RepositorioPassageiro implements IRepositorioPassageiro {
     
     @Override
     public void removerPassageiro(Passageiro passageiro){
-        Passageiro encontrado = procurarPassageiro(passageiro.getCpf());
         
-        if(encontrado != null){
-            passageiros.remove(encontrado);           
-        }     
+        passageiros.remove(passageiro);                
     }
     
     @Override
