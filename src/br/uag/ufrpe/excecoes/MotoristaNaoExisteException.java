@@ -9,7 +9,7 @@ package br.uag.ufrpe.excecoes;
  *
  * @author Gabriel
  */
-class MotoristaNaoExisteException extends Exception {
+public class MotoristaNaoExisteException extends Exception {
 
     public MotoristaNaoExisteException() { 
         super("Motorista não existe"); 
