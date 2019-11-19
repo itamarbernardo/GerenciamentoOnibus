@@ -20,21 +20,13 @@ public class RepositorioFuncionario implements IRepositorioFuncionario {
 
     @Override
     public void adicionarFuncionario(Funcionario funcionario) {
-        if (procurarFuncionario(funcionario.getCpf()) == null) {
-            funcionarios.add(funcionario);
-        }
+       funcionarios.add(funcionario);
     }
 
     @Override
-    public boolean alterarFuncionario(Funcionario funcionario) {
-        for (int i = 0; i < funcionarios.size(); i++) {
-            if (funcionario.equals(funcionarios.get(i))) {
-                funcionarios.set(i, funcionario);
-                return true;
-            }
-
-        }
-        return false;
+    public void alterarFuncionario(Funcionario funcionario) {
+        int i = funcionarios.indexOf(funcionario);
+        funcionarios.set(i, funcionario);
     }
 
     @Override
@@ -52,11 +44,7 @@ public class RepositorioFuncionario implements IRepositorioFuncionario {
 
     @Override
     public void removerFuncionario(Funcionario funcionario) {
-        Funcionario encontrado = procurarFuncionario(funcionario.getCpf());
-
-        if (encontrado != null) {
-            funcionarios.remove(encontrado);
-        }
+        funcionarios.remove(funcionario);
     }
     
     @Override
