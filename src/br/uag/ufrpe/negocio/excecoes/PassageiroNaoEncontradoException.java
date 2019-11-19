@@ -1,4 +1,4 @@
-package br.uag.ufrpe.excecoes;
+package br.uag.ufrpe.negocio.excecoes;
 
 /**
  *

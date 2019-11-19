@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface IRepositorioPassageiro {
     void adicionarPassageiro(Passageiro passageiro);
-    boolean alterarPassageiro(Passageiro passageiro);
+    void alterarPassageiro(Passageiro passageiro);
     Passageiro procurarPassageiro(String cpf);
     void removerPassageiro(Passageiro passageiro);
     List<Passageiro> listagemPassageiros();

@@ -5,9 +5,9 @@
  */
 package br.uag.ufrpe.negocio;
 
-import  br.uag.ufrpe.excecoes.MotoristaNaoExisteException ;
-import  br.uag.ufrpe.excecoes.MotoristaJaExisteException ;
-import br.uag.ufrpe.dados.interfaces.IRepositorioMotorista;
+import  br.uag.ufrpe.dados.interfaces.IRepositorioMotorista ;
+import br.uag.ufrpe.negocio.excecoes.MotoristaJaExisteException;
+import br.uag.ufrpe.negocio.excecoes.MotoristaNaoExisteException;
 
 
 

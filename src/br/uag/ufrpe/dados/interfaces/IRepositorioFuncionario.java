@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface IRepositorioFuncionario {
     void adicionarFuncionario(Funcionario funcionario);
-    boolean alterarFuncionario(Funcionario funcionario);
+    void alterarFuncionario(Funcionario funcionario);
     Funcionario procurarFuncionario(String cpf);
     void removerFuncionario(Funcionario funcionario);
     List<Funcionario> listagemFuncionarios();

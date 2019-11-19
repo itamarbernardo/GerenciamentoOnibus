@@ -3,17 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-pacote  br.uag.ufrpe.excecoes ;
+package br.uag.ufrpe.negocio.excecoes;
 
 /**
  *
- * @author Gabriel
+ * @author Jackson
  */
-class MotoristaNaoExisteException extends Exception {
+public class FuncionarioJaExisteException extends Exception {
 
-    public MotoristaNaoExisteException() { 
-        super("Motorista não existe"); 
+    public FuncionarioJaExisteException() {
+        super("Funcionario ja existe no Repositorio");
     }
-    
     
 }

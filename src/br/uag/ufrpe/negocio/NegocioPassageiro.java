@@ -1,7 +1,7 @@
 package br.uag.ufrpe.negocio;
 
-import br.uag.ufrpe.excecoes.PassageiroNaoEncontradoException;
-import br.uag.ufrpe.excecoes.PassageiroJaExisteException;
+import br.uag.ufrpe.negocio.excecoes.PassageiroNaoEncontradoException;
+import br.uag.ufrpe.negocio.excecoes.PassageiroJaExisteException;
 
 import br.uag.ufrpe.dados.interfaces.IRepositorioPassageiro;
 
