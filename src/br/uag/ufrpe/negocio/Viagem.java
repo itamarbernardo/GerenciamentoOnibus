@@ -29,7 +29,6 @@ public class Viagem {
     private String destino;
     private String horarioSaida;
     private String horarioChegada;
-    private double desconto;
 
     private int quantidadeIdJovem;
     private int quantidadeIdJovemParcial;
@@ -38,7 +37,7 @@ public class Viagem {
 
     private Map<Integer, String> poltronas;
 
-    public Viagem(Onibus onibus, String origem, String destino, String horarioSaida, String horarioChegada, double desconto, String dataSaida, String dataChegada) {
+    public Viagem(Onibus onibus, String origem, String destino, String horarioSaida, String horarioChegada, String dataSaida, String dataChegada) {
 
         this.passagens = new ArrayList<>();
         this.onibus = onibus;
@@ -46,7 +45,6 @@ public class Viagem {
         this.destino = destino;
         this.horarioSaida = horarioSaida;
         this.horarioChegada = horarioChegada;
-        this.desconto = desconto;
         this.dataSaida = dataSaida;
         this.dataChegada = dataChegada;
         this.codigo = totalViagens; //O codigo vai ser o numero de viagens
@@ -67,7 +65,7 @@ public class Viagem {
         }
     }
 
-    public void aplicarDescontoEmTodasAsPassagens() {
+    public void aplicarDescontoEmTodasAsPassagens(double desconto) {
         int tamanho = passagens.size();
         for (int i = 0; i < tamanho; i++) {
             double preco = passagens.get(i).getPreco();
@@ -275,12 +273,9 @@ public class Viagem {
         this.dataChegada = dataChegada;
     }
 
+    //Duvida se faz a mesma coisa dos repositorios para evitar aliasing 
     public List<Passagem> getPassagens() {
         return passagens;
-    }
-
-    public void setPassagens(List<Passagem> passagens) {
-        this.passagens = passagens;
     }
 
     public Onibus getOnibus() {
@@ -323,14 +318,6 @@ public class Viagem {
         this.horarioChegada = horarioChegada;
     }
 
-    public double getDesconto() {
-        return desconto;
-    }
-
-    public void setDesconto(double desconto) {
-        this.desconto = desconto;
-    }
-
     public static int getTotalViagens() {
         return totalViagens;
     }
@@ -361,7 +348,7 @@ public class Viagem {
 
     @Override
     public String toString() {
-        return "Viagem{" + "dataSaida=" + dataSaida + ", dataChegada=" + dataChegada + ", codigo=" + codigo + ", passagens=" + passagens + ", onibus=" + onibus + ", origem=" + origem + ", destino=" + destino + ", horarioSaida=" + horarioSaida + ", horarioChegada=" + horarioChegada + ", desconto=" + desconto + '}';
+        return "Viagem{" + "dataSaida=" + dataSaida + ", dataChegada=" + dataChegada + ", codigo=" + codigo + ", passagens=" + passagens + ", onibus=" + onibus + ", origem=" + origem + ", destino=" + destino + ", horarioSaida=" + horarioSaida + ", horarioChegada=" + horarioChegada + '}';
     }
 
 }

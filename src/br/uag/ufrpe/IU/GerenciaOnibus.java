@@ -82,7 +82,7 @@ public class GerenciaOnibus {
         repositorioPassagem.adicionarPassagem(passagem2);
         repositorioPassagem.adicionarPassagem(passagem3);
         
-        Viagem v = new Viagem(o, "Garanhuns", "Recife", "10:00", "13:30", 0.0, "30/09/2019", "30/09/2019");
+        Viagem v = new Viagem(o, "Garanhuns", "Recife", "10:00", "13:30", "30/09/2019", "30/09/2019");
 
         
         System.out.println("Adicionar Passagem 1: " + v.adicionarPassagem(passagem));
@@ -94,7 +94,7 @@ public class GerenciaOnibus {
         System.out.println("Lucro da viagem: " + lucro);
         
         
-        Viagem v2 = new Viagem(o2, "Garanhuns", "Cabrobo", "01:00", "19:20", 0.0, "30/09/2019", "30/09/2019");
+        Viagem v2 = new Viagem(o2, "Garanhuns", "Cabrobo", "01:00", "19:20", "30/09/2019", "30/09/2019");
         v2.adicionarPassagem(passagem);
         v2.adicionarPassagem(passagem2);
        
@@ -103,11 +103,11 @@ public class GerenciaOnibus {
         repositorioViagem.adicionarViagem(v2);
         
         
-        Viagem v3 = new Viagem(o, "Garanhuns", "Recife", "10:00", "13:30", 0.0, "01/10/2019", "01/10/2019");
+        Viagem v3 = new Viagem(o, "Garanhuns", "Recife", "10:00", "13:30",  "01/10/2019", "01/10/2019");
         v3.adicionarPassagem(passagem);
         v3.adicionarPassagem(passagem2);
        
-        Viagem v4 = new Viagem(o2, "Garanhuns", "Recife", "10:00", "13:30", 0.0, "02/10/2019", "02/10/2019");
+        Viagem v4 = new Viagem(o2, "Garanhuns", "Recife", "10:00", "13:30", "02/10/2019", "02/10/2019");
         v4.adicionarPassagem(passagem);
         v4.adicionarPassagem(passagem2);
        

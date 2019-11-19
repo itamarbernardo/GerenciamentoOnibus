@@ -86,7 +86,7 @@ public class RepositorioViagem implements IRepositorioViagem {
 
                 totalPassageirosQueremLanche = totalPassageirosQueremLanche + viagem.calculaQuantidadeLanche();
                 totalPassageiros = totalPassageiros + viagem.calcularQuantidadeDePassageiros();
-                
+
             }
         }
 
@@ -148,12 +148,12 @@ public class RepositorioViagem implements IRepositorioViagem {
                 //Tem que verificar o intervalo das datas
                 totalCapacidadeOnibus = totalCapacidadeOnibus + viagem.getOnibus().getTotalPoltronas();
                 totalQuantidadePassageiros = totalQuantidadePassageiros + viagem.calcularQuantidadeDePassageiros();
-            
+
             }
         }
 
         porcentagem = totalQuantidadePassageiros / totalCapacidadeOnibus;
-        
+
         return porcentagem;
     }
 
@@ -303,68 +303,21 @@ public class RepositorioViagem implements IRepositorioViagem {
     }
 
     @Override
-    public String adicionarViagem(Viagem v) {
-        Viagem viagem = procurarViagem(v.getCodigo());
-        String cpfMotorista = v.getOnibus().getMotorista().getCpf();
-        if (viagem == null) {
-            //Não existe essa viagem. Vou checar se bate os horários do motorista.
-            String dataSaidaViagem = v.getDataSaida() + " " + v.getHorarioSaida();
-            String dataChegadaViagem = v.getDataChegada() + " " + v.getHorarioChegada();
-
-            for (Viagem via : viagens) {
-                String cpf = via.getOnibus().getMotorista().getCpf();
-                String dataHoraSaida = via.getDataSaida() + " " + via.getHorarioSaida();
-                String dataHoraChegada = via.getDataChegada() + " " + via.getHorarioChegada();
-                boolean bateHorario = Data.verificarInterseccaoDatasHoras(dataHoraSaida, dataHoraChegada, dataSaidaViagem, dataChegadaViagem);
-                if ((bateHorario && v.getOnibus().getPlaca().equals(via.getOnibus().getPlaca()))) {
-
-                    if (cpf.equals(cpfMotorista)) { //Usar a sobrescrita do metodo equals para Motorista
-                        //Achei uma outra viagem do motorista
-                        return "O motorista já está em outra viagem neste mesmo horário";
-                    }
-
-                    return "Este onibus já está escalado em outra viagem neste mesmo horario";
-                }
-
-            }
-            viagens.add(v);
-            return ""; //Se der tudo certo retorna uma string vazia
-        }
-        return "A viagem já existe no repositorio"; //Caso essa viagem já exista no repositorio, o método não adiciona novamente
-    }
-
-    @Override
-    public boolean removerViagem(int codigo) {
-        Viagem v = procurarViagem(codigo);
-        if (v != null) {
-            viagens.remove(v);
-            return true; //Se existir a viagem, ele remove
-        }
-        return false;
-
-    }
-    
-    @Override
-    public boolean removerViagem(Viagem viagem) {
-        Viagem v = procurarViagem(viagem.getCodigo());
-        if (v != null) {
-            viagens.remove(v);
-            return true; //Se existir a viagem, ele remove
-        }
-        return false;
+    public void adicionarViagem(Viagem v) {
+        viagens.add(v);
 
     }
 
     @Override
-    public boolean alterarViagem(Viagem viagem) {
-        for (int i = 0; i < viagens.size(); i++) {
-            if (viagem.equals(viagens.get(i))) {
-                viagens.set(i, viagem);
-                return true; //So altera se a viagem existir
-            }
+    public void removerViagem(Viagem viagem) {
+        viagens.remove(viagem);
 
-        }
-        return false;
+    }
+
+    @Override
+    public void alterarViagem(Viagem viagem) {
+        int index = viagens.indexOf(viagem);
+        viagens.set(index, viagem);
     }
 
     @Override
@@ -386,16 +339,16 @@ public class RepositorioViagem implements IRepositorioViagem {
         }
         return null; //Se não achou a viagem
     }
-    
-    
+
     @Override
     public List<Viagem> listagemViagens() {
         List<Viagem> viagensCopia = new ArrayList<>();
-        for(Viagem v : viagens){
+        for (Viagem v : viagens) {
             viagensCopia.add(v);
         }
-        
+
         return viagensCopia;
     }
+
 
 }
