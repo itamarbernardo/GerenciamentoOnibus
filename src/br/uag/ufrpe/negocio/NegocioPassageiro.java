@@ -2,8 +2,8 @@ package br.uag.ufrpe.negocio;
 
 import br.uag.ufrpe.excecoes.PassageiroNaoEncontradoException;
 import br.uag.ufrpe.excecoes.PassageiroJaExisteException;
+
 import br.uag.ufrpe.dados.interfaces.IRepositorioPassageiro;
-import java.util.List;
 
 /**
  *
@@ -51,7 +51,5 @@ public class NegocioPassageiro{
         }
     }
 
-    public List<Passageiro> listagemPassageiros() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+   
 }
