@@ -12,6 +12,7 @@ public interface IRepositorioPassagem {
     void adicionarPassagem(Passagem passagem);
     void alterarPassagem(Passagem passagem);
     Passagem procurarPassagem(int codigo);
+    Passagem procurarPassagem(Passagem passagem);
     void removerPassagem(int codigo);
     void removerPassagem(Passagem passagem);
     List<Passagem> listagemPassagem();
