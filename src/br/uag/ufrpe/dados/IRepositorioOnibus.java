@@ -8,10 +8,10 @@ import java.util.List;
  * @author Jackson
  */
 public interface IRepositorioOnibus {
-    boolean adicionarOnibus(Onibus oni);
-    boolean alterarOnibus(Onibus oni);
+    void adicionarOnibus(Onibus oni);
+    void alterarOnibus(Onibus oni);
     Onibus procurarOnibus(String placa);
-    boolean removerOnibus(String placa);
-    boolean removerOnibus(Onibus o);
+    void removerOnibus(String placa);
+    void removerOnibus(Onibus o);
     List<Onibus> listagemOnibus();
 }

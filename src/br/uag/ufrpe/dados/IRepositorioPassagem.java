@@ -9,11 +9,12 @@ import java.util.List;
  */
 
 public interface IRepositorioPassagem {
-    boolean adicionarPassagem(Passagem passagem);
-    boolean alterarPassagem(Passagem passagem);
+    void adicionarPassagem(Passagem passagem);
+    void alterarPassagem(Passagem passagem);
     Passagem procurarPassagem(int codigo);
-    boolean removerPassagem(int codigo);
-    boolean removerPassagem(Passagem passagem);
+    Passagem procurarPassagem(Passagem passagem);
+    void removerPassagem(int codigo);
+    void removerPassagem(Passagem passagem);
     List<Passagem> listagemPassagem();
     
 }

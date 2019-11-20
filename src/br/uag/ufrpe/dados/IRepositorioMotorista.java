@@ -9,7 +9,7 @@ import java.util.List;
  */
 public interface IRepositorioMotorista {
     void adicionarMotorista(Motorista motorista);
-    boolean alterarMotorista(Motorista motorista);
+    void alterarMotorista(Motorista motorista);
     Motorista procurarMotorista(String numeroCarteiraMotorista);
     void removerMotorista(Motorista motorista);
     List<Motorista> listagemMotorista();

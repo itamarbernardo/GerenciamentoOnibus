@@ -20,24 +20,43 @@ public class NegocioOnibus {
     
     // --------------------------------- METODOS ----------------------------------------
     
-    public void adicionar(Onibus onibus) throws OnibusJaExisteException{
+    public void adicionarOnibus(Onibus onibus) throws OnibusJaExisteException{
+        if(procurarOnibus(onibus.getPlaca()) == null){
+            repositorio.adicionarOnibus(onibus);
+        }
+        
+        throw new OnibusJaExisteException();
+    }
+    
+    public Onibus procurarOnibus(String placa){
+        if(repositorio.procurarOnibus(placa) != null){
+            return repositorio.procurarOnibus(placa);
+        }
+        
+        return null;
+
+    }
+    
+    public void alterarOnibus(Onibus onibus) throws OnibusNaoExisteException{
+        if(repositorio.procurarOnibus(onibus.getPlaca()) != null){
+            repositorio.alterarOnibus(onibus);
+        }
+        throw new OnibusNaoExisteException();
+    }
+    
+    public void removerOnibus(Onibus onibus) throws OnibusNaoExisteException{
+        if(repositorio.procurarOnibus(onibus.getPlaca()) != null){
+            repositorio.removerOnibus(onibus);
+        }
+        throw new OnibusNaoExisteException();
         
     }
     
-    public Onibus procurar(Onibus onibus){
-        return onibus;
-    }
-    
-    public void alterar(Onibus onibus) throws OnibusNaoExisteException{
-        
-    }
-    
-    public void remover(Onibus onibus) throws OnibusNaoExisteException{
-        
-    }
-    
-    public void remover(String placa) throws OnibusNaoExisteException{
-        
+    public void removerOnibus(String placa) throws OnibusNaoExisteException{
+        if(repositorio.procurarOnibus(placa) != null){
+            repositorio.removerOnibus(placa);
+        }
+        throw new OnibusNaoExisteException();
     }
     
 }

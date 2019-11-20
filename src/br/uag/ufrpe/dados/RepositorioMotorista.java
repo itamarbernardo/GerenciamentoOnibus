@@ -31,14 +31,14 @@ public class RepositorioMotorista implements IRepositorioMotorista {
     }
    
     @Override
-   public boolean alterarMotorista(Motorista motorista){
+   public void alterarMotorista(Motorista motorista){
         for (int i = 0; i < motoristas.size(); i++) {
             if (motorista.equals(motoristas.get(i))) {
                 motoristas.set(i, motorista);
-                return true; 
+                 
             }
         }
-        return false;   
+      
     }
     
      public Motorista procurarMotorista(String numeroCarteiraMotorista) {
