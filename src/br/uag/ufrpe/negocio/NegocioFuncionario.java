@@ -3,7 +3,7 @@ package br.uag.ufrpe.negocio;
 import br.uag.ufrpe.negocio.excecoes.FuncionarioNaoEncontradoException;
 import br.uag.ufrpe.negocio.excecoes.FuncionarioJaExisteException;
 
-import br.uag.ufrpe.dados.interfaces.IRepositorioFuncionario;
+import br.uag.ufrpe.dados.repositorios.IRepositorioFuncionario;
 
 /**
  *

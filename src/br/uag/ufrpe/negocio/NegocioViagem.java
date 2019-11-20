@@ -5,7 +5,7 @@
  */
 package br.uag.ufrpe.negocio;
 
-import br.uag.ufrpe.dados.interfaces.IRepositorioViagem;
+import br.uag.ufrpe.dados.repositorios.IRepositorioViagem;
 import br.uag.ufrpe.negocio.excecoes.MotoristaNaoDisponivelException;
 import br.uag.ufrpe.negocio.excecoes.OnibusNaoDisponivelException;
 import br.uag.ufrpe.negocio.excecoes.ViagemJaExisteException;
@@ -136,35 +136,6 @@ public class NegocioViagem {
         return repositorio.calcularLucroTotalPorDatasEDestino(origem, destino, dataInicio, dataFim);
     }
     
-    //Da classe Viagem    
-    public void aplicarDescontoEmTodasAsPassagens(int codigo, double desconto) throws ViagemNaoExisteException{
-        Viagem viagem = repositorio.procurarViagem(codigo);
-        if(viagem == null){
-            throw new ViagemNaoExisteException();
-        }
-        else{
-           viagem.aplicarDescontoEmTodasAsPassagens(desconto);            
-        }
-
-    }
     
-    public void adicionarPassagem(int codigo, Passagem p) throws ViagemNaoExisteException{
-        Viagem viagem = repositorio.procurarViagem(codigo);
-        if(viagem == null){
-            throw new ViagemNaoExisteException();
-        }else{
-            viagem.adicionarPassagem(p);
-        }
-        
-    }
-    
-    public void removerPassagem(int codigo, Passagem p) throws ViagemNaoExisteException{
-        Viagem viagem = repositorio.procurarViagem(codigo);
-        if(viagem == null){
-            throw new ViagemNaoExisteException();
-        }else{
-            viagem.cancelarPassagem(p);
-        }
-    }
     
 }

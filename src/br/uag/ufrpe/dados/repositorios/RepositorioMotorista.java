@@ -6,7 +6,6 @@
 
 package br.uag.ufrpe.dados.repositorios;
 
-import br.uag.ufrpe.dados.interfaces.IRepositorioMotorista;
 import br.uag.ufrpe.negocio.Motorista;
 import java.util.ArrayList;
 import java.util.List;

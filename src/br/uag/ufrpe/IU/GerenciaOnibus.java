@@ -85,9 +85,9 @@ public class GerenciaOnibus {
         Viagem v = new Viagem(o, "Garanhuns", "Recife", "10:00", "13:30", "30/09/2019", "30/09/2019");
 
         
-        System.out.println("Adicionar Passagem 1: " + v.adicionarPassagem(passagem));
-        System.out.println("Adicionar Passagem 2: " + v.adicionarPassagem(passagem2));
-        System.out.println("Adicionar Passagem 3: " + v.adicionarPassagem(passagem3));
+        System.out.println("Adicionar Passagem 1: " + v.venderPassagem(passagem));
+        System.out.println("Adicionar Passagem 2: " + v.venderPassagem(passagem2));
+        System.out.println("Adicionar Passagem 3: " + v.venderPassagem(passagem3));
        
         
         double lucro = v.calculaLucro();
@@ -95,8 +95,8 @@ public class GerenciaOnibus {
         
         
         Viagem v2 = new Viagem(o2, "Garanhuns", "Cabrobo", "01:00", "19:20", "30/09/2019", "30/09/2019");
-        v2.adicionarPassagem(passagem);
-        v2.adicionarPassagem(passagem2);
+        v2.venderPassagem(passagem);
+        v2.venderPassagem(passagem2);
        
         
         repositorioViagem.adicionarViagem(v);
@@ -104,12 +104,12 @@ public class GerenciaOnibus {
         
         
         Viagem v3 = new Viagem(o, "Garanhuns", "Recife", "10:00", "13:30",  "01/10/2019", "01/10/2019");
-        v3.adicionarPassagem(passagem);
-        v3.adicionarPassagem(passagem2);
+        v3.venderPassagem(passagem);
+        v3.venderPassagem(passagem2);
        
         Viagem v4 = new Viagem(o2, "Garanhuns", "Recife", "10:00", "13:30", "02/10/2019", "02/10/2019");
-        v4.adicionarPassagem(passagem);
-        v4.adicionarPassagem(passagem2);
+        v4.venderPassagem(passagem);
+        v4.venderPassagem(passagem2);
        
         repositorioViagem.adicionarViagem(v3);
         repositorioViagem.adicionarViagem(v4);

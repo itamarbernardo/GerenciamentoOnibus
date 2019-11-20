@@ -1,6 +1,5 @@
 package br.uag.ufrpe.dados.repositorios;
 
-import br.uag.ufrpe.dados.interfaces.IRepositorioFuncionario;
 import br.uag.ufrpe.negocio.Funcionario;
 import java.util.ArrayList;
 import java.util.List;

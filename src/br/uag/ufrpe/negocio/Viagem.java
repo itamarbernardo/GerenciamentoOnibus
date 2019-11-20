@@ -212,7 +212,7 @@ public class Viagem {
      * @return Retorna uma string com a mensagem do erro que ocorreu. Se estiver
      * tudo certo, retorna uma string vazia.
      */
-    public String adicionarPassagem(Passagem p) {
+    public String venderPassagem(Passagem p) {
         /*Retorna uma String com uma mensagem pois ele tem que saber 
          qual foi o erro dado. Com o exception, pode retornar a exception */
         String mensagemErro = ""; //Se ocorrer tudo bem, retorna uma string vazia
@@ -245,6 +245,7 @@ public class Viagem {
     public void cancelarPassagem(Passagem p) {
         passagens.remove(p);
     }
+    
 
     @Override
     public boolean equals(Object obj) {

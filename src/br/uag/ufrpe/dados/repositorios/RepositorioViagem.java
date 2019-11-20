@@ -5,7 +5,6 @@
  */
 package br.uag.ufrpe.dados.repositorios;
 
-import br.uag.ufrpe.dados.interfaces.IRepositorioViagem;
 import br.uag.ufrpe.negocio.Data;
 import br.uag.ufrpe.negocio.Passageiro;
 import br.uag.ufrpe.negocio.Viagem;

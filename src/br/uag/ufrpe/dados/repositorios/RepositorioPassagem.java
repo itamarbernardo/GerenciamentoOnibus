@@ -5,7 +5,6 @@
  */
 package br.uag.ufrpe.dados.repositorios;
 
-import br.uag.ufrpe.dados.interfaces.IRepositorioPassagem;
 import br.uag.ufrpe.negocio.Passagem;
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package br.uag.ufrpe.dados.interfaces;
+package br.uag.ufrpe.dados.repositorios;
 
 import br.uag.ufrpe.negocio.Passagem;
 import java.util.List;
