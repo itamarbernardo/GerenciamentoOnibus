@@ -3,7 +3,7 @@ package br.uag.ufrpe.negocio;
 import br.uag.ufrpe.negocio.excecoes.PassageiroNaoEncontradoException;
 import br.uag.ufrpe.negocio.excecoes.PassageiroJaExisteException;
 
-import br.uag.ufrpe.dados.repositorios.IRepositorioPassageiro;
+import br.uag.ufrpe.dados.IRepositorioPassageiro;
 
 /**
  *

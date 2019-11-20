@@ -5,7 +5,7 @@
  */
 package br.uag.ufrpe.negocio;
 
-import br.uag.ufrpe.dados.repositorios.IRepositorioViagem;
+import br.uag.ufrpe.dados.IRepositorioViagem;
 import br.uag.ufrpe.negocio.excecoes.MotoristaNaoDisponivelException;
 import br.uag.ufrpe.negocio.excecoes.OnibusNaoDisponivelException;
 import br.uag.ufrpe.negocio.excecoes.ViagemJaExisteException;

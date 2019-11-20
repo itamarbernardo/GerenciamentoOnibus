@@ -7,7 +7,7 @@ package br.uag.ufrpe.negocio;
 
 import br.uag.ufrpe.negocio.excecoes.PassagemJaExisteException;
 import br.uag.ufrpe.negocio.excecoes.PassagemNaoExisteException;
-import br.uag.ufrpe.dados.repositorios.IRepositorioPassagem;
+import br.uag.ufrpe.dados.IRepositorioPassagem;
 
 /**
  *

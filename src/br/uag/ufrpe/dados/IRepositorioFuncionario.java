@@ -1,4 +1,4 @@
-package br.uag.ufrpe.dados.repositorios;
+package br.uag.ufrpe.dados;
 
 import br.uag.ufrpe.negocio.Funcionario;
 import java.util.List;

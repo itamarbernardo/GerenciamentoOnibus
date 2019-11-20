@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 
-package br.uag.ufrpe.dados.repositorios;
+package br.uag.ufrpe.dados;
 
 import br.uag.ufrpe.negocio.Motorista;
 import java.util.ArrayList;

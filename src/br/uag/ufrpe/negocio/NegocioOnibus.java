@@ -3,7 +3,7 @@ package br.uag.ufrpe.negocio;
 
 import br.uag.ufrpe.negocio.excecoes.OnibusNaoExisteException;
 import br.uag.ufrpe.negocio.excecoes.OnibusJaExisteException;
-import br.uag.ufrpe.dados.repositorios.IRepositorioOnibus;
+import br.uag.ufrpe.dados.IRepositorioOnibus;
 import br.uag.ufrpe.negocio.Onibus;
 
 /**
