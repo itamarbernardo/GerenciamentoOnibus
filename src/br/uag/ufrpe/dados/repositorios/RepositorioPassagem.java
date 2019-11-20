@@ -25,25 +25,18 @@ public class RepositorioPassagem implements IRepositorioPassagem {
 
     // ----------------------------- METODOS ---------------------------------------
     @Override
-    public boolean adicionarPassagem(Passagem passagem) {
-        if (procurarPassagem(passagem.getCodigo()) != null) {
-            this.passagens.add(passagem);
-            return true;
-        }
-        return false;
+    public void adicionarPassagem(Passagem passagem) {
+        this.passagens.add(passagem);
     }
 
     @Override
-    public boolean alterarPassagem(Passagem passagem) {
+    public void alterarPassagem(Passagem passagem) {
         for (int i = 0; i < passagens.size(); i++) {
             if (passagem.equals(passagens.get(i))) {
                 passagens.set(i, passagem);
-                return true;
             }
 
         }
-        return false;
-
     }
 
     @Override
@@ -55,26 +48,24 @@ public class RepositorioPassagem implements IRepositorioPassagem {
         }
         return null;
     }
-
-    @Override
-    public boolean removerPassagem(int codigo) {
-        Passagem p = procurarPassagem(codigo);
-
-        if (p != null) {
-            passagens.remove(p);
-            return true;
+    
+    public Passagem procurarPassagem(Passagem p){
+       for (Passagem passagem : passagens) {
+            if (passagem == p) {
+                return passagem;
+            }
         }
-        return false;
+        return null;
     }
 
     @Override
-    public boolean removerPassagem(Passagem passagem) {
-        Passagem p = procurarPassagem(passagem.getCodigo());
-        if (p != null) {
-            passagens.remove(passagem);
-            return true;
-        }
-        return false;
+    public void removerPassagem(int codigo) {
+        passagens.remove(codigo);
+    }
+
+    @Override
+    public void removerPassagem(Passagem passagem) {
+        passagens.remove(passagem);
     }
        
     @Override
@@ -86,7 +77,7 @@ public class RepositorioPassagem implements IRepositorioPassagem {
         return passagemCopia;
    }                   
       
-   }
+}
     
     
 
