@@ -24,25 +24,26 @@ public class RepositorioOnibus implements IRepositorioOnibus {
     }
 
     // ----------------------------- METODOS ---------------------------------------
+
+    /**
+     *
+     * @param oni representa o onibus que está sendo adicionado;
+     */
+    
     @Override
-    public boolean adicionarOnibus(Onibus oni) {
-        if (procurarOnibus(oni.getPlaca()) != null) {
-            onibus.add(oni);
-            return true;
-        }
-        return false;
+    public void adicionarOnibus(Onibus oni){
+       onibus.add(oni);
+       
     }
 
     @Override
-    public boolean alterarOnibus(Onibus oni) {
+    public void alterarOnibus(Onibus oni) {
         for (int i = 0; i < onibus.size(); i++) {
             if (oni.equals(onibus.get(i))) {
                 onibus.set(i, oni);
-                return true;
             }
 
         }
-        return false;
     }
 
     @Override
@@ -56,26 +57,16 @@ public class RepositorioOnibus implements IRepositorioOnibus {
     }
 
     @Override
-    public boolean removerOnibus(String placa) {
-        Onibus o = procurarOnibus(placa);
-
-        if (o != null) {
-            onibus.remove(o);
-            return true;
-        }
-        return false;
+    public void removerOnibus(String placa) {
+        
+        onibus.remove(placa);
     }
 
     @Override
-    public boolean removerOnibus(Onibus o) {
-        Onibus oni = procurarOnibus(o.getPlaca());
-
-        if (oni != null) {
-            onibus.remove(o);
-            return true;
-        }
-        return false;
+    public void removerOnibus(Onibus o) {
+        onibus.remove(o);
     }
+    
     
     @Override
       public List<Onibus> listagemOnibus() {
