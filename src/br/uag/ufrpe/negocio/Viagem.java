@@ -5,6 +5,11 @@
  */
 package br.uag.ufrpe.negocio;
 
+import br.uag.ufrpe.negocio.excecoes.PassageiroJaEstaNaViagemException;
+import br.uag.ufrpe.negocio.excecoes.OnibusCheioException;
+import br.uag.ufrpe.negocio.excecoes.DisponibilidadeTipoDePassagemException;
+import br.uag.ufrpe.negocio.excecoes.DisponibilidadeDeAssentoException;
+import br.uag.ufrpe.negocio.excecoes.PassagemNaoPertenceAViagemException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -23,7 +28,7 @@ public class Viagem {
     private String dataSaida;
     private String dataChegada;
     private final int codigo;
-    private List<Passagem> passagens;
+    private final List<Passagem> passagens;
     private Onibus onibus;
     private String origem;
     private String destino;
@@ -35,7 +40,7 @@ public class Viagem {
     private int quantidadeIdoso;
     private int quantidadeIdosoParcial;
 
-    private Map<Integer, String> poltronas;
+    private final Map<Integer, String> poltronas;
 
     public Viagem(Onibus onibus, String origem, String destino, String horarioSaida, String horarioChegada, String dataSaida, String dataChegada) {
 
@@ -79,13 +84,20 @@ public class Viagem {
     }
 
     public double calcularPorcentagemPassageiros() {
-        double porcentagem = passagens.size() / onibus.getTotalPoltronas();
+        double porcentagem = 0;
 
+        if(onibus.getTotalPoltronas() != 0){
+            porcentagem = passagens.size() / onibus.getTotalPoltronas();
+        }
         return porcentagem;
     }
 
     public double calcularPorcentagemLanche() {
-        double porcentagem = calculaQuantidadeLanche() / passagens.size();
+        double porcentagem = 0; 
+        
+        if(passagens.size() != 0){
+            porcentagem = calculaQuantidadeLanche() / passagens.size();        
+        }
 
         return porcentagem;
     }
@@ -134,14 +146,13 @@ public class Viagem {
             poltronas.put(p.getCodigoPoltrona(), "Ocupado");
 
         } else if (poltronas.get(p.getCodigoPoltrona()).equals("Ocupado")) {
-            mensagemErro = "Erro. A poltrona já está ocupada.";
+            mensagemErro = "A poltrona já está ocupada.";
         } else {
-            mensagemErro = "Erro. O tipo de Assento não está disponível nesta poltrona.";
+            mensagemErro = "O tipo de Assento não está disponível nesta poltrona.";
         }
 
         return mensagemErro;
     }
-
     /**
      * Este método verifica a quantidade de poltronas vazias na Viagem.
      *
@@ -172,30 +183,34 @@ public class Viagem {
         if (p.getTipoDePassagem().equals("IdJovem") && quantidadeIdJovem < 2) {
             quantidadeIdJovem++;
         } else if (p.getTipoDePassagem().equals("IdJovem") && quantidadeIdJovem == 2) {
-            mensagemErro = mensagemErro + "\nNão há mais vagas de GRATUIDADE com ID Jovem ";
+            mensagemErro = mensagemErro + "Não há mais vagas de GRATUIDADE com ID Jovem ";
         } else if (p.getTipoDePassagem().equals("ParcialIdJovem") && quantidadeIdJovemParcial < 2) {
             quantidadeIdJovemParcial++;
         } else if (p.getTipoDePassagem().equals("ParcialIdJovem") && quantidadeIdJovemParcial == 2) {
-            mensagemErro = mensagemErro + "\nNão há mais vagas de GRATUIDADE PARCIAL com ID Jovem ";
+            mensagemErro = mensagemErro + "Não há mais vagas de GRATUIDADE PARCIAL com ID Jovem ";
         } else if (p.getTipoDePassagem().equals("Idoso") && quantidadeIdoso < 2) {
             quantidadeIdoso++;
 
         } else if (p.getTipoDePassagem().equals("Idoso") && quantidadeIdoso == 2) {
-            mensagemErro = mensagemErro + "\nNão há mais vagas de GRATUIDADE para Idoso";
+            mensagemErro = mensagemErro + "Não há mais vagas de GRATUIDADE para Idoso";
 
         } else if (p.getTipoDePassagem().equals("ParcialIdoso") && quantidadeIdosoParcial < 2) {
             quantidadeIdosoParcial++;
         } else if (p.getTipoDePassagem().equals("ParcialIdoso") && quantidadeIdosoParcial == 2) {
-            mensagemErro = mensagemErro + "\nNão há mais vagas de GRATUIDADE PARCIAL para Idoso";
+            mensagemErro = mensagemErro + "Não há mais vagas de GRATUIDADE PARCIAL para Idoso";
         }
 
         return mensagemErro;
     }
 
+    /**
+     * Este método verifica se um passageiro está na viagem.
+     * @param p Passageiro que se deseja rerificar.
+     * @return Retorna true se ele estiver e false se não estiver.
+     */
     public boolean estaNaViagem(Passageiro p) {
-        List<Passageiro> passageiros = listagemPassageirosNaViagem();
 
-        for (Passageiro passageiro : passageiros) {
+        for (Passageiro passageiro : listagemPassageirosNaViagem()) {
             if (p.equals(passageiro)) {
                 return true; //Esse passageiro já está na viagem
             }
@@ -204,15 +219,13 @@ public class Viagem {
     }
 
     /**
-     * Este método adiciona uma passagem após checar se há disponibilidade de
+     * Este método vende uma passagem após checar se há disponibilidade de
      * assentos e do tipo de passagem escolhido.
      *
      * @param p o objeto do tipo Passagem que será adicionado na lista de
      * passagens.
-     * @return Retorna uma string com a mensagem do erro que ocorreu. Se estiver
-     * tudo certo, retorna uma string vazia.
      */
-    public String venderPassagem(Passagem p) {
+    public void venderPassagem(Passagem p) throws DisponibilidadeDeAssentoException, DisponibilidadeTipoDePassagemException, PassageiroJaEstaNaViagemException, OnibusCheioException {
         /*Retorna uma String com uma mensagem pois ele tem que saber 
          qual foi o erro dado. Com o exception, pode retornar a exception */
         String mensagemErro = ""; //Se ocorrer tudo bem, retorna uma string vazia
@@ -225,27 +238,54 @@ public class Viagem {
                  Se mensagemErro.length() for maior que zero é porque algo está errado.
                  */
                 mensagemErro = verificarDisponibilidadeAssento(p) + verificarDisponibilidadeTipoDePassagem(p);
-
                 if (mensagemErro.length() == 0) {
                     passagens.add(p);
-                    return mensagemErro;
-                } else {
-                    return mensagemErro;
                 }
+                else if(verificarDisponibilidadeAssento(p).length() != 0){
+                    throw new DisponibilidadeDeAssentoException(verificarDisponibilidadeAssento(p));
+                }
+                else if(verificarDisponibilidadeTipoDePassagem(p).length() != 0){
+                    throw new DisponibilidadeTipoDePassagemException(verificarDisponibilidadeTipoDePassagem(p));
+                }
+                
 
             } else {
-                return "Não há mais assentos disponíveis neste onibus.";
+                throw new OnibusCheioException(); 
             }
         } else {
-            return "Esse passageiro já está nesta viagem";
+            throw new PassageiroJaEstaNaViagemException();
         }
 
     }
 
-    public void cancelarPassagem(Passagem p) {
-        passagens.remove(p);
+    public void cancelarPassagem(Passagem p) throws PassagemNaoPertenceAViagemException {
+        int index = passagens.indexOf(p);
+        
+        if(index != -1){
+           passagens.remove(p);
+        }else{
+            throw new PassagemNaoPertenceAViagemException();
+        }
+
     }
     
+    /**
+     * Este método procura uma passagem na viagem por um passageiro, 
+     * já que um mesmo passageiro não pode tirar duas passagens.
+     * @param passageiro Passageiro que pode ou não ter uma passagem nessa viagem.
+     * @return Retorna a passagem que o passageiro possui na viagem ou null se ele não possuir passagem.
+     */
+    public Passagem procurarPassagem(Passageiro passageiro){
+        boolean verifica = estaNaViagem(passageiro);
+        if(verifica){
+            for(Passagem passagem : passagens){
+                if(passagem.getPassageiro().equals(passageiro)){
+                    return passagem;
+                }
+            }
+        }
+        return null;
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -274,9 +314,13 @@ public class Viagem {
         this.dataChegada = dataChegada;
     }
 
-    //Duvida se faz a mesma coisa dos repositorios para evitar aliasing 
-    public List<Passagem> getPassagens() {
-        return passagens;
+    public List<Passagem> listagemPassagens() {
+        List<Passagem> passagensCopia = new ArrayList<>();
+        for(Passagem p : passagens){
+            passagensCopia.add(p);
+        }
+        
+        return passagensCopia;
     }
 
     public Onibus getOnibus() {
@@ -343,7 +387,12 @@ public class Viagem {
         return quantidadeIdosoParcial;
     }
 
-    public Map<Integer, String> getPoltronas() {
+    public Map<Integer, String> listaPoltronas() {
+        Map<Integer, String> poltronasCopia = new HashMap<>();
+        
+        for (int i = 1; i <= poltronas.size(); i++) {
+            poltronasCopia.put(i, poltronas.get(i));
+        }
         return poltronas;
     }
 

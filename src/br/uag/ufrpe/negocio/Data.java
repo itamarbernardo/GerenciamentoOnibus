@@ -68,5 +68,11 @@ public class Data {
     }
     
 
+    public static boolean verificaDataInicioDataFimValida(String dataInicio, String dataFinal){
+        LocalDate dataIn = converterDataParaLocalDate(dataInicio);
+        LocalDate dataFim = converterDataParaLocalDate(dataFinal);
+        
+        return dataIn.isBefore(dataFim) || dataIn.isEqual(dataFim);
+    }
     
 }

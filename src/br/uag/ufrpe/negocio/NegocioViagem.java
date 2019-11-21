@@ -6,6 +6,7 @@
 package br.uag.ufrpe.negocio;
 
 import br.uag.ufrpe.dados.IRepositorioViagem;
+import br.uag.ufrpe.negocio.excecoes.IntervaloDeDatasInvalidoException;
 import br.uag.ufrpe.negocio.excecoes.MotoristaNaoDisponivelException;
 import br.uag.ufrpe.negocio.excecoes.OnibusNaoDisponivelException;
 import br.uag.ufrpe.negocio.excecoes.ViagemJaExisteException;
@@ -91,50 +92,99 @@ public class NegocioViagem {
             repositorio.alterarViagem(v);
         }
     }
-    
-    public List<Viagem> listagemViagens(){
+
+    public List<Viagem> listagemViagens() {
         return repositorio.listagemViagens();
     }
-    
-    public String procurarUltimasViagensDeUmPassageiro(Passageiro passageiro){
+
+    /**
+     * Fazer algumas verificacoes e lancar excecoes nas datas: Se uma for menor
+     * que a outra
+     *
+     *
+     *
+     */
+    public String procurarUltimasViagensDeUmPassageiro(Passageiro passageiro) {
         return repositorio.procurarUltimasViagensDeUmPassagiro(passageiro);
     }
-    
-    public double calculaPorcentagemLanchePorDatasEViagens(String horarioSaida, String origem, String destino, String dataInicio, String dataFim) {
-        return repositorio.calculaPorcentagemLanchePorDatasEViagens(horarioSaida, origem, destino, dataInicio, dataFim);
-    }
-    
-    public double calculaPorcentagemLanchePorDatasEDestino(String origem, String destino, String dataInicio, String dataFim) {
-        return repositorio.calculaPorcentagemLanchePorDatasEDestino(origem, destino, dataInicio, dataFim);
-    }
-    
-    public double calculaPorcentagemLanchePorDatas(String dataInicio, String dataFim) {
-        return repositorio.calculaPorcentagemLanchePorDatas(dataInicio, dataFim);
-    }
-    
-    public double calculaPorcentagemPassageirosPorDatas(String dataInicio, String dataFim) {
-        return repositorio.calculaPorcentagemPassageirosPorDatas(dataInicio, dataFim);
-    }
-    
-    public double calculaPorcentagemPassageirosPorDatasEViagens(String horario, String origem, String destino, String dataInicio, String dataFim) {
-        return repositorio.calculaPorcentagemPassageirosPorDatasEViagens(horario, origem, destino, dataInicio, dataFim);
+
+    public double calculaPorcentagemLanchePorDatasEViagens(String horarioSaida, String origem, String destino, String dataInicio, String dataFim) throws IntervaloDeDatasInvalidoException {
+        if (Data.verificaDataInicioDataFimValida(dataInicio, dataFim)) {
+            return repositorio.calculaPorcentagemLanchePorDatasEViagens(horarioSaida, origem, destino, dataInicio, dataFim);
+
+        } else {
+            throw new IntervaloDeDatasInvalidoException();
+        }
+
     }
 
-    public double calculaPorcentagemPassageirosPorDatasEDestino(String origem, String destino, String dataInicio, String dataFim) {
-        return repositorio.calculaPorcentagemPassageirosPorDatasEDestino(origem, destino, dataInicio, dataFim);
+    public double calculaPorcentagemLanchePorDatasEDestino(String origem, String destino, String dataInicio, String dataFim) throws IntervaloDeDatasInvalidoException {
+        if (Data.verificaDataInicioDataFimValida(dataInicio, dataFim)) {
+            return repositorio.calculaPorcentagemLanchePorDatasEDestino(origem, destino, dataInicio, dataFim);
+
+        } else {
+            throw new IntervaloDeDatasInvalidoException();
+        }
     }
 
-    public double calcularLucroTotalPorDatas(String dataInicio, String dataFim) {
-        return repositorio.calcularLucroTotalPorDatas(dataInicio, dataFim);
+    public double calculaPorcentagemLanchePorDatas(String dataInicio, String dataFim) throws IntervaloDeDatasInvalidoException {
+        if (Data.verificaDataInicioDataFimValida(dataInicio, dataFim)) {
+            return repositorio.calculaPorcentagemLanchePorDatas(dataInicio, dataFim);
+        } else {
+            throw new IntervaloDeDatasInvalidoException();
+        }
+    }
+
+    public double calculaPorcentagemPassageirosPorDatas(String dataInicio, String dataFim) throws IntervaloDeDatasInvalidoException {
+        if (Data.verificaDataInicioDataFimValida(dataInicio, dataFim)) {
+            return repositorio.calculaPorcentagemPassageirosPorDatas(dataInicio, dataFim);
+
+        } else {
+            throw new IntervaloDeDatasInvalidoException();
+        }
+    }
+
+    public double calculaPorcentagemPassageirosPorDatasEViagens(String horario, String origem, String destino, String dataInicio, String dataFim) throws IntervaloDeDatasInvalidoException {
+        if (Data.verificaDataInicioDataFimValida(dataInicio, dataFim)) {
+            return repositorio.calculaPorcentagemPassageirosPorDatasEViagens(horario, origem, destino, dataInicio, dataFim);
+
+        } else {
+            throw new IntervaloDeDatasInvalidoException();
+        }
+    }
+
+    public double calculaPorcentagemPassageirosPorDatasEDestino(String origem, String destino, String dataInicio, String dataFim) throws IntervaloDeDatasInvalidoException {
+        if (Data.verificaDataInicioDataFimValida(dataInicio, dataFim)) {
+            return repositorio.calculaPorcentagemPassageirosPorDatasEDestino(origem, destino, dataInicio, dataFim);
+        } else {
+            throw new IntervaloDeDatasInvalidoException();
+        }
+    }
+
+    public double calcularLucroTotalPorDatas(String dataInicio, String dataFim) throws IntervaloDeDatasInvalidoException {
+        if (Data.verificaDataInicioDataFimValida(dataInicio, dataFim)) {
+            return repositorio.calcularLucroTotalPorDatas(dataInicio, dataFim);
+        } else {
+            throw new IntervaloDeDatasInvalidoException();
+        }
+    }
+
+    public double calcularLucroTotalPorDatasEViagens(String horarioSaida, String origem, String destino, String dataInicio, String dataFim) throws IntervaloDeDatasInvalidoException {
+        if (Data.verificaDataInicioDataFimValida(dataInicio, dataFim)) {
+            return repositorio.calcularLucroTotalPorDatasEViagens(horarioSaida, origem, destino, dataInicio, dataFim);
+        } else {
+            throw new IntervaloDeDatasInvalidoException();
+        }
+    }
+
+    public double calcularLucroTotalPorDatasEDestino(String origem, String destino, String dataInicio, String dataFim) throws IntervaloDeDatasInvalidoException {
+        if (Data.verificaDataInicioDataFimValida(dataInicio, dataFim)) {
+            return repositorio.calcularLucroTotalPorDatasEDestino(origem, destino, dataInicio, dataFim);
+        } else {
+            throw new IntervaloDeDatasInvalidoException();
+        }
     }
     
-    public double calcularLucroTotalPorDatasEViagens(String horarioSaida, String origem, String destino, String dataInicio, String dataFim) {
-        return repositorio.calcularLucroTotalPorDatasEViagens(horarioSaida, origem, destino, dataInicio, dataFim);
-    }
-    
-    public double calcularLucroTotalPorDatasEDestino(String origem, String destino, String dataInicio, String dataFim) {
-        return repositorio.calcularLucroTotalPorDatasEDestino(origem, destino, dataInicio, dataFim);
-    }
     
     
     
