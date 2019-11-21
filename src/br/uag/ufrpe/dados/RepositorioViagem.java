@@ -54,8 +54,10 @@ public class RepositorioViagem implements IRepositorioViagem {
 
             }
         }
+        if (totalPassageiros != 0) {
+            porcentagem = totalPassageirosQueremLanche / totalPassageiros;
 
-        porcentagem = totalPassageirosQueremLanche / totalPassageiros;
+        }
 
         return porcentagem;
     }
@@ -89,7 +91,9 @@ public class RepositorioViagem implements IRepositorioViagem {
             }
         }
 
-        porcentagem = totalPassageirosQueremLanche / totalPassageiros;
+        if (totalPassageiros != 0) {
+            porcentagem = totalPassageirosQueremLanche / totalPassageiros;
+        }
 
         return porcentagem;
     }
@@ -119,8 +123,9 @@ public class RepositorioViagem implements IRepositorioViagem {
 
             }
         }
-
-        porcentagem = totalPassageirosQueremLanche / totalPassageiros;
+        if (totalPassageiros != 0) {
+            porcentagem = totalPassageirosQueremLanche / totalPassageiros;
+        }
 
         return porcentagem;
     }
@@ -150,8 +155,9 @@ public class RepositorioViagem implements IRepositorioViagem {
 
             }
         }
-
-        porcentagem = totalQuantidadePassageiros / totalCapacidadeOnibus;
+        if (totalCapacidadeOnibus != 0) {
+            porcentagem = totalQuantidadePassageiros / totalCapacidadeOnibus;
+        }
 
         return porcentagem;
     }
@@ -184,7 +190,10 @@ public class RepositorioViagem implements IRepositorioViagem {
             }
         }
 
-        porcentagem = totalQuantidadePassageiros / totalCapacidadeOnibus;
+        if (totalCapacidadeOnibus != 0) {
+            porcentagem = totalQuantidadePassageiros / totalCapacidadeOnibus;
+        }
+
         return porcentagem;
     }
 
@@ -212,8 +221,10 @@ public class RepositorioViagem implements IRepositorioViagem {
                 totalQuantidadePassageiros = totalQuantidadePassageiros + viagem.calcularQuantidadeDePassageiros();
             }
         }
-
-        porcentagem = totalQuantidadePassageiros / totalCapacidadeOnibus;
+        if (totalCapacidadeOnibus != 0) {
+            porcentagem = totalQuantidadePassageiros / totalCapacidadeOnibus;
+        }
+        
         return porcentagem;
     }
 
@@ -348,6 +359,5 @@ public class RepositorioViagem implements IRepositorioViagem {
 
         return viagensCopia;
     }
-
 
 }
