@@ -97,13 +97,6 @@ public class NegocioViagem {
         return repositorio.listagemViagens();
     }
 
-    /**
-     * Fazer algumas verificacoes e lancar excecoes nas datas: Se uma for menor
-     * que a outra
-     *
-     *
-     *
-     */
     public String procurarUltimasViagensDeUmPassageiro(Passageiro passageiro) {
         return repositorio.procurarUltimasViagensDeUmPassagiro(passageiro);
     }
