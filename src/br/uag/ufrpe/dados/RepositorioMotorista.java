@@ -24,25 +24,18 @@ public class RepositorioMotorista implements IRepositorioMotorista {
     }
     
     @Override
-    public void adicionarMotorista(Motorista motorista){
-        if(procurarMotorista(motorista.getNumeroCarteiraMotorista()) == null){
+    public void adicionarMotorista(Motorista motorista){            
             motoristas.add(motorista);
-        }
     }
    
     @Override
    public void alterarMotorista(Motorista motorista){
-        for (int i = 0; i < motoristas.size(); i++) {
-            if (motorista.equals(motoristas.get(i))) {
-                motoristas.set(i, motorista);
+        int i = motoristas.indexOf(motorista);
+        motoristas.set(i, motorista);
                  
             }
-        }
-      
-    }
     
      public Motorista procurarMotorista(String numeroCarteiraMotorista) {
-        
         for (Motorista motorista : motoristas) {
             if (motorista.getNumeroCarteiraMotorista().equals(numeroCarteiraMotorista)) {
                 return motorista;
@@ -53,11 +46,7 @@ public class RepositorioMotorista implements IRepositorioMotorista {
      
     @Override
      public void removerMotorista(Motorista motorista){
-        Motorista encontrado = procurarMotorista(motorista.getNumeroCarteiraMotorista());
-        
-         if (encontrado != null) {
-            motoristas.remove(encontrado);
-        }
+            motoristas.remove(motorista);
         }
        
     @Override
@@ -68,8 +57,7 @@ public class RepositorioMotorista implements IRepositorioMotorista {
          }
 
         return motoristaCopia;
-      }
-               
+      }               
     }
   
         
