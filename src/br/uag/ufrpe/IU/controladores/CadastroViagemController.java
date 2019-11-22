@@ -33,7 +33,7 @@ import javafx.scene.control.TextField;
  *
  * @author Itamar Jr
  */
-public class CadastroViagem implements Initializable {
+public class CadastroViagemController implements Initializable {
 
     private FachadaGerente fachadaGerente;
 
@@ -52,7 +52,7 @@ public class CadastroViagem implements Initializable {
     @FXML
     private TextField txtHChegada;
 
-    public CadastroViagem(){
+    public CadastroViagemController(){
         //Falta instanciar a fachada gerente!
     }
     
