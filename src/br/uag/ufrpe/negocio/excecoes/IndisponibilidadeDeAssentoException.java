@@ -10,11 +10,12 @@ package br.uag.ufrpe.negocio.excecoes;
  *
  * @author Itamar Jr
  */
-public class DisponibilidadeTipoDePassagemException extends Exception {
+public class IndisponibilidadeDeAssentoException extends Exception{
     
-    public DisponibilidadeTipoDePassagemException(String mensagem) {
+    public IndisponibilidadeDeAssentoException(String mensagem){
         super(mensagem);
     }
-
+    
+    
     
 }

@@ -7,8 +7,8 @@ package br.uag.ufrpe.negocio;
 
 import br.uag.ufrpe.negocio.excecoes.PassageiroJaEstaNaViagemException;
 import br.uag.ufrpe.negocio.excecoes.OnibusCheioException;
-import br.uag.ufrpe.negocio.excecoes.DisponibilidadeTipoDePassagemException;
-import br.uag.ufrpe.negocio.excecoes.DisponibilidadeDeAssentoException;
+import br.uag.ufrpe.negocio.excecoes.IndisponibilidadeTipoDePassagemException;
+import br.uag.ufrpe.negocio.excecoes.IndisponibilidadeDeAssentoException;
 import br.uag.ufrpe.negocio.excecoes.PassagemNaoPertenceAViagemException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -225,7 +225,7 @@ public class Viagem {
      * @param p o objeto do tipo Passagem que será adicionado na lista de
      * passagens.
      */
-    public void venderPassagem(Passagem p) throws DisponibilidadeDeAssentoException, DisponibilidadeTipoDePassagemException, PassageiroJaEstaNaViagemException, OnibusCheioException {
+    public void venderPassagem(Passagem p) throws IndisponibilidadeDeAssentoException, IndisponibilidadeTipoDePassagemException, PassageiroJaEstaNaViagemException, OnibusCheioException {
         /*Retorna uma String com uma mensagem pois ele tem que saber 
          qual foi o erro dado. Com o exception, pode retornar a exception */
         String mensagemErro = ""; //Se ocorrer tudo bem, retorna uma string vazia
@@ -242,10 +242,10 @@ public class Viagem {
                     passagens.add(p);
                 }
                 else if(verificarDisponibilidadeAssento(p).length() != 0){
-                    throw new DisponibilidadeDeAssentoException(verificarDisponibilidadeAssento(p));
+                    throw new IndisponibilidadeDeAssentoException(verificarDisponibilidadeAssento(p));
                 }
                 else if(verificarDisponibilidadeTipoDePassagem(p).length() != 0){
-                    throw new DisponibilidadeTipoDePassagemException(verificarDisponibilidadeTipoDePassagem(p));
+                    throw new IndisponibilidadeTipoDePassagemException(verificarDisponibilidadeTipoDePassagem(p));
                 }
                 
 

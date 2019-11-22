@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package br.uag.ufrpe.IU;
+package main;
 
 import br.uag.ufrpe.negocio.Endereco;
 import br.uag.ufrpe.negocio.Funcionario;
@@ -20,8 +20,8 @@ import br.uag.ufrpe.dados.RepositorioPassagem;
 import br.uag.ufrpe.dados.RepositorioViagem;
 import br.uag.ufrpe.negocio.Data;
 import br.uag.ufrpe.negocio.excecoes.PassageiroJaEstaNaViagemException;
-import br.uag.ufrpe.negocio.excecoes.DisponibilidadeDeAssentoException;
-import br.uag.ufrpe.negocio.excecoes.DisponibilidadeTipoDePassagemException;
+import br.uag.ufrpe.negocio.excecoes.IndisponibilidadeDeAssentoException;
+import br.uag.ufrpe.negocio.excecoes.IndisponibilidadeTipoDePassagemException;
 import br.uag.ufrpe.negocio.excecoes.OnibusCheioException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
@@ -94,10 +94,10 @@ public class GerenciaOnibus {
             v.venderPassagem(passagem2);
             v.venderPassagem(passagem3);
 
-        } catch (DisponibilidadeDeAssentoException ex) {
+        } catch (IndisponibilidadeDeAssentoException ex) {
             System.out.println(ex);
             ex.printStackTrace();
-        } catch (DisponibilidadeTipoDePassagemException ex) {
+        } catch (IndisponibilidadeTipoDePassagemException ex) {
             System.out.println(ex);
             ex.printStackTrace();
         } catch (OnibusCheioException ex) {
@@ -116,10 +116,10 @@ public class GerenciaOnibus {
         try {
             v2.venderPassagem(passagem);
             v2.venderPassagem(passagem2);
-        } catch (DisponibilidadeDeAssentoException ex) {
+        } catch (IndisponibilidadeDeAssentoException ex) {
             System.out.println(ex);
             ex.printStackTrace();
-        } catch (DisponibilidadeTipoDePassagemException ex) {
+        } catch (IndisponibilidadeTipoDePassagemException ex) {
             System.out.println(ex);
             ex.printStackTrace();
         } catch (OnibusCheioException ex) {
@@ -137,10 +137,10 @@ public class GerenciaOnibus {
         try {
             v3.venderPassagem(passagem);
             v3.venderPassagem(passagem2);
-        } catch (DisponibilidadeDeAssentoException ex) {
+        } catch (IndisponibilidadeDeAssentoException ex) {
             System.out.println(ex);
             ex.printStackTrace();
-        } catch (DisponibilidadeTipoDePassagemException ex) {
+        } catch (IndisponibilidadeTipoDePassagemException ex) {
             System.out.println(ex);
             ex.printStackTrace();
         } catch (PassageiroJaEstaNaViagemException ex) {
@@ -155,10 +155,10 @@ public class GerenciaOnibus {
         try {
             v4.venderPassagem(passagem);
             v4.venderPassagem(passagem2);
-        } catch (DisponibilidadeDeAssentoException ex) {
+        } catch (IndisponibilidadeDeAssentoException ex) {
             System.out.println(ex);
             ex.printStackTrace();
-        } catch (DisponibilidadeTipoDePassagemException ex) {
+        } catch (IndisponibilidadeTipoDePassagemException ex) {
             System.out.println(ex);
             ex.printStackTrace();
         } catch (PassageiroJaEstaNaViagemException ex) {

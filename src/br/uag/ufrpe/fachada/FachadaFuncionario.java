@@ -12,8 +12,8 @@ import br.uag.ufrpe.negocio.NegocioViagem;
 import br.uag.ufrpe.negocio.Passageiro;
 import br.uag.ufrpe.negocio.Passagem;
 import br.uag.ufrpe.negocio.Viagem;
-import br.uag.ufrpe.negocio.excecoes.DisponibilidadeDeAssentoException;
-import br.uag.ufrpe.negocio.excecoes.DisponibilidadeTipoDePassagemException;
+import br.uag.ufrpe.negocio.excecoes.IndisponibilidadeDeAssentoException;
+import br.uag.ufrpe.negocio.excecoes.IndisponibilidadeTipoDePassagemException;
 import br.uag.ufrpe.negocio.excecoes.OnibusCheioException;
 import br.uag.ufrpe.negocio.excecoes.PassageiroJaEstaNaViagemException;
 import br.uag.ufrpe.negocio.excecoes.PassageiroNaoExisteException;
@@ -51,7 +51,7 @@ public class FachadaFuncionario {
 
     }
 
-    public void venderPassagem(int codigoViagem, int codigoPassagem) throws ViagemNaoExisteException, DisponibilidadeDeAssentoException, DisponibilidadeTipoDePassagemException, PassageiroJaEstaNaViagemException, OnibusCheioException, PassagemNaoExisteException {
+    public void venderPassagem(int codigoViagem, int codigoPassagem) throws ViagemNaoExisteException, IndisponibilidadeDeAssentoException, IndisponibilidadeTipoDePassagemException, PassageiroJaEstaNaViagemException, OnibusCheioException, PassagemNaoExisteException {
         Viagem viagem = negocioViagem.procurar(codigoViagem);
         if (viagem == null) {
             throw new ViagemNaoExisteException();
