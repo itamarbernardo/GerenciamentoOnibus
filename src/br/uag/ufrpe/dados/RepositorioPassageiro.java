@@ -1,6 +1,6 @@
 package br.uag.ufrpe.dados;
 
-import br.uag.ufrpe.negocio.Passageiro;
+import br.uag.ufrpe.negocio.entidades.Passageiro;
 import java.util.ArrayList;
 import java.util.List;
 /**

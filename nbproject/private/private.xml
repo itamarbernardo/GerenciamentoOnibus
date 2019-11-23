@@ -3,29 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/dados/IRepositorioViagem.java</file>
-            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/negocio/excecoes/MotoristaNaoExisteException.java</file>
-            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/dados/IRepositorioOnibus.java</file>
-            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/dados/RepositorioPassageiro.java</file>
+            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/IU/telas/TelaCadastroViagem.fxml</file>
             <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/fachada/FachadaGerente.java</file>
-            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/dados/IRepositorioFuncionario.java</file>
-            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/negocio/Passagem.java</file>
-            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/dados/RepositorioViagem.java</file>
-            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/dados/RepositorioFuncionario.java</file>
-            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/negocio/NegocioMotorista.java</file>
-            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/dados/IRepositorioPassagem.java</file>
-            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/negocio/Viagem.java</file>
-            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/IU/GerenciaOnibus.java</file>
-            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/negocio/NegocioPassagem.java</file>
-            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/dados/IRepositorioPassageiro.java</file>
-            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/dados/RepositorioOnibus.java</file>
+            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/IU/controladores/CadastroViagemController.java</file>
+            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/negocio/Data.java</file>
             <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/negocio/NegocioViagem.java</file>
-            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/negocio/excecoes/PassagemNaoExisteException.java</file>
-            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/negocio/excecoes/MotoristaJaExisteException.java</file>
-            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/negocio/excecoes/ViagemNaoExisteException.java</file>
-            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/dados/IRepositorioMotorista.java</file>
-            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/negocio/NegocioPassageiro.java</file>
-            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/negocio/NegocioOnibus.java</file>
+            <file>file:/C:/Users/Itamar%20Jr/Documents/NetBeansProjects/GerenciaOnibus/src/br/uag/ufrpe/IU/ConstrucaoGUIGerenciaOnibus.java</file>
         </group>
     </open-files>
 </project-private>

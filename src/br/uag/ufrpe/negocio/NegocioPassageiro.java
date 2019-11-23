@@ -1,9 +1,11 @@
 package br.uag.ufrpe.negocio;
 
-import br.uag.ufrpe.negocio.excecoes.PassageiroNaoExisteException;
-import br.uag.ufrpe.negocio.excecoes.PassageiroJaExisteException;
+import br.uag.ufrpe.negocio.entidades.Passageiro;
+import br.uag.ufrpe.negocio.excecoes.passageiro.PassageiroNaoExisteException;
+import br.uag.ufrpe.negocio.excecoes.passageiro.PassageiroJaExisteException;
 
 import br.uag.ufrpe.dados.IRepositorioPassageiro;
+import br.uag.ufrpe.dados.RepositorioPassageiro;
 
 /**
  *
@@ -12,8 +14,8 @@ import br.uag.ufrpe.dados.IRepositorioPassageiro;
 public class NegocioPassageiro{
     private final IRepositorioPassageiro repositorio;
 
-    public NegocioPassageiro(IRepositorioPassageiro repositorio) {
-        this.repositorio = repositorio;
+    public NegocioPassageiro() {
+        this.repositorio = new RepositorioPassageiro();
     }
     
     public void adicionarPassageiro(Passageiro passageiro) throws PassageiroJaExisteException, PassageiroNaoExisteException{

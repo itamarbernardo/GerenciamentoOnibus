@@ -1,6 +1,6 @@
 package br.uag.ufrpe.dados;
 
-import br.uag.ufrpe.negocio.Motorista;
+import br.uag.ufrpe.negocio.entidades.Motorista;
 import java.util.List;
 
 /**

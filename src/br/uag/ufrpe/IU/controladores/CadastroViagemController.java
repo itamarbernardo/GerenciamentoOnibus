@@ -5,16 +5,16 @@
  */
 package br.uag.ufrpe.IU.controladores;
 
-import br.uag.ufrpe.fachada.FachadaGerente;
-import br.uag.ufrpe.negocio.Data;
+import br.uag.ufrpe.negocio.fachada.FachadaGerente;
+import br.uag.ufrpe.negocio.entidades.Data;
 import br.uag.ufrpe.negocio.NegocioOnibus;
 import br.uag.ufrpe.negocio.NegocioPassageiro;
 import br.uag.ufrpe.negocio.NegocioPassagem;
 import br.uag.ufrpe.negocio.NegocioViagem;
-import br.uag.ufrpe.negocio.excecoes.MotoristaNaoDisponivelException;
-import br.uag.ufrpe.negocio.excecoes.OnibusNaoDisponivelException;
-import br.uag.ufrpe.negocio.excecoes.OnibusNaoExisteException;
-import br.uag.ufrpe.negocio.excecoes.ViagemJaExisteException;
+import br.uag.ufrpe.negocio.excecoes.motorista.MotoristaNaoDisponivelException;
+import br.uag.ufrpe.negocio.excecoes.onibus.OnibusNaoDisponivelException;
+import br.uag.ufrpe.negocio.excecoes.onibus.OnibusNaoExisteException;
+import br.uag.ufrpe.negocio.excecoes.viagem.ViagemJaExisteException;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
@@ -52,12 +52,13 @@ public class CadastroViagemController implements Initializable {
     @FXML
     private TextField txtHChegada;
 
-    public CadastroViagemController(){
-        //Falta instanciar a fachada gerente!
+    public CadastroViagemController() {
+        fachadaGerente = new FachadaGerente();
     }
-    
+
     @FXML
     private void cadastrarViagem(ActionEvent event) {
+        boolean verifica = true;
         Alert alerta = new Alert(Alert.AlertType.ERROR);
         alerta.setTitle("Erro");
         alerta.setHeaderText("Erro ao preencher os dados");
@@ -70,8 +71,8 @@ public class CadastroViagemController implements Initializable {
 
         String dataSaida = "";
         String dataChegada = "";
-        String dataHoraChegada;
-        String dataHoraSaida;
+        String dataHoraChegada = "";
+        String dataHoraSaida = "";
 
         try { //Checa a hora
             dataSaida = Data.converterDataParaString(dateChegada.getValue());
@@ -82,16 +83,17 @@ public class CadastroViagemController implements Initializable {
 
             Data.converteStringEmDataHora(dataHoraChegada);
             Data.converteStringEmDataHora(dataHoraSaida);
-
-        } catch (DateTimeParseException ex) {
+            
+        } catch (Exception ex) {
             alerta.setContentText(ex.getMessage());
             alerta.show();
+            verifica = false;
         }
 
-        if (!Data.verificaDataInicioDataFimValida(dataSaida, dataChegada)) {
+        if (!Data.verificaDataHoraSaidaDataHoraChegadaValida(dataHoraSaida, dataHoraChegada)) {
             alerta.setContentText("Data de Saída menor do que a data de Chegada");
             alerta.show();
-        } else {
+        } else if (verifica) {
 
             try {
                 fachadaGerente.adicionarViagem(placa, origem, destino, horarioSaida, horarioChegada, dataSaida, dataChegada);
@@ -100,25 +102,14 @@ public class CadastroViagemController implements Initializable {
                 alerta.setHeaderText("Viagem Cadastrada");
                 alerta.setContentText("Viagem cadastrada com sucesso!");
                 alerta.show();
-                
-            } catch (ViagemJaExisteException ex) {
-                alerta.setContentText(ex.getMessage());
-                alerta.show();
 
-            } catch (MotoristaNaoDisponivelException ex) {
-                alerta.setContentText(ex.getMessage());
-                alerta.show();
-
-            } catch (OnibusNaoDisponivelException ex) {
-                alerta.setContentText(ex.getMessage());
-                alerta.show();
-
-            } catch (OnibusNaoExisteException ex) {
+            } catch (Exception ex) {
                 alerta.setContentText(ex.getMessage());
                 alerta.show();
 
             }
-        }
+            
+        } 
     }
 
     @Override

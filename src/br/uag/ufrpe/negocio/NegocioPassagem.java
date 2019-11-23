@@ -5,9 +5,11 @@
  */
 package br.uag.ufrpe.negocio;
 
-import br.uag.ufrpe.negocio.excecoes.PassagemJaExisteException;
-import br.uag.ufrpe.negocio.excecoes.PassagemNaoExisteException;
+import br.uag.ufrpe.negocio.entidades.Passagem;
+import br.uag.ufrpe.negocio.excecoes.passagem.PassagemJaExisteException;
+import br.uag.ufrpe.negocio.excecoes.passagem.PassagemNaoExisteException;
 import br.uag.ufrpe.dados.IRepositorioPassagem;
+import br.uag.ufrpe.dados.RepositorioPassagem;
 
 
 /**
@@ -18,8 +20,8 @@ public class NegocioPassagem {
     
     private IRepositorioPassagem repositorio;
 
-    public NegocioPassagem(IRepositorioPassagem repositorio) {
-        this.repositorio = repositorio;
+    public NegocioPassagem() {
+        this.repositorio = new RepositorioPassagem();
     }
     
     // ------------------------------ METODOS ----------------------------------

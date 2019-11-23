@@ -5,12 +5,16 @@
  */
 package br.uag.ufrpe.negocio;
 
+import br.uag.ufrpe.negocio.entidades.Data;
+import br.uag.ufrpe.negocio.entidades.Passageiro;
+import br.uag.ufrpe.negocio.entidades.Viagem;
 import br.uag.ufrpe.dados.IRepositorioViagem;
-import br.uag.ufrpe.negocio.excecoes.IntervaloDeDatasInvalidoException;
-import br.uag.ufrpe.negocio.excecoes.MotoristaNaoDisponivelException;
-import br.uag.ufrpe.negocio.excecoes.OnibusNaoDisponivelException;
-import br.uag.ufrpe.negocio.excecoes.ViagemJaExisteException;
-import br.uag.ufrpe.negocio.excecoes.ViagemNaoExisteException;
+import br.uag.ufrpe.dados.RepositorioViagem;
+import br.uag.ufrpe.negocio.excecoes.datas.IntervaloDeDatasInvalidoException;
+import br.uag.ufrpe.negocio.excecoes.motorista.MotoristaNaoDisponivelException;
+import br.uag.ufrpe.negocio.excecoes.onibus.OnibusNaoDisponivelException;
+import br.uag.ufrpe.negocio.excecoes.viagem.ViagemJaExisteException;
+import br.uag.ufrpe.negocio.excecoes.viagem.ViagemNaoExisteException;
 import java.util.List;
 
 /**
@@ -21,8 +25,8 @@ public class NegocioViagem {
 
     private IRepositorioViagem repositorio;
 
-    public NegocioViagem(IRepositorioViagem repositorio) {
-        this.repositorio = repositorio;
+    public NegocioViagem() {
+        this.repositorio = new RepositorioViagem();
     }
 
     public void adicionar(Viagem v) throws ViagemJaExisteException, MotoristaNaoDisponivelException, OnibusNaoDisponivelException {

@@ -5,24 +5,24 @@
  */
 package main;
 
-import br.uag.ufrpe.negocio.Endereco;
-import br.uag.ufrpe.negocio.Funcionario;
-import br.uag.ufrpe.negocio.Motorista;
-import br.uag.ufrpe.negocio.Onibus;
-import br.uag.ufrpe.negocio.Passageiro;
-import br.uag.ufrpe.negocio.Passagem;
-import br.uag.ufrpe.negocio.Viagem;
+import br.uag.ufrpe.negocio.entidades.Endereco;
+import br.uag.ufrpe.negocio.entidades.Funcionario;
+import br.uag.ufrpe.negocio.entidades.Motorista;
+import br.uag.ufrpe.negocio.entidades.Onibus;
+import br.uag.ufrpe.negocio.entidades.Passageiro;
+import br.uag.ufrpe.negocio.entidades.Passagem;
+import br.uag.ufrpe.negocio.entidades.Viagem;
 import br.uag.ufrpe.dados.RepositorioFuncionario;
 import br.uag.ufrpe.dados.RepositorioMotorista;
 import br.uag.ufrpe.dados.RepositorioOnibus;
 import br.uag.ufrpe.dados.RepositorioPassageiro;
 import br.uag.ufrpe.dados.RepositorioPassagem;
 import br.uag.ufrpe.dados.RepositorioViagem;
-import br.uag.ufrpe.negocio.Data;
-import br.uag.ufrpe.negocio.excecoes.PassageiroJaEstaNaViagemException;
-import br.uag.ufrpe.negocio.excecoes.IndisponibilidadeDeAssentoException;
-import br.uag.ufrpe.negocio.excecoes.IndisponibilidadeTipoDePassagemException;
-import br.uag.ufrpe.negocio.excecoes.OnibusCheioException;
+import br.uag.ufrpe.negocio.entidades.Data;
+import br.uag.ufrpe.negocio.excecoes.passageiro.PassageiroJaEstaNaViagemException;
+import br.uag.ufrpe.negocio.excecoes.viagem.IndisponibilidadeDeAssentoException;
+import br.uag.ufrpe.negocio.excecoes.viagem.IndisponibilidadeTipoDePassagemException;
+import br.uag.ufrpe.negocio.excecoes.onibus.OnibusCheioException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -191,7 +191,7 @@ public class GerenciaOnibus {
 
         Funcionario f = new Funcionario("Joao Filho Silva", "119.288.399-19", "0981983", "(98)99002-9218", "1283", "joao@gmail.com", true, endereco);
 
-        
+
     }
 
 }

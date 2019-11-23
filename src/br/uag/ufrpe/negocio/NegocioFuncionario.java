@@ -1,7 +1,8 @@
 package br.uag.ufrpe.negocio;
 
-import br.uag.ufrpe.negocio.excecoes.FuncionarioNaoEncontradoException;
-import br.uag.ufrpe.negocio.excecoes.FuncionarioJaExisteException;
+import br.uag.ufrpe.negocio.entidades.Funcionario;
+import br.uag.ufrpe.negocio.excecoes.funcionario.FuncionarioNaoEncontradoException;
+import br.uag.ufrpe.negocio.excecoes.funcionario.FuncionarioJaExisteException;
 
 import br.uag.ufrpe.dados.IRepositorioFuncionario;
 

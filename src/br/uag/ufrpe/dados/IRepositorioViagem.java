@@ -1,7 +1,7 @@
 package br.uag.ufrpe.dados;
 
-import br.uag.ufrpe.negocio.Passageiro;
-import br.uag.ufrpe.negocio.Viagem;
+import br.uag.ufrpe.negocio.entidades.Passageiro;
+import br.uag.ufrpe.negocio.entidades.Viagem;
 import java.util.List;
 
 /**

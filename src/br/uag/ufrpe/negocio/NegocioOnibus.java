@@ -1,10 +1,11 @@
        
 package br.uag.ufrpe.negocio;
 
-import br.uag.ufrpe.negocio.excecoes.OnibusNaoExisteException;
-import br.uag.ufrpe.negocio.excecoes.OnibusJaExisteException;
+import br.uag.ufrpe.negocio.excecoes.onibus.OnibusNaoExisteException;
+import br.uag.ufrpe.negocio.excecoes.onibus.OnibusJaExisteException;
 import br.uag.ufrpe.dados.IRepositorioOnibus;
-import br.uag.ufrpe.negocio.Onibus;
+import br.uag.ufrpe.dados.RepositorioOnibus;
+import br.uag.ufrpe.negocio.entidades.Onibus;
 
 /**
  *
@@ -14,8 +15,8 @@ public class NegocioOnibus {
     
     private IRepositorioOnibus repositorio;
 
-    public NegocioOnibus(IRepositorioOnibus repositorio) {
-        this.repositorio = repositorio;
+    public NegocioOnibus() {
+        this.repositorio = new RepositorioOnibus();
     }
     
     // --------------------------------- METODOS ----------------------------------------
