@@ -5,10 +5,12 @@
  */
 package br.uag.ufrpe.negocio.fachada;
 
+import br.uag.ufrpe.negocio.NegocioFuncionario;
 import br.uag.ufrpe.negocio.NegocioOnibus;
 import br.uag.ufrpe.negocio.NegocioPassageiro;
 import br.uag.ufrpe.negocio.NegocioPassagem;
 import br.uag.ufrpe.negocio.NegocioViagem;
+import br.uag.ufrpe.negocio.entidades.Funcionario;
 import br.uag.ufrpe.negocio.entidades.Onibus;
 import br.uag.ufrpe.negocio.entidades.Passageiro;
 import br.uag.ufrpe.negocio.entidades.Passagem;
@@ -16,6 +18,8 @@ import br.uag.ufrpe.negocio.entidades.Viagem;
 import br.uag.ufrpe.negocio.excecoes.viagem.IndisponibilidadeDeAssentoException;
 import br.uag.ufrpe.negocio.excecoes.viagem.IndisponibilidadeTipoDePassagemException;
 import br.uag.ufrpe.negocio.excecoes.datas.IntervaloDeDatasInvalidoException;
+import br.uag.ufrpe.negocio.excecoes.funcionario.FuncionarioJaExisteException;
+import br.uag.ufrpe.negocio.excecoes.funcionario.FuncionarioNaoEncontradoException;
 import br.uag.ufrpe.negocio.excecoes.motorista.MotoristaNaoDisponivelException;
 import br.uag.ufrpe.negocio.excecoes.onibus.OnibusCheioException;
 import br.uag.ufrpe.negocio.excecoes.onibus.OnibusJaExisteException;
@@ -36,14 +40,13 @@ import java.util.logging.Logger;
  * @author Itamar Jr
  */
 public class FachadaGerente extends FachadaFuncionario{
-
+    protected NegocioFuncionario negocioFuncionario;
     
     public FachadaGerente() {
+        this.negocioFuncionario = new NegocioFuncionario();
         //super(negocioViagem, negocioOnibus, negocioPassagem, negocioPassageiro);
-
     }
 
-    
     public void adicionarViagem(String placa, String origem, String destino, String horarioSaida, String horarioChegada, String dataSaida, String dataChegada) throws ViagemJaExisteException, MotoristaNaoDisponivelException, OnibusNaoDisponivelException, OnibusNaoExisteException {
         
         Onibus onibus = negocioOnibus.procurarOnibus(placa);
@@ -52,13 +55,11 @@ public class FachadaGerente extends FachadaFuncionario{
         }
         Viagem viagem = new Viagem(onibus, origem, destino, horarioSaida, horarioChegada, dataSaida, dataChegada);
 
-        negocioViagem.adicionar(viagem);
-        
+        negocioViagem.adicionar(viagem);  
     }
 
     public void removerViagem(int codigo) throws ViagemNaoExisteException {
         negocioViagem.remover(codigo);
-
     }
 
     
@@ -78,7 +79,6 @@ public class FachadaGerente extends FachadaFuncionario{
         viagem.setHorarioChegada(horarioChegada);
         viagem.setDataSaida(dataSaida);
         viagem.setDataChegada(dataChegada);
-       
     }
     
     public void aplicarDescontoEmTodasAsPassagens(int codigo, double desconto) throws ViagemNaoExisteException{
@@ -123,6 +123,37 @@ public class FachadaGerente extends FachadaFuncionario{
     
     public double calcularLucroTotalPorDatasEDestino(String origem, String destino, String dataInicio, String dataFim) throws IntervaloDeDatasInvalidoException {
         return negocioViagem.calcularLucroTotalPorDatasEDestino(origem, destino, dataInicio, dataFim);
+    }
+    
+    public void adicionarFuncionario(Funcionario funcionario) throws FuncionarioJaExisteException{
+         if(funcionario == null){
+             negocioFuncionario.adicionarFuncionario(funcionario);
+         }
+         else{
+             throw new FuncionarioJaExisteException();
+         }
+         
+    }
+    
+    public void alterarFuncionario(Funcionario funcionario) throws FuncionarioNaoEncontradoException{
+        //funcionario = negocioFuncionario.procurarFuncionario(funcionario.getCpf());
+        
+        if(funcionario == null){
+            throw new FuncionarioNaoEncontradoException();
+        }
+        else{
+            negocioFuncionario.alterarFuncionario(funcionario);
+        }
+    }
+    
+    public void removerFuncionario(Funcionario funcionario) throws FuncionarioNaoEncontradoException{
+        if(funcionario == null){
+            throw new FuncionarioNaoEncontradoException();
+        }
+        else{
+            negocioFuncionario.removerFuncionario(funcionario);
+        }
+        
     }
     
     
