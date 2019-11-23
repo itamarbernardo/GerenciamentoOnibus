@@ -58,7 +58,7 @@ public class CadastroViagemController implements Initializable {
 
     @FXML
     private void cadastrarViagem(ActionEvent event) {
-        boolean verifica = true;
+        
         Alert alerta = new Alert(Alert.AlertType.ERROR);
         alerta.setTitle("Erro");
         alerta.setHeaderText("Erro ao preencher os dados");
@@ -71,29 +71,37 @@ public class CadastroViagemController implements Initializable {
 
         String dataSaida = "";
         String dataChegada = "";
-        String dataHoraChegada = "";
-        String dataHoraSaida = "";
+        String dataHoraChegada = null;
+        String dataHoraSaida = null;
 
+        if(placa.length() < 7){
+            alerta.setContentText("Placa inválida");
+            alerta.show();
+        }
+        
         try { //Checa a hora
-            dataSaida = Data.converterDataParaString(dateChegada.getValue());
+            dataSaida = Data.converterDataParaString(dateSaida.getValue());
             dataChegada = Data.converterDataParaString(dateChegada.getValue());
 
             dataHoraChegada = dataChegada + " " + horarioChegada;
             dataHoraSaida = dataSaida + " " + horarioSaida;
+            System.out.println("DataHoraSaida: " + dataHoraSaida + "DataHoraChegada: " + dataHoraChegada);
 
             Data.converteStringEmDataHora(dataHoraChegada);
             Data.converteStringEmDataHora(dataHoraSaida);
-            
+
         } catch (Exception ex) {
             alerta.setContentText(ex.getMessage());
             alerta.show();
-            verifica = false;
+            
         }
 
+        
+        
         if (!Data.verificaDataHoraSaidaDataHoraChegadaValida(dataHoraSaida, dataHoraChegada)) {
-            alerta.setContentText("Data de Saída menor do que a data de Chegada");
+            alerta.setContentText("Data de Chegada menor do que a data de Saída");
             alerta.show();
-        } else if (verifica) {
+        } else {
 
             try {
                 fachadaGerente.adicionarViagem(placa, origem, destino, horarioSaida, horarioChegada, dataSaida, dataChegada);
@@ -108,8 +116,8 @@ public class CadastroViagemController implements Initializable {
                 alerta.show();
 
             }
-            
-        } 
+
+        }
     }
 
     @Override
