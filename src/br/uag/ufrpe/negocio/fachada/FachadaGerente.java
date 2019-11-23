@@ -146,6 +146,10 @@ public class FachadaGerente extends FachadaFuncionario{
         }
     }
     
+    public Funcionario procurarFuncionario(Funcionario funcionario){
+        return negocioFuncionario.procurarFuncionario(funcionario.getCpf());
+    }
+    
     public void removerFuncionario(Funcionario funcionario) throws FuncionarioNaoEncontradoException{
         if(funcionario == null){
             throw new FuncionarioNaoEncontradoException();
