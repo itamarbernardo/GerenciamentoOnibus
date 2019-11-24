@@ -5,13 +5,6 @@
  */
 package main;
 
-import br.uag.ufrpe.negocio.entidades.Endereco;
-import br.uag.ufrpe.negocio.entidades.Funcionario;
-import br.uag.ufrpe.negocio.entidades.Motorista;
-import br.uag.ufrpe.negocio.entidades.Onibus;
-import br.uag.ufrpe.negocio.entidades.Passageiro;
-import br.uag.ufrpe.negocio.entidades.Passagem;
-import br.uag.ufrpe.negocio.entidades.Viagem;
 import br.uag.ufrpe.dados.RepositorioFuncionario;
 import br.uag.ufrpe.dados.RepositorioMotorista;
 import br.uag.ufrpe.dados.RepositorioOnibus;
@@ -19,10 +12,17 @@ import br.uag.ufrpe.dados.RepositorioPassageiro;
 import br.uag.ufrpe.dados.RepositorioPassagem;
 import br.uag.ufrpe.dados.RepositorioViagem;
 import br.uag.ufrpe.negocio.entidades.Data;
+import br.uag.ufrpe.negocio.entidades.Endereco;
+import br.uag.ufrpe.negocio.entidades.Funcionario;
+import br.uag.ufrpe.negocio.entidades.Motorista;
+import br.uag.ufrpe.negocio.entidades.Onibus;
+import br.uag.ufrpe.negocio.entidades.Passageiro;
+import br.uag.ufrpe.negocio.entidades.Passagem;
+import br.uag.ufrpe.negocio.entidades.Viagem;
+import br.uag.ufrpe.negocio.excecoes.onibus.OnibusCheioException;
 import br.uag.ufrpe.negocio.excecoes.passageiro.PassageiroJaEstaNaViagemException;
 import br.uag.ufrpe.negocio.excecoes.viagem.IndisponibilidadeDeAssentoException;
 import br.uag.ufrpe.negocio.excecoes.viagem.IndisponibilidadeTipoDePassagemException;
-import br.uag.ufrpe.negocio.excecoes.onibus.OnibusCheioException;
 import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,7 +39,7 @@ public class GerenciaOnibus {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-
+        
         RepositorioViagem repositorioViagem = new RepositorioViagem();
         RepositorioOnibus repositorioOnibus = new RepositorioOnibus();
         RepositorioPassagem repositorioPassagem = new RepositorioPassagem();

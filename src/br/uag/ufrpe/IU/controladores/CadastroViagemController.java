@@ -52,16 +52,31 @@ public class CadastroViagemController implements Initializable {
     @FXML
     private TextField txtHChegada;
 
+    @FXML
+    private Label erroPlaca;
+    @FXML
+    private Label erroDatasHoras;
+    @FXML
+    private Label erroHoraSaida;
+    @FXML
+    private Label erroHoraChegada;
+
     public CadastroViagemController() {
-        fachadaGerente = new FachadaGerente();
+        fachadaGerente = FachadaGerente.getFachadaGerente();
     }
 
     @FXML
     private void cadastrarViagem(ActionEvent event) {
-        
-        Alert alerta = new Alert(Alert.AlertType.ERROR);
-        alerta.setTitle("Erro");
-        alerta.setHeaderText("Erro ao preencher os dados");
+
+        Alert alertaErro = new Alert(Alert.AlertType.ERROR);
+        alertaErro.setTitle("Erro");
+        alertaErro.setHeaderText("Erro ao preencher os dados");
+
+        Alert alertaConfirmacao = new Alert(Alert.AlertType.CONFIRMATION);
+        alertaConfirmacao.setTitle("Confirmação");
+        alertaConfirmacao.setHeaderText("Confirmação ao cadastrar");
+
+        boolean verifica = true;
 
         String placa = txtPlacaOnibus.getText();
         String origem = txtOrigem.getText();
@@ -74,49 +89,61 @@ public class CadastroViagemController implements Initializable {
         String dataHoraChegada = null;
         String dataHoraSaida = null;
 
-        if(placa.length() < 7){
-            alerta.setContentText("Placa inválida");
-            alerta.show();
+        if (placa.length() < 7) {
+            erroPlaca.setText("Placa inválida");
+            verifica = false;
         }
-        
-        try { //Checa a hora
+
+        //Checa a hora de Saida
+        try {
             dataSaida = Data.converterDataParaString(dateSaida.getValue());
-            dataChegada = Data.converterDataParaString(dateChegada.getValue());
-
-            dataHoraChegada = dataChegada + " " + horarioChegada;
             dataHoraSaida = dataSaida + " " + horarioSaida;
-            System.out.println("DataHoraSaida: " + dataHoraSaida + "DataHoraChegada: " + dataHoraChegada);
-
-            Data.converteStringEmDataHora(dataHoraChegada);
             Data.converteStringEmDataHora(dataHoraSaida);
 
         } catch (Exception ex) {
-            alerta.setContentText(ex.getMessage());
-            alerta.show();
-            
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+            //Label hora saida
+            erroHoraSaida.setText("Hora inválida");
+            verifica = false;
         }
 
-        
-        
-        if (!Data.verificaDataHoraSaidaDataHoraChegadaValida(dataHoraSaida, dataHoraChegada)) {
-            alerta.setContentText("Data de Chegada menor do que a data de Saída");
-            alerta.show();
-        } else {
+        //Checa a hora de chegada
+        try {
+            dataChegada = Data.converterDataParaString(dateChegada.getValue());
+            dataHoraChegada = dataChegada + " " + horarioChegada;
+            Data.converteStringEmDataHora(dataHoraChegada);
 
+            if (!Data.verificaDataHoraSaidaDataHoraChegadaValida(dataHoraSaida, dataHoraChegada)) {
+                erroDatasHoras.setText("Data de Chegada menor do que a data de Saída");
+                verifica = false;
+            }
+        } catch (Exception ex) {
+            //Label hora chegada
+            System.out.println(ex.getMessage());
+            ex.printStackTrace();
+            erroHoraChegada.setText("Hora inválida");
+            verifica = false;
+        }
+
+        if (verifica) {
+            //Se entrar aqui, passou por todas as verificações, e vai tentar cadastrar.
             try {
                 fachadaGerente.adicionarViagem(placa, origem, destino, horarioSaida, horarioChegada, dataSaida, dataChegada);
-                alerta.setAlertType(Alert.AlertType.CONFIRMATION);
-                alerta.setTitle("Confirmação");
-                alerta.setHeaderText("Viagem Cadastrada");
-                alerta.setContentText("Viagem cadastrada com sucesso!");
-                alerta.show();
+                alertaConfirmacao.setAlertType(Alert.AlertType.CONFIRMATION);
+                alertaConfirmacao.setContentText("Viagem cadastrada com sucesso!");
+                alertaConfirmacao.show();
 
             } catch (Exception ex) {
-                alerta.setContentText(ex.getMessage());
-                alerta.show();
+                ex.printStackTrace();
+                alertaErro.setContentText(ex.getMessage());
+                alertaErro.show();
 
             }
 
+        } else {
+            alertaErro.setContentText("Erro ao preencher os dados!");
+            alertaErro.show();
         }
     }
 

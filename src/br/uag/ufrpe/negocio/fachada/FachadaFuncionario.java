@@ -29,13 +29,14 @@ import java.util.Map;
  */
 public class FachadaFuncionario {
 
-    //private static FachadaFuncionario fachadaFuncionario;
+    private static FachadaFuncionario fachadaFuncionario;
+    
     protected NegocioViagem negocioViagem;
     protected NegocioOnibus negocioOnibus;
     protected NegocioPassagem negocioPassagem;
     protected NegocioPassageiro negocioPassageiro;
 
-    public FachadaFuncionario() {
+    FachadaFuncionario() {
         this.negocioViagem = new NegocioViagem();
         this.negocioOnibus = new NegocioOnibus();
         this.negocioPassagem = new NegocioPassagem();
@@ -44,15 +45,13 @@ public class FachadaFuncionario {
 
     
     //Padrão de projeto Singleton - evita que tenham multiplas fachadas
-    
-    /**
     public static FachadaFuncionario getFachadaFuncionario(){
         if(fachadaFuncionario == null){
             fachadaFuncionario = new FachadaFuncionario();
         }
         return fachadaFuncionario;
     }
-    */
+    
     
     public Viagem procurarViagem(int codigo) {
         return negocioViagem.procurar(codigo);

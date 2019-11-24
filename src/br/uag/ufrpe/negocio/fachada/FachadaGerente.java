@@ -37,12 +37,19 @@ import java.util.logging.Logger;
  */
 public class FachadaGerente extends FachadaFuncionario{
 
+    private static FachadaGerente fachadaGerente;
     
-    public FachadaGerente() {
-        //super(negocioViagem, negocioOnibus, negocioPassagem, negocioPassageiro);
+    private FachadaGerente() {
+        super();
 
     }
 
+    public static FachadaGerente getFachadaGerente(){
+        if(FachadaGerente == null){
+            fachadaGerente = new FachadaGerente();
+        }
+        return fachadaGerente;
+    }
     
     public void adicionarViagem(String placa, String origem, String destino, String horarioSaida, String horarioChegada, String dataSaida, String dataChegada) throws ViagemJaExisteException, MotoristaNaoDisponivelException, OnibusNaoDisponivelException, OnibusNaoExisteException {
         
