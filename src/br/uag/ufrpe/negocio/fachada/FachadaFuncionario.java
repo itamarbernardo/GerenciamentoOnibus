@@ -5,6 +5,7 @@
  */
 package br.uag.ufrpe.negocio.fachada;
 
+import br.uag.ufrpe.negocio.NegocioFuncionario;
 import br.uag.ufrpe.negocio.NegocioOnibus;
 import br.uag.ufrpe.negocio.NegocioPassageiro;
 import br.uag.ufrpe.negocio.NegocioPassagem;
@@ -16,6 +17,7 @@ import br.uag.ufrpe.negocio.excecoes.viagem.IndisponibilidadeDeAssentoException;
 import br.uag.ufrpe.negocio.excecoes.viagem.IndisponibilidadeTipoDePassagemException;
 import br.uag.ufrpe.negocio.excecoes.onibus.OnibusCheioException;
 import br.uag.ufrpe.negocio.excecoes.passageiro.PassageiroJaEstaNaViagemException;
+import br.uag.ufrpe.negocio.excecoes.passageiro.PassageiroJaExisteException;
 import br.uag.ufrpe.negocio.excecoes.passageiro.PassageiroNaoExisteException;
 import br.uag.ufrpe.negocio.excecoes.passagem.PassagemNaoExisteException;
 import br.uag.ufrpe.negocio.excecoes.passagem.PassagemNaoPertenceAViagemException;
@@ -35,12 +37,14 @@ public class FachadaFuncionario {
     protected NegocioOnibus negocioOnibus;
     protected NegocioPassagem negocioPassagem;
     protected NegocioPassageiro negocioPassageiro;
+    
 
     FachadaFuncionario() {
         this.negocioViagem = new NegocioViagem();
         this.negocioOnibus = new NegocioOnibus();
         this.negocioPassagem = new NegocioPassagem();
         this.negocioPassageiro = new NegocioPassageiro();
+        
     }
 
     
@@ -206,6 +210,37 @@ public class FachadaFuncionario {
             throw new ViagemNaoExisteException();
         }
         return viagem.listaPoltronas();
+    }
+    
+    public void adicionarPassageiro(Passageiro passageiro) throws PassageiroJaExisteException, PassageiroNaoExisteException{
+        if(passageiro == null){
+            negocioPassageiro.adicionarPassageiro(passageiro);
+        }
+        else{
+            throw new PassageiroJaExisteException();
+        }
+    }
+    
+    public void alterarPassageiro(Passageiro passageiro) throws PassageiroNaoExisteException{
+        if(passageiro == null){
+            throw new PassageiroNaoExisteException();
+        }
+        else{
+            negocioPassageiro.alterarPassageiro(passageiro);
+        }
+    }
+    
+    public Passageiro procurarPassageiro(Passageiro passageiro){
+        return negocioPassageiro.procurarPassageiro(passageiro.getCpf());
+    }
+    
+    public void removerPassageiro(Passageiro passageiro) throws PassageiroNaoExisteException{
+        if(passageiro == null){
+            throw new PassageiroNaoExisteException();
+        }
+        else{
+            negocioPassageiro.removerPassageiro(passageiro);
+        }
     }
 
 

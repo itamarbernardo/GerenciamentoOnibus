@@ -5,6 +5,7 @@ import br.uag.ufrpe.negocio.excecoes.funcionario.FuncionarioNaoEncontradoExcepti
 import br.uag.ufrpe.negocio.excecoes.funcionario.FuncionarioJaExisteException;
 
 import br.uag.ufrpe.dados.IRepositorioFuncionario;
+import br.uag.ufrpe.dados.RepositorioFuncionario;
 
 /**
  *
@@ -13,8 +14,8 @@ import br.uag.ufrpe.dados.IRepositorioFuncionario;
 public class NegocioFuncionario {
     private final IRepositorioFuncionario repositorio;
     
-    public NegocioFuncionario(IRepositorioFuncionario repositorio){
-        this.repositorio = repositorio;
+    public NegocioFuncionario(){
+        this.repositorio = new RepositorioFuncionario();
     }
     
     public void adicionarFuncionario(Funcionario funcionario) throws FuncionarioJaExisteException{

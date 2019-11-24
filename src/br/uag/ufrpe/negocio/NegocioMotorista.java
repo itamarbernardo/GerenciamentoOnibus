@@ -7,6 +7,7 @@ package br.uag.ufrpe.negocio;
 
 import br.uag.ufrpe.negocio.entidades.Motorista;
 import  br.uag.ufrpe.dados.IRepositorioMotorista ;
+import br.uag.ufrpe.dados.RepositorioMotorista;
 import br.uag.ufrpe.negocio.excecoes.motorista.MotoristaJaExisteException;
 import br.uag.ufrpe.negocio.excecoes.motorista.MotoristaNaoExisteException;
 
@@ -20,8 +21,8 @@ public class NegocioMotorista {
     
    private IRepositorioMotorista repositorio;
    
-   public NegocioMotorista(IRepositorioMotorista repositorio){
-            this.repositorio = repositorio;
+   public NegocioMotorista(){
+            this.repositorio = new RepositorioMotorista();
     }
    
    public void adicionarMotorista(Motorista m) throws MotoristaJaExisteException{
