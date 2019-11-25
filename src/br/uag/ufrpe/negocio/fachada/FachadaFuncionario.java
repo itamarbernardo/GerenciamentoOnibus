@@ -6,6 +6,7 @@
 package br.uag.ufrpe.negocio.fachada;
 
 import br.uag.ufrpe.negocio.NegocioFuncionario;
+import br.uag.ufrpe.negocio.NegocioMotorista;
 import br.uag.ufrpe.negocio.NegocioOnibus;
 import br.uag.ufrpe.negocio.NegocioPassageiro;
 import br.uag.ufrpe.negocio.NegocioPassagem;
@@ -37,14 +38,16 @@ public class FachadaFuncionario {
     protected NegocioOnibus negocioOnibus;
     protected NegocioPassagem negocioPassagem;
     protected NegocioPassageiro negocioPassageiro;
-    
+    protected NegocioFuncionario negocioFuncionario;
+    protected NegocioMotorista negocioMotorista;
 
     FachadaFuncionario() {
         this.negocioViagem = new NegocioViagem();
         this.negocioOnibus = new NegocioOnibus();
         this.negocioPassagem = new NegocioPassagem();
         this.negocioPassageiro = new NegocioPassageiro();
-        
+        this.negocioFuncionario = new NegocioFuncionario();
+        this.negocioMotorista = new NegocioMotorista();
     }
 
     

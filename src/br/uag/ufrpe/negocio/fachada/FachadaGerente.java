@@ -42,11 +42,9 @@ import java.util.logging.Logger;
 public class FachadaGerente extends FachadaFuncionario {
 
     private static FachadaGerente fachadaGerente;
-    private NegocioFuncionario negocioFuncionario;
-
+    
     private FachadaGerente() {
         super();
-        this.negocioFuncionario = new NegocioFuncionario();
     }
 
     public static FachadaGerente getFachadaGerente() {
